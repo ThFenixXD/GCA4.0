@@ -283,12 +283,12 @@
                     <span class="txt-link text-start">Software</span>
                 </asp:LinkButton>
             </div>
-            <div class="opcoes-item col-12 col-md-12 col-sm-12">
+      <%--      <div class="opcoes-item col-12 col-md-12 col-sm-12">
                 <asp:LinkButton ID="LnkConsultaRelacionar" CssClass="LnkButton border d-flex m-auto" runat="server">
                     <span class="icon"><i class="bi bi-bezier2"></i></span>
                     <span class="txt-link text-start">Relacionamento</span>
                 </asp:LinkButton>
-            </div>
+            </div>--%>
         </section>
     </asp:Panel>
 
@@ -303,11 +303,11 @@
                             <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
                         </ItemTemplate>
                     </telerik:GridTemplateColumn>
-                    <telerik:GridBoundColumn UniqueName="col_CodUsuario" DataField="ID_Usuario" HeaderText="COD USUARIO"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_NomeUsuario" DataField="NomeUsuario" HeaderText="NOME USUÁRIO"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_Funcao" DataField="FuncaoUsuario" HeaderText="FUNÇÃO"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_CodSetor" DataField="ID_Setor" HeaderText="COD SETOR"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_Setor" DataField="SetorUsuario" HeaderText="SETOR"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_CodUsuario" DataField="ID_Usuario" HeaderText="COD USUARIO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_NomeUsuario" DataField="NomeUsuario" HeaderText="NOME USUÁRIO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_Funcao" DataField="FuncaoUsuario" HeaderText="FUNÇÃO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_CodSetor" DataField="ID_Setor" HeaderText="COD SETOR" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_Setor" DataField="SetorUsuario" HeaderText="SETOR" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                 </Columns>
             </MasterTableView>
         </telerik:RadGrid>
@@ -324,11 +324,11 @@
                             <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
                         </ItemTemplate>
                     </telerik:GridTemplateColumn>
-                    <telerik:GridBoundColumn UniqueName="col_CodMaquina" DataField="ID_Maquina" HeaderText="COD"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_NomeMaquina" DataField="NomeMaquina" HeaderText="NOME DA MÁQUINA"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_CodSetor" DataField="ID_Setor" HeaderText="COD SETOR"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_Setor" DataField="SetorMaquina" HeaderText="SETOR"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_Status" DataField="Status" HeaderText="STATUS"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_CodMaquina" DataField="ID_Maquina" HeaderText="COD" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_NomeMaquina" DataField="NomeMaquina" HeaderText="NOME DA MÁQUINA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_CodSetor" DataField="ID_Setor" HeaderText="COD SETOR" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_Setor" DataField="SetorMaquina" HeaderText="SETOR" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_Status" DataField="Status" HeaderText="STATUS" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                 </Columns>
             </MasterTableView>
         </telerik:RadGrid>
@@ -337,7 +337,7 @@
     <asp:Panel ID="PnlConsultarChaves" CssClass="Pnl col-9 col-md-9 col-sm-9 d-flex align-items-center justify-content-center text-center" runat="server" Visible="false">
         <telerik:RadGrid ID="GridChaves" runat="server" AutoGenerateColumns="false" OnNeedDataSource="GridChaves_NeedDataSource" OnItemCommand="GridChaves_ItemCommand">
             <GroupingSettings CollapseAllTooltip="collaps all columns" />
-            <MasterTableView DataKeyNames="ID_ChaveAtivacao">
+            <MasterTableView DataKeyNames="ID_Software, ID_ChaveAtivacao">
                 <Columns>
                     <telerik:GridTemplateColumn UniqueName="OP" AllowFiltering="false">
                         <ItemTemplate>
@@ -345,12 +345,11 @@
                             <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
                         </ItemTemplate>
                     </telerik:GridTemplateColumn>
-                    <telerik:GridBoundColumn UniqueName="col_Software" DataField="Software" HeaderText="SOFTWARE"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_CodChaveAtivacao" DataField="ID_ChaveDeAtivacao" HeaderText="COD"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_ChaveAtivacao" DataField="ChaveAtivacao" HeaderText="CHAVE DE ATIVAÇÃO"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_DataDeCompra" DataField="DataDeCompra" HeaderText="DATA DE COMPRA"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_TipoDeLicenca" DataField="TipoDeLicenca" HeaderText="TIPO DE LICENCA"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_PrazoDeLicenca" DataField="PrazoDeLicenca" HeaderText="PRAZO DE LICENCA"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_Software" DataField="NomeSoftware" HeaderText="SOFTWARE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_ChaveAtivacao" DataField="ChaveDeAtivacao" HeaderText="CHAVE DE ATIVAÇÃO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_DataDeCompra" DataField="DataDeCompra" HeaderText="DATA DE COMPRA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_TipoDeLicenca" DataField="TipoDeLicenca" HeaderText="TIPO DE LICENCA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_PrazoDeLicenca" DataField="PrazoDeLicenca" HeaderText="PRAZO DE LICENCA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                     <telerik:GridBoundColumn UniqueName="col_Status" DataField="Status" HeaderText="STATUS"></telerik:GridBoundColumn>
                 </Columns>
             </MasterTableView>
@@ -368,8 +367,8 @@
                             <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
                         </ItemTemplate>
                     </telerik:GridTemplateColumn>
-                    <telerik:GridBoundColumn UniqueName="col_Software" DataField="NomeSoftware" HeaderText="SOFTWARE"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_Fabricante" DataField="Fabricante" HeaderText="FABRICANTE"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_Software" DataField="NomeSoftware" HeaderText="SOFTWARE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_Fabricante" DataField="Fabricante" HeaderText="FABRICANTE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                 </Columns>
             </MasterTableView>
         </telerik:RadGrid>
@@ -386,10 +385,10 @@
                             <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
                         </ItemTemplate>
                     </telerik:GridTemplateColumn>
-                    <telerik:GridBoundColumn UniqueName="col_NomeUsuario" DataField="UsuarioRelacionar" HeaderText="USUARIO"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_NomeMaquina" DataField="MaquinaRelacionar" HeaderText="MAQUINA"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_NomeSoftware" DataField="SoftwareRelacionar" HeaderText="SOFTWARE"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_ChaveAtivacao" DataField="ChaveAtivacaoRelacionar" HeaderText="CHAVE DE ATIVAÇÃO"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_NomeUsuario" DataField="UsuarioRelacionar" HeaderText="USUARIO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_NomeMaquina" DataField="MaquinaRelacionar" HeaderText="MAQUINA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_NomeSoftware" DataField="SoftwareRelacionar" HeaderText="SOFTWARE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    <telerik:GridBoundColumn UniqueName="col_ChaveAtivacao" DataField="ChaveAtivacaoRelacionar" HeaderText="CHAVE DE ATIVAÇÃO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                 </Columns>
             </MasterTableView>
         </telerik:RadGrid>

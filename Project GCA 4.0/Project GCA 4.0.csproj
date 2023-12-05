@@ -91,6 +91,7 @@
       <LastGenOutput>GCAModel.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
+    <Content Include="WebForms.Old\Teste.aspx" />
     <Content Include="WebForms\Gerenciamento.aspx" />
     <Content Include="WebForms\HomePage.aspx" />
     <Content Include="WebForms\Relacionar.aspx" />
@@ -132,6 +133,13 @@
     </Compile>
     <Compile Include="tb_Usuarios.cs">
       <DependentUpon>GCAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms.Old\Teste.aspx.cs">
+      <DependentUpon>Teste.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms.Old\Teste.aspx.designer.cs">
+      <DependentUpon>Teste.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Gerenciamento.aspx.cs">
       <DependentUpon>Gerenciamento.aspx</DependentUpon>
@@ -186,9 +194,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="WebForms.Old\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

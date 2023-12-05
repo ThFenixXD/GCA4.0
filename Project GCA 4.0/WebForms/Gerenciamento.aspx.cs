@@ -43,6 +43,8 @@ namespace Project_GCA_4._0.WebForms
             string.Empty;
         }
 
+        #region AtualizaGrid
+
         protected void AtualizaGridUsuarios()
         {
             GridUsuarios.DataSource = Framework.GetDataTable("SELECT ID_Usuario, ID_Usuario, NomeUsuario, FuncaoUsuario, ID_Setor, SetorUsuario FROM tb_Usuarios WHERE Deleted = 0");
@@ -57,7 +59,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridChaves()
         {
-            GridChaves.DataSource = Framework.GetDataTable("SELECT ID_ChaveAtivacao, DataDeCompra, TipoDeLicenca, PrazoDeLicenca, Software, ChaveDeAtivacao, Status FROM tb_Chaves WHERE Deleted = 0");
+            GridChaves.DataSource = Framework.GetDataTable("select tb_Software.ID_Software, tb_Software.NomeSoftware, tb_Chaves.ID_ChaveAtivacao, tb_Chaves.DataDeCompra, tb_Chaves.TipoDeLicenca, tb_Chaves.PrazoDeLicenca, tb_Chaves.ChaveDeAtivacao, tb_Chaves.Status from tb_Software Inner Join tb_Chaves on tb_Software.ID_Software = tb_Chaves.ID_ChaveAtivacao");
             GridChaves.DataBind();
         }
 
@@ -72,6 +74,11 @@ namespace Project_GCA_4._0.WebForms
             GridRelacionar.DataSource = Framework.GetDataTable("SELECT ID_Relacionar, UsuarioRelacionar, MaquinaRelacionar, ChaveAtivacaoRelacionar FROM tb_Relacionar WHERE Deleted = 0");
             GridRelacionar.DataBind();
         }
+
+
+        #endregion
+
+        #region PopulaCampos
 
         protected void PopulaCamposCadastroUsuario(int _cdID)
         {
@@ -171,6 +178,10 @@ namespace Project_GCA_4._0.WebForms
             }
         }
 
+        #endregion
+
+        #region PopulaDdl
+
         protected void PopulaDdlRelacionarChaveAtivacao()
         {
             DdlRelacionarChaveAtivacao.DataSource = Framework.GetDataTable("SELECT ID_ChaveAtivacao, ChaveAtivacao FROM tb_Chaves WHERE Deleted = 0");
@@ -215,7 +226,7 @@ namespace Project_GCA_4._0.WebForms
 
         #endregion
 
-
+        #endregion
 
         #region OnClick
 
@@ -486,26 +497,37 @@ namespace Project_GCA_4._0.WebForms
                     }
                     else
                     {
+                        var Query = (from objChaveAtivacao in ctx.tb_Chaves select objChaveAtivacao).FirstOrDefault();
 
+                        string valor = txtChaveAtivacao.Text;
 
-                        Chave.DataDeCompra = txtDataDeCompra.Text;
-                        Chave.TipoDeLicenca = DdlTipoDeLicenca.SelectedItem.Text;
-                        Chave.PrazoDeLicenca = txtPrazoLicenca.Text;
-                        Chave.ChaveDeAtivacao = txtChaveAtivacao.Text;
-                        Chave.Status = 0;
-                        Chave.Deleted = 0;
-
-                        if (string.IsNullOrEmpty(HdfID.Value))
+                        if (Query.ChaveDeAtivacao != valor)
                         {
-                            ctx.tb_Chaves.Add(Chave);
+                            Chave.DataDeCompra = txtDataDeCompra.Text;
+                            Chave.TipoDeLicenca = DdlTipoDeLicenca.SelectedItem.Text;
+                            Chave.PrazoDeLicenca = txtPrazoLicenca.Text;
+                            Chave.ChaveDeAtivacao = txtChaveAtivacao.Text;
+                            Chave.Status = 0;
+                            Chave.Deleted = 0;
+
+                            if (string.IsNullOrEmpty(HdfID.Value))
+                            {
+                                ctx.tb_Chaves.Add(Chave);
+                            }
+                            ctx.SaveChanges();
+                            EscondePaineis();
+                            LimpaCampos();
+                            PnlConsultarChaves.Visible = true;
+                            AtualizaGridChaves();
                         }
-                        ctx.SaveChanges();
-                        EscondePaineis();
-                        LimpaCampos();
-                        PnlConsultarChaves.Visible = true;
-                        AtualizaGridChaves();
                     }
+
                 }
+
+
+
+
+                        
                 catch (Exception ex)
                 {
                     Response.Write("Erro, " + ex.Message);
@@ -663,42 +685,49 @@ namespace Project_GCA_4._0.WebForms
         {
             EscondePaineis();
             PnlCadastroOpcoes.Visible = true;
+            LimpaCampos();
         }
 
         protected void BtCancelarMaquina_Click(object sender, EventArgs e)
         {
             EscondePaineis();
             PnlCadastroOpcoes.Visible = true;
+            LimpaCampos();
         }
 
         protected void BtCancelarSetor_Click(object sender, EventArgs e)
         {
             EscondePaineis();
             PnlCadastroOpcoes.Visible = true;
+            LimpaCampos();
         }
 
         protected void BtCancelarSoftware_Click(object sender, EventArgs e)
         {
             EscondePaineis();
             PnlCadastroOpcoes.Visible = true;
+            LimpaCampos();
         }
 
         protected void BtCancelarChaveAtivacao_Click(object sender, EventArgs e)
         {
             EscondePaineis();
             PnlCadastroOpcoes.Visible = true;
+            LimpaCampos();
         }
 
         protected void BtCancelarTipoLicenca_Click(object sender, EventArgs e)
         {
             EscondePaineis();
             PnlCadastroOpcoes.Visible = true;
+            LimpaCampos();
         }
 
         protected void CancelarRelacionar_Click(object sender, EventArgs e)
         {
             EscondePaineis();
             PnlRelacionar.Visible = true;
+            LimpaCampos();
         }
 
         #endregion
@@ -723,7 +752,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridSoftware_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridSoftware.DataSource = Framework.GetDataTable("SELECT ID_Software, NomeSoftware, Fabricante FROM tb_Software WHERE Deleted = 0");
+            GridSoftware.DataSource = Framework.GetDataTable("select tb_Software.ID_Software, tb_Software.NomeSoftware, tb_Chaves.ID_ChaveAtivacao, tb_Chaves.DataDeCompra, tb_Chaves.TipoDeLicenca, tb_Chaves.PrazoDeLicenca, tb_Chaves.ChaveDeAtivacao, tb_ChaveDeAtivacao.Status from tb_Software Inner Join tb_Chaves on tb_Software.ID_Software = tb_Chaves.ID_ChaveAtivacao");
         }
 
         protected void GridRelacionar_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
@@ -863,7 +892,7 @@ namespace Project_GCA_4._0.WebForms
         {
             try
             {
-                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["ID_ChaveAtivacao"]);
+                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["ID_Software"]);
 
                 switch (e.CommandName)
                 {
@@ -880,7 +909,7 @@ namespace Project_GCA_4._0.WebForms
                     case "opExcluir":
                         using (GCAEntities ctx = new GCAEntities())
                         {
-                            tb_Software Chave = new tb_Software();
+                            tb_Software Software = new tb_Software();
 
                             int ID = _cdID;
                             HdfID.Value = _cdID.ToString();
@@ -889,7 +918,7 @@ namespace Project_GCA_4._0.WebForms
 
                             Query.Deleted = 1;
                             ctx.SaveChanges();
-                            AtualizaGridChaves();
+                            AtualizaGridSoftware();
                         }
                         break;
                 }

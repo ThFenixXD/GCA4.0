@@ -715,15 +715,6 @@ namespace Project_GCA_4._0.WebForms {
         protected global::System.Web.UI.WebControls.LinkButton lnkConsultaSoftware;
         
         /// <summary>
-        /// LnkConsultaRelacionar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LnkConsultaRelacionar;
-        
-        /// <summary>
         /// PnlConsultarUsuarios control.
         /// </summary>
         /// <remarks>
