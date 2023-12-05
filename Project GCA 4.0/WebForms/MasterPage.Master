@@ -1,0 +1,48 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="Project_GCA_4._0.WebForms.MasterPage" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Project GCA 3.0</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="../CSS/estilo.css" rel="stylesheet" />
+</head>
+<body>
+    <form class="row" runat="server">
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
+        <nav class="menu-lateral col-3 col-md-3 col-sm-3 h-100 d-flex align-items-center p-0">
+            <ul>
+                <li class="item-menu">
+                    <a href="HomePage.aspx">
+                        <span class="icon"><i class="bi bi-house"></i></span>
+                        <span class="txt-link">Início</span>
+                    </a>
+                </li>
+                      <li class="item-menu">
+                    <a href="Relacionar.aspx">
+                        <span class="icon"><i class="bi bi-bezier2"></i></span>
+                        <span class="txt-link">Relacionar</span>
+                    </a>
+                </li>       
+                <li class="item-menu">
+                    <a href="Gerenciamento.aspx">
+                        <span class="icon"><i class="bi bi-gear"></i></span>
+                        <span class="txt-link">Gerenciamento</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

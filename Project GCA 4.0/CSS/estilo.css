@@ -1,0 +1,115 @@
+﻿html, body, form {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    background-color: cornflowerblue;
+    /*background-color: #4F78C4;*/
+}
+
+
+.menu-lateral {
+    background-color: navy;
+    border-right: 2px solid lightskyblue;
+}
+
+    .menu-lateral ul {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+        .menu-lateral ul li {
+            font-size: 24px;
+            list-style: none;
+        }
+
+            .menu-lateral ul li a {
+                width: 100%;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                color: lightblue;
+                padding: 6% 0;
+                border-top: .5px solid lightblue;
+                transition: .30s;
+            }
+
+                .menu-lateral ul li a:hover {
+                    background-color: #4F78C4;
+                    color: white;
+                }
+
+                .menu-lateral ul li a.last__menu-item {
+                    border-bottom: .5px solid lightblue;
+                }
+
+                .menu-lateral ul li a .icon {
+                    margin-left: 12%;
+                }
+
+                .menu-lateral ul li a .txt-link {
+                    font-size: 20px;
+                    margin-left: 16px;
+                }
+
+.opcoes-item .LnkButton {
+    grid-gap: 25px;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    width: 40%;
+    align-items: center;
+    transition: .30s;
+    padding: 1%;
+}
+
+    .opcoes-item .LnkButton:hover {
+        background-color: white;
+        color: #4F78C4;
+    }
+
+    .opcoes-item .LnkButton .icon {
+        margin-left: 10%;
+    }
+
+.LbTitulo {
+    font-size: 40px;
+    font-weight: 600;
+    color: white;
+}
+
+.DivTextBlock {
+    width: 80%;
+    font-size: 18px;
+}
+
+    .DivTextBlock .lbRelacionar {
+        color: white;
+    }
+
+    .DivTextBlock .lbTextBlock {
+        color: white;
+    }
+
+.PnlApresentacao {
+    color: white;
+}
+
+.lbHomeTItulo {
+    font-size: 96px;
+    font-weight: 800;
+    letter-spacing: 5px;
+}
+
+.lbHomeSubTItulo {
+    font-size: 32px;
+}
+
+.PnlApresentacao p {
+    font-size: 20px;
+    padding: 24px;
+}
