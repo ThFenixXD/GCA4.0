@@ -97,7 +97,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridSoftware_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridSoftware.DataSource = Framework.GetDataTable("select tb_Software.ID_Software, tb_Software.NomeSoftware, tb_Chaves.ID_ChaveAtivacao, tb_Chaves.DataDeCompra, tb_Chaves.TipoDeLicenca, tb_Chaves.PrazoDeLicenca, tb_Chaves.ChaveDeAtivacao, tb_ChaveDeAtivacao.Status from tb_Software Inner Join tb_Chaves on tb_Software.ID_Software = tb_Chaves.ID_ChaveAtivacao");
+            GridSoftware.DataSource = Framework.GetDataTable("SELECT ID_Software, NomeSoftware, Fabricante FROM tb_Software WHERE Deleted = 0 Order By NomeSoftware");
         }
 
         protected void GridSoftware_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
@@ -145,6 +145,12 @@ namespace Project_GCA_4._0.WebForms
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btCadastrarSoftware_Click(object sender, EventArgs e)
+        {
+            EscondePaineis();
+            PnlCadastroSoftware.Visible = true;
         }
     }
 }

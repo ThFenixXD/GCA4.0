@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ProjectGCA4._0.Útil;
 
 namespace Project_GCA_4._0.WebForms
 {
@@ -19,6 +20,12 @@ namespace Project_GCA_4._0.WebForms
             txtTipoLicenca.Text =
             HdfID.Value =
             string.Empty;
+        }
+
+        protected void AtualizaGridLicenca()
+        {
+            GridLicencas.DataSource = Framework.GetDataTable("select ID_TipoDeLicenca, TipoDeLicenca from tb_TipoLicenca where deleted = 0 order by tipodelicenca");
+            GridLicencas.DataBind();
         }
 
         protected void BtSalvarTipoLicenca_Click(object sender, EventArgs e)
@@ -49,6 +56,7 @@ namespace Project_GCA_4._0.WebForms
                         EscondePaineis();
                         LimpaCampos();
                         PnlCadastroTipoLicenca.Visible = true;
+                        AtualizaGridLicenca();
                     }
                 }
                 catch (Exception ex)
@@ -65,9 +73,60 @@ namespace Project_GCA_4._0.WebForms
             LimpaCampos();
         }
 
+        protected void GridLicencas_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
+        {
+            GridLicencas.DataSource = Framework.GetDataTable("select ID_TipoDeLicenca, TipoDeLicenca from tb_TipoLicenca where deleted = 0 order by tipodelicenca");
+        }
+
+        protected void GridLicencas_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+        {
+            try
+            {
+                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["ID_TipoDeLicenca"]);
+
+                switch (e.CommandName)
+                {
+                    case "opSelecionar":
+                        break;
+
+                    case "opEditar":
+                        EscondePaineis();
+                        LimpaCampos();
+                        PnlConsultarLicencas.Visible = true;
+                        break;
+
+                    case "opExcluir":
+                        using (GCAEntities ctx = new GCAEntities())
+                        {
+                            tb_TipoLicenca TipoLicenca = new tb_TipoLicenca();
+
+                            int ID = _cdID;
+                            HdfID.Value = _cdID.ToString();
+
+                            var Query = (from objTipoLicenca in ctx.tb_TipoLicenca where objTipoLicenca.ID_TipoDeLicenca == ID select objTipoLicenca).FirstOrDefault();
+
+                            Query.Deleted = 1;
+                            ctx.SaveChanges();
+                            AtualizaGridLicenca();
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Erro, " + ex.Message);
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btCadastrarLicença_Click(object sender, EventArgs e)
+        {
+            EscondePaineis();
+            PnlCadastroTipoLicenca.Visible = true;
         }
     }
 }

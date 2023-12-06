@@ -39,6 +39,12 @@
                         <span class="txt-link">Máquinas</span>
                     </a>
                 </li>
+                 <li class="item-menu">
+                    <a href="Setor.aspx">
+                        <span class="icon"><i class="bi bi-pc-display-horizontal"></i></span>
+                        <span class="txt-link">Setores</span>
+                    </a>
+                </li>
                 <li class="item-menu">
                     <a href="Software.aspx">
                         <span class="icon"><i class="bi bi-code-square"></i></span>

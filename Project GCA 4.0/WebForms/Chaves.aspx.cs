@@ -25,7 +25,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridChaves()
         {
-            GridChaves.DataSource = Framework.GetDataTable("select tb_Software.ID_Software, tb_Software.NomeSoftware, tb_Chaves.ID_ChaveAtivacao, tb_Chaves.DataDeCompra, tb_Chaves.TipoDeLicenca, tb_Chaves.PrazoDeLicenca, tb_Chaves.ChaveDeAtivacao, tb_Chaves.Status from tb_Software Inner Join tb_Chaves on tb_Software.ID_Software = tb_Chaves.ID_ChaveAtivacao where tb_chaves.deleted = 0 Order By = ChaveDeAtivacao");
+            GridChaves.DataSource = Framework.GetDataTable("select tb_Software.ID_Software, tb_Software.NomeSoftware, tb_Chaves.ID_ChaveAtivacao, tb_Chaves.DataDeCompra, tb_Chaves.TipoDeLicenca, tb_Chaves.PrazoDeLicenca, tb_Chaves.ChaveDeAtivacao, tb_Chaves.Status from tb_Software Inner Join tb_Chaves on tb_Software.ID_Software = tb_Chaves.ID_ChaveAtivacao WHERE tb_Chaves.Deleted = 0 Order by ChaveDeAtivacao");
             GridChaves.DataBind();
         }
 
@@ -119,7 +119,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridChaves_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridChaves.DataSource = Framework.GetDataTable("SELECT ID_ChaveAtivacao, DataDeCompra, TipoDeLicenca, PrazoDeLicenca, Software, ChaveDeAtivacao, Status FROM tb_Chaves WHERE Deleted = 0");
+            GridChaves.DataSource = Framework.GetDataTable("select tb_Software.ID_Software, tb_Software.NomeSoftware, tb_Chaves.ID_ChaveAtivacao, tb_Chaves.DataDeCompra, tb_Chaves.TipoDeLicenca, tb_Chaves.PrazoDeLicenca, tb_Chaves.ChaveDeAtivacao, tb_Chaves.Status from tb_Software Inner Join tb_Chaves on tb_Software.ID_Software = tb_Chaves.ID_ChaveAtivacao WHERE tb_Chaves.Deleted = 0 Order by ChaveDeAtivacao");
         }
 
         protected void GridChaves_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
@@ -171,6 +171,12 @@ namespace Project_GCA_4._0.WebForms
                 PopulaDdlTipoDeLicenca();
                 PopulaDdlSoftware();
             }
+        }
+
+        protected void btCadastrarChave_Click(object sender, EventArgs e)
+        {
+            EscondePaineis();
+            PnlCadastroChaveAtivacao.Visible = true;
         }
     }
 }

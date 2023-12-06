@@ -41,25 +41,35 @@
     </asp:Panel>
 
     <asp:Panel ID="PnlConsultarChaves" CssClass="Pnl col-9 col-md-9 col-sm-9 d-flex align-items-center justify-content-center text-center" runat="server" Visible="true">
-        <telerik:radgrid id="GridChaves" runat="server" autogeneratecolumns="false" onneeddatasource="GridChaves_NeedDataSource" onitemcommand="GridChaves_ItemCommand">
-            <GroupingSettings CollapseAllTooltip="collaps all columns" />
-            <MasterTableView DataKeyNames="ID_Software, ID_ChaveAtivacao">
-                <Columns>
-                    <telerik:GridTemplateColumn UniqueName="OP" AllowFiltering="false">
-                        <ItemTemplate>
-                            <asp:Button ID="btEditar" runat="server" Text="Editar" CommandName="opEditar" />
-                            <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
-                        </ItemTemplate>
-                    </telerik:GridTemplateColumn>
-                    <telerik:GridBoundColumn UniqueName="col_Software" DataField="NomeSoftware" HeaderText="SOFTWARE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_ChaveAtivacao" DataField="ChaveDeAtivacao" HeaderText="CHAVE DE ATIVAÇÃO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_DataDeCompra" DataField="DataDeCompra" HeaderText="DATA DE COMPRA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_TipoDeLicenca" DataField="TipoDeLicenca" HeaderText="TIPO DE LICENCA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_PrazoDeLicenca" DataField="PrazoDeLicenca" HeaderText="PRAZO DE LICENCA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_Status" DataField="Status" HeaderText="STATUS"></telerik:GridBoundColumn>
-                </Columns>
-            </MasterTableView>
-        </telerik:radgrid>
+        <div class="row">
+            <div class="col-12 col-md-12 col-sm-12 my-4 text-uppercase">
+                <asp:Label runat="server" Text="Chaves de Ativação" CssClass="LbTitulo"></asp:Label>
+            </div>
+            <div class="col-12 col-md-12 col-sm-12">
+                <telerik:RadGrid ID="GridChaves" runat="server" AutoGenerateColumns="false" OnNeedDataSource="GridChaves_NeedDataSource" OnItemCommand="GridChaves_ItemCommand">
+                    <GroupingSettings CollapseAllTooltip="collaps all columns" />
+                    <MasterTableView DataKeyNames="ID_Software, ID_ChaveAtivacao">
+                        <Columns>
+                            <telerik:GridTemplateColumn UniqueName="OP" AllowFiltering="false">
+                                <ItemTemplate>
+                                    <asp:Button ID="btEditar" runat="server" Text="Editar" CommandName="opEditar" />
+                                    <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridBoundColumn UniqueName="col_Software" DataField="NomeSoftware" HeaderText="SOFTWARE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_ChaveAtivacao" DataField="ChaveDeAtivacao" HeaderText="CHAVE DE ATIVAÇÃO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_DataDeCompra" DataField="DataDeCompra" HeaderText="DATA DE COMPRA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_TipoDeLicenca" DataField="TipoDeLicenca" HeaderText="TIPO DE LICENCA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_PrazoDeLicenca" DataField="PrazoDeLicenca" HeaderText="PRAZO DE LICENCA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_Status" DataField="Status" HeaderText="STATUS"></telerik:GridBoundColumn>
+                        </Columns>
+                    </MasterTableView>
+                </telerik:RadGrid>
+            </div>
+            <div class="col-12 col-md-12 col-sm-12 text-end my-3">
+                <asp:Button ID="btCadastrarChave" runat="server" Text="Cadastrar" OnClick="btCadastrarChave_Click" />
+            </div>
+        </div>
     </asp:Panel>
     <asp:HiddenField ID="HdfID" runat="server" />
 </asp:Content>

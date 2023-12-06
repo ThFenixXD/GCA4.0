@@ -165,5 +165,11 @@ namespace Project_GCA_4._0.WebForms
                 PopulaDdlSetorUsuario();
             }
         }
+
+        protected void btCadastroUsuarios_Click1(object sender, EventArgs e)
+        {
+            EscondePaineis();
+            PnlCadastroUsuario.Visible = true;
+        }
     }
 }

@@ -178,7 +178,112 @@ namespace Project_GCA_4._0.WebForms
         protected void CancelarRelacionar_Click(object sender, EventArgs e)
         {
             EscondePaineis();
-            PnlRelacionar.Visible = true;
+            PnlConsultarRelacionar.Visible = true;
+        }
+
+        protected void GridRelacionar_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
+        {
+            GridRelacionar.DataSource = Framework.GetDataTable("SELECT ID_Relacionar, UsuarioRelacionar, MaquinaRelacionar, ChaveAtivacaoRelacionar FROM tb_Relacionar WHERE Deleted = 0");
+        }
+
+        protected void GridRelacionar_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+        {
+            try
+            {
+                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["ID_Relacionar"]);
+
+                switch (e.CommandName)
+                {
+                    case "opSelecionar":
+                        break;
+
+                    case "opEditar":
+                        EscondePaineis();
+                        PopulaCamposRelacionar(_cdID);
+                        PnlRelacionar.Visible = true;
+                        break;
+
+                    case "opExcluir":
+                        using (GCAEntities ctx = new GCAEntities())
+                        {
+                            tb_Relacionar Relacionar = new tb_Relacionar();
+
+                            int ID = _cdID;
+                            HdfID.Value = _cdID.ToString();
+
+                            var Query = (from objRelacionar in ctx.tb_Relacionar where objRelacionar.ID_Relacionar == ID select objRelacionar).FirstOrDefault();
+
+                            Query.Deleted = 1;
+                            ctx.SaveChanges();
+                            AtualizaGridRelacionar();
+                        }
+                        using (GCAEntities ctx = new GCAEntities())
+                        {
+                            tb_Chaves Chave = new tb_Chaves();
+                            try
+                            {
+                                if (!string.IsNullOrEmpty(HdfID.Value))
+                                {
+                                    int _id = Convert.ToInt32(HdfID.Value);
+
+                                    var Query = (from objChave in ctx.tb_Chaves select objChave);
+
+                                    Chave = Query.FirstOrDefault();
+                                }
+                                else
+                                {
+                                    Chave.Status = 0;
+
+                                    if (string.IsNullOrEmpty(HdfID.Value))
+                                    {
+                                        ctx.tb_Chaves.Add(Chave);
+                                    }
+                                    ctx.SaveChanges();
+                                    AtualizaGridRelacionar();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Response.Write("Erro, " + ex.Message);
+                            }
+                        }
+                        using (GCAEntities ctx = new GCAEntities())
+                        {
+                            tb_Maquinas Maquina = new tb_Maquinas();
+                            try
+                            {
+                                if (!string.IsNullOrEmpty(HdfID.Value))
+                                {
+                                    int _id = Convert.ToInt32(HdfID.Value);
+
+                                    var Query = (from objMaquina in ctx.tb_Maquinas select objMaquina);
+
+                                    Maquina = Query.FirstOrDefault();
+                                }
+                                else
+                                {
+                                    Maquina.Status = "1";
+
+                                    if (string.IsNullOrEmpty(HdfID.Value))
+                                    {
+                                        ctx.tb_Maquinas.Add(Maquina);
+                                    }
+                                    ctx.SaveChanges();
+                                    AtualizaGridRelacionar();
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Response.Write("Erro, " + ex.Message);
+                            }
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Erro, " + ex.Message);
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -192,6 +297,10 @@ namespace Project_GCA_4._0.WebForms
             }
         }
 
-
+        protected void btCadastroRelacionar_Click(object sender, EventArgs e)
+        {
+            EscondePaineis();
+            PnlRelacionar.Visible = true;
+        }
     }
 }

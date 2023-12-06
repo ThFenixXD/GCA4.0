@@ -121,6 +121,15 @@ namespace Project_GCA_4._0.WebForms {
         protected global::Telerik.Web.UI.RadGrid GridUsuarios;
         
         /// <summary>
+        /// btCadastroUsuarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btCadastroUsuarios;
+        
+        /// <summary>
         /// HdfID control.
         /// </summary>
         /// <remarks>

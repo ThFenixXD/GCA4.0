@@ -30,24 +30,32 @@
     </asp:Panel>
 
     <asp:Panel ID="PnlConsultarMaquinas" CssClass="Pnl col-9 col-md-9 col-sm-9 d-flex align-items-center justify-content-center text-center" runat="server" Visible="true">
-        <telerik:radgrid id="GridMaquinas" runat="server" autogeneratecolumns="false" onneeddatasource="GridMaquinas_NeedDataSource" onitemcommand="GridMaquinas_ItemCommand">
-            <GroupingSettings CollapseAllTooltip="collaps all columns" />
-            <MasterTableView DataKeyNames="ID_Maquina">
-                <Columns>
-                    <telerik:GridTemplateColumn UniqueName="OP" AllowFiltering="false">
-                        <ItemTemplate>
-                            <asp:Button ID="btEditar" runat="server" Text="Editar" CommandName="opEditar" />
-                            <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
-                        </ItemTemplate>
-                    </telerik:GridTemplateColumn>
-                    <telerik:GridBoundColumn UniqueName="col_CodMaquina" DataField="ID_Maquina" HeaderText="COD" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_NomeMaquina" DataField="NomeMaquina" HeaderText="NOME DA MÁQUINA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_CodSetor" DataField="ID_Setor" HeaderText="COD SETOR" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_Setor" DataField="SetorMaquina" HeaderText="SETOR" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                    <telerik:GridBoundColumn UniqueName="col_Status" DataField="Status" HeaderText="STATUS" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                </Columns>
-            </MasterTableView>
-        </telerik:radgrid>
+        <div class="row">
+            <div class="col-12 col-md-12 col-sm-12 my-4 text-uppercase">
+                <asp:Label runat="server" Text="Máquinas" CssClass="LbTitulo"></asp:Label>
+            </div>
+            <telerik:RadGrid ID="GridMaquinas" runat="server" AutoGenerateColumns="false" OnNeedDataSource="GridMaquinas_NeedDataSource" OnItemCommand="GridMaquinas_ItemCommand">
+                <GroupingSettings CollapseAllTooltip="collaps all columns" />
+                <MasterTableView DataKeyNames="ID_Maquina">
+                    <Columns>
+                        <telerik:GridTemplateColumn UniqueName="OP" AllowFiltering="false">
+                            <ItemTemplate>
+                                <asp:Button ID="btEditar" runat="server" Text="Editar" CommandName="opEditar" />
+                                <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
+                            </ItemTemplate>
+                        </telerik:GridTemplateColumn>
+                        <telerik:GridBoundColumn UniqueName="col_CodMaquina" DataField="ID_Maquina" HeaderText="COD" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn UniqueName="col_NomeMaquina" DataField="NomeMaquina" HeaderText="NOME DA MÁQUINA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn UniqueName="col_CodSetor" DataField="ID_Setor" HeaderText="COD SETOR" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn UniqueName="col_Setor" DataField="SetorMaquina" HeaderText="SETOR" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn UniqueName="col_Status" DataField="Status" HeaderText="STATUS" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                    </Columns>
+                </MasterTableView>
+            </telerik:RadGrid>
+            <div class="col-12 col-md-12 col-sm-12 text-end my-3">
+                <asp:Button ID="btCadastroMaquina" runat="server" Text="Cadastrar" OnClick="btCadastroMaquina_Click" />
+            </div>
+        </div>
     </asp:Panel>
 
     <asp:HiddenField ID="HdfID" runat="server" />

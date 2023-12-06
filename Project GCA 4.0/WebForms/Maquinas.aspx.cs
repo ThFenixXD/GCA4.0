@@ -149,6 +149,12 @@ namespace Project_GCA_4._0.WebForms
             }
         }
 
+        protected void btCadastroMaquina_Click(object sender, EventArgs e)
+        {
+            EscondePaineis();
+            PnlCadastroMaquina.Visible = true;
+        }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -157,5 +163,7 @@ namespace Project_GCA_4._0.WebForms
                 PopulaDdlSetorMaquina();
             }
         }
+
+       
     }
 }
