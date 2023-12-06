@@ -92,9 +92,15 @@
     </Content>
     <Content Include="Web.config" />
     <Content Include="WebForms.Old\Teste.aspx" />
-    <Content Include="WebForms\Gerenciamento.aspx" />
+    <Content Include="WebForms\Chaves.aspx" />
+    <Content Include="WebForms.Old\Gerenciamento.aspx" />
     <Content Include="WebForms\HomePage.aspx" />
+    <Content Include="WebForms\Maquinas.aspx" />
     <Content Include="WebForms\Relacionar.aspx" />
+    <Content Include="WebForms\Setor.aspx" />
+    <Content Include="WebForms\Software.aspx" />
+    <Content Include="WebForms\TipoLicenca.aspx" />
+    <Content Include="WebForms\Usuarios.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GCAModel.Context.cs">
@@ -141,11 +147,18 @@
     <Compile Include="WebForms.Old\Teste.aspx.designer.cs">
       <DependentUpon>Teste.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\Gerenciamento.aspx.cs">
+    <Compile Include="WebForms\Chaves.aspx.cs">
+      <DependentUpon>Chaves.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Chaves.aspx.designer.cs">
+      <DependentUpon>Chaves.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms.Old\Gerenciamento.aspx.cs">
       <DependentUpon>Gerenciamento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForms\Gerenciamento.aspx.designer.cs">
+    <Compile Include="WebForms.Old\Gerenciamento.aspx.designer.cs">
       <DependentUpon>Gerenciamento.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\HomePage.aspx.cs">
@@ -154,6 +167,13 @@
     </Compile>
     <Compile Include="WebForms\HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Maquinas.aspx.cs">
+      <DependentUpon>Maquinas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Maquinas.aspx.designer.cs">
+      <DependentUpon>Maquinas.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
@@ -168,6 +188,34 @@
     </Compile>
     <Compile Include="WebForms\Relacionar.aspx.designer.cs">
       <DependentUpon>Relacionar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Setor.aspx.cs">
+      <DependentUpon>Setor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Setor.aspx.designer.cs">
+      <DependentUpon>Setor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Software.aspx.cs">
+      <DependentUpon>Software.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Software.aspx.designer.cs">
+      <DependentUpon>Software.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\TipoLicenca.aspx.cs">
+      <DependentUpon>TipoLicenca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\TipoLicenca.aspx.designer.cs">
+      <DependentUpon>TipoLicenca.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Usuarios.aspx.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Usuarios.aspx.designer.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Útil\Framework.cs" />
   </ItemGroup>

@@ -47,25 +47,25 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridUsuarios()
         {
-            GridUsuarios.DataSource = Framework.GetDataTable("SELECT ID_Usuario, ID_Usuario, NomeUsuario, FuncaoUsuario, ID_Setor, SetorUsuario FROM tb_Usuarios WHERE Deleted = 0");
+            GridUsuarios.DataSource = Framework.GetDataTable("SELECT ID_Usuario, ID_Usuario, NomeUsuario, FuncaoUsuario, ID_Setor, SetorUsuario FROM tb_Usuarios WHERE Deleted = 0 Order By NomeUsuario");
             GridUsuarios.DataBind();
         }
 
         protected void AtualizaGridMaquinas()
         {
-            GridMaquinas.DataSource = Framework.GetDataTable("SELECT ID_Maquina, ID_Maquina, NomeMaquina, ID_Setor, SetorMaquina, Status FROM tb_Maquinas WHERE Deleted = 0");
+            GridMaquinas.DataSource = Framework.GetDataTable("SELECT ID_Maquina, ID_Maquina, NomeMaquina, ID_Setor, SetorMaquina, Status FROM tb_Maquinas WHERE Deleted = 0 Order By NomeMaquina");
             GridMaquinas.DataBind();
         }
 
         protected void AtualizaGridChaves()
         {
-            GridChaves.DataSource = Framework.GetDataTable("select tb_Software.ID_Software, tb_Software.NomeSoftware, tb_Chaves.ID_ChaveAtivacao, tb_Chaves.DataDeCompra, tb_Chaves.TipoDeLicenca, tb_Chaves.PrazoDeLicenca, tb_Chaves.ChaveDeAtivacao, tb_Chaves.Status from tb_Software Inner Join tb_Chaves on tb_Software.ID_Software = tb_Chaves.ID_ChaveAtivacao");
+            GridChaves.DataSource = Framework.GetDataTable("select tb_Software.ID_Software, tb_Software.NomeSoftware, tb_Chaves.ID_ChaveAtivacao, tb_Chaves.DataDeCompra, tb_Chaves.TipoDeLicenca, tb_Chaves.PrazoDeLicenca, tb_Chaves.ChaveDeAtivacao, tb_Chaves.Status from tb_Software Inner Join tb_Chaves on tb_Software.ID_Software = tb_Chaves.ID_ChaveAtivacao where tb_chaves.deleted = 0 Order By = ChaveDeAtivacao");
             GridChaves.DataBind();
         }
 
         protected void AtualizaGridSoftware()
         {
-            GridSoftware.DataSource = Framework.GetDataTable("SELECT ID_Software, NomeSoftware, Fabricante FROM tb_Software WHERE Deleted = 0");
+            GridSoftware.DataSource = Framework.GetDataTable("SELECT ID_Software, NomeSoftware, Fabricante FROM tb_Software WHERE Deleted = 0 Order By NomeSoftware");
             GridSoftware.DataBind();
         }
 
@@ -234,7 +234,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void lnkCadastroUsuario_Click(object sender, EventArgs e)
         {
-            EscondePaineis();
+            
             PnlCadastroUsuario.Visible = true;
         }
 
@@ -725,7 +725,6 @@ namespace Project_GCA_4._0.WebForms
 
         protected void CancelarRelacionar_Click(object sender, EventArgs e)
         {
-            EscondePaineis();
             PnlRelacionar.Visible = true;
             LimpaCampos();
         }

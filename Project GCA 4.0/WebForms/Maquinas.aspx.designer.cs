@@ -10,97 +10,97 @@
 namespace Project_GCA_4._0.WebForms {
     
     
-    public partial class Relacionar {
+    public partial class Maquinas {
         
         /// <summary>
-        /// PnlRelacionar control.
+        /// PnlCadastroMaquina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PnlRelacionar;
+        protected global::System.Web.UI.WebControls.Panel PnlCadastroMaquina;
         
         /// <summary>
-        /// Label2 control.
+        /// lbMaquinaTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lbMaquinaTitulo;
         
         /// <summary>
-        /// DdlRelacionarUsuario control.
+        /// lbNomeMaquina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DdlRelacionarUsuario;
+        protected global::System.Web.UI.WebControls.Label lbNomeMaquina;
         
         /// <summary>
-        /// DdlRelacionarMaquina control.
+        /// txtNomeMaquina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DdlRelacionarMaquina;
+        protected global::System.Web.UI.WebControls.TextBox txtNomeMaquina;
         
         /// <summary>
-        /// DdlRelacionarSoftware control.
+        /// lbSetorMaquina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DdlRelacionarSoftware;
+        protected global::System.Web.UI.WebControls.Label lbSetorMaquina;
         
         /// <summary>
-        /// DdlRelacionarChaveAtivacao control.
+        /// DdlSetorMaquina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DdlRelacionarChaveAtivacao;
+        protected global::System.Web.UI.WebControls.DropDownList DdlSetorMaquina;
         
         /// <summary>
-        /// SalvarRelacionar control.
+        /// BtSalvarMaquina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SalvarRelacionar;
+        protected global::System.Web.UI.WebControls.Button BtSalvarMaquina;
         
         /// <summary>
-        /// CancelarRelacionar control.
+        /// BtCancelarMaquina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CancelarRelacionar;
+        protected global::System.Web.UI.WebControls.Button BtCancelarMaquina;
         
         /// <summary>
-        /// PnlConsultarRelacionar control.
+        /// PnlConsultarMaquinas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PnlConsultarRelacionar;
+        protected global::System.Web.UI.WebControls.Panel PnlConsultarMaquinas;
         
         /// <summary>
-        /// GridRelacionar control.
+        /// GridMaquinas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid GridRelacionar;
+        protected global::Telerik.Web.UI.RadGrid GridMaquinas;
         
         /// <summary>
         /// HdfID control.

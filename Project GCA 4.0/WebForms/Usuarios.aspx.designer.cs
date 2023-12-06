@@ -10,97 +10,115 @@
 namespace Project_GCA_4._0.WebForms {
     
     
-    public partial class Relacionar {
+    public partial class Usuarios {
         
         /// <summary>
-        /// PnlRelacionar control.
+        /// PnlCadastroUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PnlRelacionar;
+        protected global::System.Web.UI.WebControls.Panel PnlCadastroUsuario;
         
         /// <summary>
-        /// Label2 control.
+        /// lbUsuarioTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lbUsuarioTitulo;
         
         /// <summary>
-        /// DdlRelacionarUsuario control.
+        /// lbNomeUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DdlRelacionarUsuario;
+        protected global::System.Web.UI.WebControls.Label lbNomeUsuario;
         
         /// <summary>
-        /// DdlRelacionarMaquina control.
+        /// txtNomeUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DdlRelacionarMaquina;
+        protected global::System.Web.UI.WebControls.TextBox txtNomeUsuario;
         
         /// <summary>
-        /// DdlRelacionarSoftware control.
+        /// lbFuncao control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DdlRelacionarSoftware;
+        protected global::System.Web.UI.WebControls.Label lbFuncao;
         
         /// <summary>
-        /// DdlRelacionarChaveAtivacao control.
+        /// txtFuncaoUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DdlRelacionarChaveAtivacao;
+        protected global::System.Web.UI.WebControls.TextBox txtFuncaoUsuario;
         
         /// <summary>
-        /// SalvarRelacionar control.
+        /// lbSetorUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SalvarRelacionar;
+        protected global::System.Web.UI.WebControls.Label lbSetorUsuario;
         
         /// <summary>
-        /// CancelarRelacionar control.
+        /// ddlSetorUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CancelarRelacionar;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSetorUsuario;
         
         /// <summary>
-        /// PnlConsultarRelacionar control.
+        /// BtSalvarUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PnlConsultarRelacionar;
+        protected global::System.Web.UI.WebControls.Button BtSalvarUsuario;
         
         /// <summary>
-        /// GridRelacionar control.
+        /// BtCancelarUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid GridRelacionar;
+        protected global::System.Web.UI.WebControls.Button BtCancelarUsuario;
+        
+        /// <summary>
+        /// PnlConsultarUsuarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PnlConsultarUsuarios;
+        
+        /// <summary>
+        /// GridUsuarios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid GridUsuarios;
         
         /// <summary>
         /// HdfID control.

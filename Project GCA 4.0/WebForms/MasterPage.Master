@@ -27,16 +27,40 @@
                         <span class="txt-link">Início</span>
                     </a>
                 </li>
-                      <li class="item-menu">
+                <li class="item-menu">
+                    <a href="Usuarios.aspx">
+                        <span class="icon"><i class="bi bi-people"></i></span>
+                        <span class="txt-link">Usuarios</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="Maquinas.aspx">
+                        <span class="icon"><i class="bi bi-pc-display-horizontal"></i></span>
+                        <span class="txt-link">Máquinas</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="Software.aspx">
+                        <span class="icon"><i class="bi bi-code-square"></i></span>
+                        <span class="txt-link">Software</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="Chaves.aspx">
+                        <span class="icon"><i class="bi bi-key"></i></span>
+                        <span class="txt-link">Chaves</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="TipoLicenca.aspx">
+                        <span class="icon"><i class="bi bi-c-circle"></i></span>
+                        <span class="txt-link">Licenças</span>
+                    </a>
+                </li>
+                <li class="item-menu">
                     <a href="Relacionar.aspx">
                         <span class="icon"><i class="bi bi-bezier2"></i></span>
                         <span class="txt-link">Relacionar</span>
-                    </a>
-                </li>       
-                <li class="item-menu">
-                    <a href="Gerenciamento.aspx">
-                        <span class="icon"><i class="bi bi-gear"></i></span>
-                        <span class="txt-link">Gerenciamento</span>
                     </a>
                 </li>
             </ul>
