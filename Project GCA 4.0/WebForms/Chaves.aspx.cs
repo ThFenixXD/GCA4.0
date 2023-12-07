@@ -25,7 +25,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridChaves()
         {
-            GridChaves.DataSource = Framework.GetDataTable("select tb_Software.ID_Software, tb_Software.NomeSoftware, tb_Chaves.ID_ChaveAtivacao, tb_Chaves.DataDeCompra, tb_Chaves.TipoDeLicenca, tb_Chaves.PrazoDeLicenca, tb_Chaves.ChaveDeAtivacao, tb_Chaves.Status from tb_Software Inner Join tb_Chaves on tb_Software.ID_Software = tb_Chaves.ID_ChaveAtivacao WHERE tb_Chaves.Deleted = 0 Order by ChaveDeAtivacao");
+            GridChaves.DataSource = Framework.GetDataTable("SELECT CH.id_chave , CH.chave, CH.dataDeCompra, TPL.id_tipoLicença, TPL.prazoLicenca, SO.id_software FROM tb_chaves CH INNER JOIN tb_tipoLicenca TPL ON CH.id_tipoLicença = TPL.id_tipoLicença INNER JOIN tb_software SO ON CH.id_software = SO.id_software WHERE CH.deleted = 0 ORDER BY CH.chave");
             GridChaves.DataBind();
         }
 
@@ -36,27 +36,27 @@ namespace Project_GCA_4._0.WebForms
                 int ID = _cdID;
                 HdfID.Value = _cdID.ToString();
 
-                tb_Chaves Chave = new tb_Chaves();
+                tb_chaves Chave = new tb_chaves();
 
-                var Query = (from objChave in ctx.tb_Chaves where objChave.ID_ChaveAtivacao == ID select objChave).FirstOrDefault();
+                var Query = (from objChave in ctx.tb_chaves where objChave.id_chave == ID select objChave).FirstOrDefault();
 
                 if (!string.IsNullOrEmpty(Query.ToString()))
                 {
-                    txtDataDeCompra.Text = Query.DataDeCompra;
+                    txtDataDeCompra.Text = Query.dataDeCompra;
                 }
             }
         }
 
         protected void PopulaDdlTipoDeLicenca()
         {
-            DdlTipoDeLicenca.DataSource = Framework.GetDataTable("SELECT ID_TipoDeLicenca, TipoDeLicenca FROM tb_TipoLicenca WHERE Deleted = 0");
+            DdlTipoDeLicenca.DataSource = Framework.GetDataTable("SELECT id_tipoLicença, tipoLicenca FROM tb_tipoLicenca WHERE deleted = 0");
             DdlTipoDeLicenca.DataBind();
             DdlTipoDeLicenca.Items.Insert(0, new ListItem("Selecionar"));
         }
 
         protected void PopulaDdlSoftware()
         {
-            DdlSoftware.DataSource = Framework.GetDataTable("SELECT ID_Software, NomeSoftware FROM tb_Software WHERE Deleted = 0");
+            DdlSoftware.DataSource = Framework.GetDataTable("SELECT id_software, nomeSoftware FROM tb_Software WHERE deleted = 0");
             DdlSoftware.DataBind();
             DdlSoftware.Items.Insert(0, new ListItem("Selecionar"));
         }
@@ -65,8 +65,8 @@ namespace Project_GCA_4._0.WebForms
         {
             using (GCAEntities ctx = new GCAEntities())
             {
-                tb_Chaves Chave = new tb_Chaves();
-                tb_Chaves Chave2 = new tb_Chaves();
+                tb_chaves Chave = new tb_chaves();
+                tb_chaves Chave2 = new tb_chaves();
                 try
                 {
                     string _chavedeativacao = txtChaveAtivacao.Text.Trim();
@@ -75,8 +75,8 @@ namespace Project_GCA_4._0.WebForms
                     int _software = Convert.ToInt32(DdlSoftware.SelectedValue);
 
 
-                    var strsql = (from objChave in ctx.tb_Chaves
-                                  where objChave.ChaveDeAtivacao == _chavedeativacao && objChave.DataDeCompra == _datadecompra && objChave.ID_TipoDeLicenca == _tipodelicenca && objChave.Deleted == 0
+                    var strsql = (from objChave in ctx.tb_chaves
+                                  where objChave.chave == _chavedeativacao && objChave.dataDeCompra == _datadecompra && objChave.id_tipoLicença == _tipodelicenca && objChave.deleted == 0
                                   select objChave);
 
                     Chave2 = strsql.FirstOrDefault();
@@ -92,35 +92,32 @@ namespace Project_GCA_4._0.WebForms
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
 
-                            var Query = (from objChave in ctx.tb_Chaves select objChave);
+                            var Query2 = (from objChave in ctx.tb_chaves select objChave);
 
-                            Chave = Query.FirstOrDefault();
+                            Chave = Query2.FirstOrDefault();
                         }
-                        else
+                        var Query = (from objChaveAtivacao in ctx.tb_chaves select objChaveAtivacao).FirstOrDefault();
+
+                        string valor = txtChaveAtivacao.Text;
+
+                        if (Query.chave != valor)
                         {
-                            var Query = (from objChaveAtivacao in ctx.tb_Chaves select objChaveAtivacao).FirstOrDefault();
+                            Chave.dataDeCompra = txtDataDeCompra.Text;
+                            Chave.id_tipoLicença = Convert.ToInt32(DdlTipoDeLicenca.SelectedValue);
+                            Chave.prazoLicenca = txtPrazoLicenca.Text;
+                            Chave.chave = txtChaveAtivacao.Text;
+                            Chave.status = 0;
+                            Chave.deleted = 0;
 
-                            string valor = txtChaveAtivacao.Text;
-
-                            if (Query.ChaveDeAtivacao != valor)
+                            if (string.IsNullOrEmpty(HdfID.Value))
                             {
-                                Chave.DataDeCompra = txtDataDeCompra.Text;
-                                Chave.TipoDeLicenca = DdlTipoDeLicenca.SelectedItem.Text;
-                                Chave.PrazoDeLicenca = txtPrazoLicenca.Text;
-                                Chave.ChaveDeAtivacao = txtChaveAtivacao.Text;
-                                Chave.Status = 0;
-                                Chave.Deleted = 0;
-
-                                if (string.IsNullOrEmpty(HdfID.Value))
-                                {
-                                    ctx.tb_Chaves.Add(Chave);
-                                }
-                                ctx.SaveChanges();
-                                EscondePaineis();
-                                LimpaCampos();
-                                PnlConsultarChaves.Visible = true;
-                                AtualizaGridChaves();
+                                ctx.tb_chaves.Add(Chave);
                             }
+                            ctx.SaveChanges();
+                            EscondePaineis();
+                            LimpaCampos();
+                            PnlConsultarChaves.Visible = true;
+                            AtualizaGridChaves();
                         }
                     }
                 }
@@ -140,14 +137,14 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridChaves_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridChaves.DataSource = Framework.GetDataTable("select tb_Software.ID_Software, tb_Software.NomeSoftware, tb_Chaves.ID_ChaveAtivacao, tb_Chaves.DataDeCompra, tb_Chaves.TipoDeLicenca, tb_Chaves.PrazoDeLicenca, tb_Chaves.ChaveDeAtivacao, tb_Chaves.Status from tb_Software Inner Join tb_Chaves on tb_Software.ID_Software = tb_Chaves.ID_ChaveAtivacao WHERE tb_Chaves.Deleted = 0 Order by ChaveDeAtivacao");
+            GridChaves.DataSource = Framework.GetDataTable("SELECT CH.id_chave , CH.chave, CH.dataDeCompra, TPL.id_tipoLicença, TPL.prazoLicenca, SO.id_software FROM tb_chaves CH INNER JOIN tb_tipoLicenca TPL ON CH.id_tipoLicença = TPL.id_tipoLicença INNER JOIN tb_software SO ON CH.id_software = SO.id_software WHERE CH.deleted = 0 ORDER BY CH.chave");
         }
 
         protected void GridChaves_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
         {
             try
             {
-                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["ID_ChaveAtivacao"]);
+                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["id_chave"]);
 
                 switch (e.CommandName)
                 {
@@ -164,14 +161,14 @@ namespace Project_GCA_4._0.WebForms
                     case "opExcluir":
                         using (GCAEntities ctx = new GCAEntities())
                         {
-                            tb_Chaves Chave = new tb_Chaves();
+                            tb_chaves Chave = new tb_chaves();
 
                             int ID = _cdID;
                             HdfID.Value = _cdID.ToString();
 
-                            var Query = (from objChave in ctx.tb_Chaves where objChave.ID_ChaveAtivacao == ID select objChave).FirstOrDefault();
+                            var Query = (from objChave in ctx.tb_chaves where objChave.id_chave == ID select objChave).FirstOrDefault();
 
-                            Query.Deleted = 1;
+                            Query.deleted = 1;
                             ctx.SaveChanges();
                             AtualizaGridChaves();
                         }
@@ -183,7 +180,6 @@ namespace Project_GCA_4._0.WebForms
                 Response.Write("Erro, " + ex.Message);
             }
         }
-
 
         protected void Page_Load(object sender, EventArgs e)
         {

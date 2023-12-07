@@ -33,7 +33,7 @@
             <div class="col-12 col-md-12 col-sm-12">
                 <telerik:RadGrid ID="GridSetores" runat="server" AutoGenerateColumns="false" OnNeedDataSource="GridSetores_NeedDataSource" OnItemCommand="GridSetores_ItemCommand">
                     <GroupingSettings CollapseAllTooltip="collaps all columns" />
-                    <MasterTableView DataKeyNames="ID_Setor">
+                    <MasterTableView DataKeyNames="id_setor">
                         <Columns>
                             <telerik:GridTemplateColumn UniqueName="OP" AllowFiltering="false">
                                 <ItemTemplate>
@@ -41,9 +41,8 @@
                                     <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
-                            <telerik:GridBoundColumn UniqueName="col_CodSetor" DataField="ID_Setor" HeaderText="COD" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn UniqueName="col_NomeSetor" DataField="NomeSetor" HeaderText="SETOR" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn UniqueName="col_Status" DataField="Status" HeaderText="STATUS" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_CodSetor" DataField="id_setor" HeaderText="COD" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_NomeSetor" DataField="nomeSetor" HeaderText="SETOR" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>

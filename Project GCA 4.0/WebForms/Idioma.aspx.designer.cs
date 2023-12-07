@@ -10,106 +10,124 @@
 namespace Project_GCA_4._0.WebForms {
     
     
-    public partial class TipoLicenca {
+    public partial class Idioma {
         
         /// <summary>
-        /// PnlCadastroTipoLicenca control.
+        /// PnlCadastroIdioma control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PnlCadastroTipoLicenca;
+        protected global::System.Web.UI.WebControls.Panel PnlCadastroIdioma;
         
         /// <summary>
-        /// lbTipoLicençaTitulo control.
+        /// lbIdiomaTitulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTipoLicençaTitulo;
+        protected global::System.Web.UI.WebControls.Label lbIdiomaTitulo;
         
         /// <summary>
-        /// lbTipoLicanca control.
+        /// lbIdioma control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTipoLicanca;
+        protected global::System.Web.UI.WebControls.Label lbIdioma;
         
         /// <summary>
-        /// txtTipoLicenca control.
+        /// txtIdioma control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTipoLicenca;
+        protected global::System.Web.UI.WebControls.TextBox txtIdioma;
         
         /// <summary>
-        /// lbPrazoLicenca control.
+        /// lbSigla control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPrazoLicenca;
+        protected global::System.Web.UI.WebControls.Label lbSigla;
         
         /// <summary>
-        /// txtPrazoLicenca control.
+        /// txtSigla control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPrazoLicenca;
+        protected global::System.Web.UI.WebControls.TextBox txtSigla;
         
         /// <summary>
-        /// BtSalvarTipoLicenca control.
+        /// lbPaisOrigem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtSalvarTipoLicenca;
+        protected global::System.Web.UI.WebControls.Label lbPaisOrigem;
         
         /// <summary>
-        /// BtCancelarTipoLicenca control.
+        /// txtPaisOrigem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtCancelarTipoLicenca;
+        protected global::System.Web.UI.WebControls.TextBox txtPaisOrigem;
         
         /// <summary>
-        /// PnlConsultarLicencas control.
+        /// BtSalvarIdioma control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PnlConsultarLicencas;
+        protected global::System.Web.UI.WebControls.Button BtSalvarIdioma;
         
         /// <summary>
-        /// GridLicencas control.
+        /// BtCancelarIdioma control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid GridLicencas;
+        protected global::System.Web.UI.WebControls.Button BtCancelarIdioma;
         
         /// <summary>
-        /// btCadastrarLicença control.
+        /// PnlConsultarIdiomas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btCadastrarLicença;
+        protected global::System.Web.UI.WebControls.Panel PnlConsultarIdiomas;
+        
+        /// <summary>
+        /// GridIdiomas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid GridIdiomas;
+        
+        /// <summary>
+        /// btCadastrarIdioma control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btCadastrarIdioma;
         
         /// <summary>
         /// HdfID control.

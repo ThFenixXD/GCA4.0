@@ -25,22 +25,40 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridSetores()
         {
-            GridSetores.DataSource = Framework.GetDataTable("select ID_Setor, NomeSetor From tb_Setores Where Deleted = 0 Order By NomeSetor");
+            GridSetores.DataSource = Framework.GetDataTable("SELECT id_setor, nomeSetor FROM tb_setores WHERE deleted = 0 ORDER BY nomeSetor");
             GridSetores.DataBind();
+        }
+
+        protected void PopulaCamposCadastroSetor(int _cdID)
+        {
+            using (GCAEntities ctx = new GCAEntities())
+            {
+                int ID = _cdID;
+                HdfID.Value = _cdID.ToString();
+
+                tb_setores setor = new tb_setores();
+
+                var Query = (from objsetor in ctx.tb_setores where objsetor.id_setor == ID select objsetor).FirstOrDefault();
+
+                if (!string.IsNullOrEmpty(Query.ToString()))
+                {
+                    txtNomeSetor.Text = Query.nomeSetor;
+                }
+            }
         }
 
         protected void BtSalvarSetor_Click(object sender, EventArgs e)
         {
             using (GCAEntities ctx = new GCAEntities())
             {
-                tb_Setores Setor = new tb_Setores();
-                tb_Setores Setor2 = new tb_Setores();
+                tb_setores Setor = new tb_setores();
+                tb_setores Setor2 = new tb_setores();
                 try
                 {
                     string _nomesetor = txtNomeSetor.Text.Trim();
 
-                    var strsql = (from objSetor in ctx.tb_Setores
-                                  where objSetor.NomeSetor == _nomesetor && objSetor.Deleted == 0
+                    var strsql = (from objSetor in ctx.tb_setores
+                                  where objSetor.nomeSetor == _nomesetor && objSetor.deleted == 0
                                   select objSetor);
 
                     Setor2 = strsql.FirstOrDefault();
@@ -56,24 +74,22 @@ namespace Project_GCA_4._0.WebForms
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
 
-                            var Query = (from objSetor in ctx.tb_Setores select objSetor);
+                            var Query = (from objSetor in ctx.tb_setores select objSetor);
 
                             Setor = Query.FirstOrDefault();
                         }
-                        else
-                        {
-                            Setor.NomeSetor = txtNomeSetor.Text;
-                            Setor.Deleted = 0;
+                        Setor.nomeSetor = txtNomeSetor.Text;
+                        Setor.deleted = 0;
 
-                            if (string.IsNullOrEmpty(HdfID.Value))
-                            {
-                                ctx.tb_Setores.Add(Setor);
-                            }
-                            ctx.SaveChanges();
-                            EscondePaineis();
-                            LimpaCampos();
-                            PnlConsultarSetores.Visible = true;
+                        if (string.IsNullOrEmpty(HdfID.Value))
+                        {
+                            ctx.tb_setores.Add(Setor);
                         }
+                        ctx.SaveChanges();
+                        EscondePaineis();
+                        LimpaCampos();
+                        PnlConsultarSetores.Visible = true;
+                        AtualizaGridSetores();
                     }
                 }
                 catch (Exception ex)
@@ -92,14 +108,20 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridSetores_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridSetores.DataSource = Framework.GetDataTable("select ID_Setor, NomeSetor From tb_Setores Where Deleted = 0 Order By NomeSetor");
+            GridSetores.DataSource = Framework.GetDataTable("SELECT id_setor, nomeSetor FROM tb_setores WHERE deleted = 0 ORDER BY nomeSetor");
+        }
+
+        protected void btCadastrarSetor_Click(object sender, EventArgs e)
+        {
+            EscondePaineis();
+            PnlCadastroSetor.Visible = true;
         }
 
         protected void GridSetores_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
         {
             try
             {
-                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["ID_Setor"]);
+                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["id_setor"]);
 
                 switch (e.CommandName)
                 {
@@ -108,21 +130,21 @@ namespace Project_GCA_4._0.WebForms
 
                     case "opEditar":
                         EscondePaineis();
-                        LimpaCampos();
+                        PopulaCamposCadastroSetor(_cdID);
                         PnlCadastroSetor.Visible = true;
                         break;
 
                     case "opExcluir":
                         using (GCAEntities ctx = new GCAEntities())
                         {
-                            tb_Chaves Chave = new tb_Chaves();
+                            tb_setores setor = new tb_setores();
 
                             int ID = _cdID;
                             HdfID.Value = _cdID.ToString();
 
-                            var Query = (from objChave in ctx.tb_Chaves where objChave.ID_ChaveAtivacao == ID select objChave).FirstOrDefault();
+                            var Query = (from objsetor in ctx.tb_setores where objsetor.id_setor == ID select objsetor).FirstOrDefault();
 
-                            Query.Deleted = 1;
+                            Query.deleted = 1;
                             ctx.SaveChanges();
                         }
                         break;
@@ -139,10 +161,6 @@ namespace Project_GCA_4._0.WebForms
 
         }
 
-        protected void btCadastrarSetor_Click(object sender, EventArgs e)
-        {
-            EscondePaineis();
-            PnlCadastroSetor.Visible = true;
-        }
+        
     }
 }

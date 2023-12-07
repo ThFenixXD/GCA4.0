@@ -29,17 +29,17 @@ namespace Project_GCA_4._0.WebForms
                 int ID = _cdID;
                 HdfID.Value = _cdID.ToString();
 
-                tb_Relacionar Chave = new tb_Relacionar();
+                tb_relacionar Chave = new tb_relacionar();
 
-                var Query = (from objRelacionar in ctx.tb_Relacionar where objRelacionar.ID_Relacionar == ID select objRelacionar).FirstOrDefault();
+                var Query = (from objRelacionar in ctx.tb_relacionar where objRelacionar.id_relacionar == ID select objRelacionar).FirstOrDefault();
 
 
                 if (!string.IsNullOrEmpty(Query.ToString()))
                 {
-                    DdlRelacionarUsuario.SelectedValue = Query.ID_Usuario.ToString();
-                    DdlRelacionarMaquina.SelectedValue = Query.ID_Maquina.ToString();
-                    DdlRelacionarSoftware.SelectedValue = Query.ID_ChaveAtivacao.ToString();
-                    DdlRelacionarChaveAtivacao.SelectedValue = Query.ID_ChaveAtivacao.ToString();
+                    DdlRelacionarUsuario.SelectedValue = Query.id_usuario.ToString();
+                    DdlRelacionarMaquina.SelectedValue = Query.id_maquina.ToString();
+                    DdlRelacionarSoftware.SelectedValue = Query.id_software.ToString();
+                    DdlRelacionarChaveAtivacao.SelectedValue = Query.id_chave.ToString();
                 }
             }
         }
@@ -76,8 +76,8 @@ namespace Project_GCA_4._0.WebForms
         {
             using (GCAEntities ctx = new GCAEntities())
             {
-                tb_Relacionar Relacao = new tb_Relacionar();
-                tb_Relacionar Relacao2 = new tb_Relacionar();
+                tb_relacionar Relacao = new tb_relacionar();
+                tb_relacionar Relacao2 = new tb_relacionar();
                 try
                 {
                     int _usuariorelacionarID = Convert.ToInt32(DdlRelacionarUsuario.SelectedValue);
@@ -86,8 +86,13 @@ namespace Project_GCA_4._0.WebForms
                     int _chavedeativacaoID = Convert.ToInt32(DdlRelacionarChaveAtivacao.SelectedValue);
 
 
-                    var strsql = (from objRelacao in ctx.tb_Relacionar
-                                  where objRelacao.ID_Usuario == _usuariorelacionarID && objRelacao.ID_Maquina == _maquinarelacionarID && objRelacao.ID_Software == _softwarerelacionarID && objRelacao.ID_ChaveAtivacao == _chavedeativacaoID && objRelacao.Deleted == 0
+                    var strsql = (from objRelacao in ctx.tb_relacionar
+                                  where
+                                  objRelacao.id_usuario == _usuariorelacionarID &&
+                                  objRelacao.id_maquina == _maquinarelacionarID &&
+                                  objRelacao.id_software == _softwarerelacionarID &&
+                                  objRelacao.id_chave == _chavedeativacaoID &&
+                                  objRelacao.deleted == 0
                                   select objRelacao);
 
                     Relacao2 = strsql.FirstOrDefault();
@@ -103,90 +108,23 @@ namespace Project_GCA_4._0.WebForms
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
 
-                            var Query = (from objRelacao in ctx.tb_Relacionar select objRelacao);
+                            var Query = (from objRelacao in ctx.tb_relacionar select objRelacao);
 
                             Relacao = Query.FirstOrDefault();
                         }
-                        else
-                        {
-                            Relacao.UsuarioRelacionar = DdlRelacionarUsuario.SelectedItem.ToString();
-                            Relacao.ID_Usuario = Convert.ToInt32(DdlRelacionarUsuario.SelectedValue);
-                            Relacao.MaquinaRelacionar = DdlRelacionarMaquina.SelectedItem.ToString();
-                            Relacao.ID_Maquina = Convert.ToInt32(DdlRelacionarMaquina.SelectedValue);
-                            Relacao.SoftwareRelacionar = DdlRelacionarSoftware.SelectedItem.ToString();
-                            Relacao.ChaveAtivacaoRelacionar = DdlRelacionarChaveAtivacao.SelectedItem.ToString();
-                            Relacao.ID_ChaveAtivacao = Convert.ToInt32(DdlRelacionarChaveAtivacao.SelectedValue);
-                            Relacao.Deleted = 0;
-
-                            if (string.IsNullOrEmpty(HdfID.Value))
-                            {
-                                ctx.tb_Relacionar.Add(Relacao);
-                            }
-                            ctx.SaveChanges();
-                            EscondePaineis();
-                            PnlConsultarRelacionar.Visible = true;
-                            AtualizaGridRelacionar();
-
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Response.Write("Erro, " + ex.Message);
-                }
-            }
-            using (GCAEntities ctx = new GCAEntities())
-            {
-                tb_Maquinas Maquina = new tb_Maquinas();
-                try
-                {
-                    if (!string.IsNullOrEmpty(HdfID.Value))
-                    {
-                        int _id = Convert.ToInt32(HdfID.Value);
-
-                        var Query = (from objMaquina in ctx.tb_Maquinas select objMaquina);
-
-                        Maquina = Query.FirstOrDefault();
-                    }
-                    else
-                    {
-                        Maquina.Status = "ATIVA";
+                        Relacao.id_usuario = Convert.ToInt32(DdlRelacionarUsuario.SelectedValue);
+                        Relacao.id_maquina = Convert.ToInt32(DdlRelacionarMaquina.SelectedValue);
+                        Relacao.id_chave = Convert.ToInt32(DdlRelacionarChaveAtivacao.SelectedValue);
+                        Relacao.id_software = Convert.ToInt32(DdlRelacionarSoftware.SelectedValue);
+                        Relacao.deleted = 0;
 
                         if (string.IsNullOrEmpty(HdfID.Value))
                         {
-                            ctx.tb_Maquinas.Add(Maquina);
+                            ctx.tb_relacionar.Add(Relacao);
                         }
                         ctx.SaveChanges();
-                        AtualizaGridRelacionar();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Response.Write("Erro, " + ex.Message);
-                }
-            }
-            using (GCAEntities ctx = new GCAEntities())
-            {
-                tb_Chaves Chave = new tb_Chaves();
-                try
-                {
-                    if (!string.IsNullOrEmpty(HdfID.Value))
-                    {
-                        int _id = Convert.ToInt32(HdfID.Value);
-
-                        var Query = (from objChave in ctx.tb_Chaves select objChave);
-
-                        Chave = Query.FirstOrDefault();
-                    }
-                    else
-                    {
-                        Chave.Status = 1;
-
-                        if (string.IsNullOrEmpty(HdfID.Value))
-                        {
-                            ctx.tb_Chaves.Add(Chave);
-                        }
-                        ctx.SaveChanges();
+                        EscondePaineis();
+                        PnlConsultarRelacionar.Visible = true;
                         AtualizaGridRelacionar();
                     }
                 }
@@ -228,76 +166,16 @@ namespace Project_GCA_4._0.WebForms
                     case "opExcluir":
                         using (GCAEntities ctx = new GCAEntities())
                         {
-                            tb_Relacionar Relacionar = new tb_Relacionar();
+                            tb_relacionar Relacionar = new tb_relacionar();
 
                             int ID = _cdID;
                             HdfID.Value = _cdID.ToString();
 
-                            var Query = (from objRelacionar in ctx.tb_Relacionar where objRelacionar.ID_Relacionar == ID select objRelacionar).FirstOrDefault();
+                            var Query = (from objRelacionar in ctx.tb_relacionar where objRelacionar.id_relacionar == ID select objRelacionar).FirstOrDefault();
 
-                            Query.Deleted = 1;
+                            Query.deleted = 1;
                             ctx.SaveChanges();
                             AtualizaGridRelacionar();
-                        }
-                        using (GCAEntities ctx = new GCAEntities())
-                        {
-                            tb_Chaves Chave = new tb_Chaves();
-                            try
-                            {
-                                if (!string.IsNullOrEmpty(HdfID.Value))
-                                {
-                                    int _id = Convert.ToInt32(HdfID.Value);
-
-                                    var Query = (from objChave in ctx.tb_Chaves select objChave);
-
-                                    Chave = Query.FirstOrDefault();
-                                }
-                                else
-                                {
-                                    Chave.Status = 0;
-
-                                    if (string.IsNullOrEmpty(HdfID.Value))
-                                    {
-                                        ctx.tb_Chaves.Add(Chave);
-                                    }
-                                    ctx.SaveChanges();
-                                    AtualizaGridRelacionar();
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Response.Write("Erro, " + ex.Message);
-                            }
-                        }
-                        using (GCAEntities ctx = new GCAEntities())
-                        {
-                            tb_Maquinas Maquina = new tb_Maquinas();
-                            try
-                            {
-                                if (!string.IsNullOrEmpty(HdfID.Value))
-                                {
-                                    int _id = Convert.ToInt32(HdfID.Value);
-
-                                    var Query = (from objMaquina in ctx.tb_Maquinas select objMaquina);
-
-                                    Maquina = Query.FirstOrDefault();
-                                }
-                                else
-                                {
-                                    Maquina.Status = "1";
-
-                                    if (string.IsNullOrEmpty(HdfID.Value))
-                                    {
-                                        ctx.tb_Maquinas.Add(Maquina);
-                                    }
-                                    ctx.SaveChanges();
-                                    AtualizaGridRelacionar();
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Response.Write("Erro, " + ex.Message);
-                            }
                         }
                         break;
                 }

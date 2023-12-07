@@ -25,7 +25,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridMaquinas()
         {
-            GridMaquinas.DataSource = Framework.GetDataTable("SELECT ID_Maquina, ID_Maquina, NomeMaquina, ID_Setor, SetorMaquina, Status FROM tb_Maquinas WHERE Deleted = 0 Order By NomeMaquina");
+            GridMaquinas.DataSource = Framework.GetDataTable("SELECT tb_maquinas.id_maquina, tb_maquinas.nomeMaquina, tb_setores.id_setor , tb_setores.nomeSetor FROM tb_Maquinas INNER JOIN tb_setores ON tb_maquinas.id_setor = tb_setores.id_setor WHERE tb_maquinas.deleted = 0 Order By NomeMaquina");
             GridMaquinas.DataBind();
         }
 
@@ -36,14 +36,14 @@ namespace Project_GCA_4._0.WebForms
                 int ID = _cdID;
                 HdfID.Value = _cdID.ToString();
 
-                tb_Maquinas Maquina = new tb_Maquinas();
+                tb_maquinas maquina = new tb_maquinas();
 
-                var Query = (from objMaquina in ctx.tb_Maquinas where objMaquina.ID_Maquina == ID select objMaquina).FirstOrDefault();
+                var Query = (from objMaquina in ctx.tb_maquinas where objMaquina.id_maquina == ID select objMaquina).FirstOrDefault();
 
                 if (!string.IsNullOrEmpty(Query.ToString()))
                 {
-                    txtNomeMaquina.Text = Query.NomeMaquina;
-                    DdlSetorMaquina.SelectedValue = Query.ID_Setor.ToString();
+                    txtNomeMaquina.Text = Query.nomeMaquina;
+                    DdlSetorMaquina.SelectedValue = Query.id_setor.ToString();
                 }
             }
         }
@@ -59,15 +59,18 @@ namespace Project_GCA_4._0.WebForms
         {
             using (GCAEntities ctx = new GCAEntities())
             {
-                tb_Maquinas Maquina = new tb_Maquinas();
-                tb_Maquinas Maquina2 = new tb_Maquinas();
+                tb_maquinas Maquina = new tb_maquinas();
+                tb_maquinas Maquina2 = new tb_maquinas();
                 try
                 {
                     string _nomemaquina = txtNomeMaquina.Text.Trim();
                     int _setor = Convert.ToInt32(DdlSetorMaquina.SelectedValue);
 
-                    var strsql = (from objMaquina in ctx.tb_Maquinas
-                                  where objMaquina.NomeMaquina == _nomemaquina && objMaquina.ID_Setor == _setor && objMaquina.ID_Setor == _setor && objMaquina.Deleted == 0
+                    var strsql = (from objMaquina in ctx.tb_maquinas
+                                  where
+                                  objMaquina.nomeMaquina == _nomemaquina && 
+                                  objMaquina.id_setor == _setor 
+                                  && objMaquina.deleted == 0
                                   select objMaquina);
 
                     Maquina2 = strsql.FirstOrDefault();
@@ -83,28 +86,23 @@ namespace Project_GCA_4._0.WebForms
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
 
-                            var Query = (from objMaquina in ctx.tb_Maquinas select objMaquina);
+                            var Query = (from objMaquina in ctx.tb_maquinas select objMaquina);
 
                             Maquina = Query.FirstOrDefault();
                         }
-                        else
-                        {
-                            Maquina.NomeMaquina = txtNomeMaquina.Text;
-                            Maquina.ID_Setor = Convert.ToInt32(DdlSetorMaquina.SelectedValue);
-                            Maquina.SetorMaquina = DdlSetorMaquina.SelectedItem.ToString();
-                            Maquina.Status = "INATIVA";
-                            Maquina.Deleted = 0;
+                        Maquina.nomeMaquina = txtNomeMaquina.Text;
+                        Maquina.id_setor = Convert.ToInt32(DdlSetorMaquina.SelectedValue);
+                        Maquina.deleted = 0;
 
-                            if (string.IsNullOrEmpty(HdfID.Value))
-                            {
-                                ctx.tb_Maquinas.Add(Maquina);
-                            }
-                            ctx.SaveChanges();
-                            EscondePaineis();
-                            LimpaCampos();
-                            PnlConsultarMaquinas.Visible = true;
-                            AtualizaGridMaquinas();
+                        if (string.IsNullOrEmpty(HdfID.Value))
+                        {
+                            ctx.tb_maquinas.Add(Maquina);
                         }
+                        ctx.SaveChanges();
+                        EscondePaineis();
+                        LimpaCampos();
+                        PnlConsultarMaquinas.Visible = true;
+                        AtualizaGridMaquinas();
                     }
                 }
                 catch (Exception ex)
@@ -123,14 +121,14 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridMaquinas_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridMaquinas.DataSource = Framework.GetDataTable("SELECT ID_Maquina, ID_Maquina, NomeMaquina, ID_Setor, SetorMaquina, Status FROM tb_Maquinas WHERE Deleted = 0");
+            GridMaquinas.DataSource = Framework.GetDataTable("SELECT tb_maquinas.id_maquina, tb_maquinas.nomeMaquina, tb_setores.id_setor , tb_setores.nomeSetor FROM tb_Maquinas INNER JOIN tb_setores ON tb_maquinas.id_setor = tb_setores.id_setor WHERE tb_maquinas.deleted = 0 Order By NomeMaquina");
         }
 
         protected void GridMaquinas_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
         {
             try
             {
-                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["ID_Maquina"]);
+                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["id_maquina"]);
 
                 switch (e.CommandName)
                 {
@@ -147,14 +145,14 @@ namespace Project_GCA_4._0.WebForms
                     case "opExcluir":
                         using (GCAEntities ctx = new GCAEntities())
                         {
-                            tb_Maquinas Maquina = new tb_Maquinas();
+                            tb_maquinas Maquina = new tb_maquinas();
 
                             int ID = _cdID;
                             HdfID.Value = _cdID.ToString();
 
-                            var Query = (from objMaquina in ctx.tb_Maquinas where objMaquina.ID_Maquina == ID select objMaquina).FirstOrDefault();
+                            var Query = (from objMaquina in ctx.tb_maquinas where objMaquina.id_maquina == ID select objMaquina).FirstOrDefault();
 
-                            Query.Deleted = 1;
+                            Query.deleted = 1;
                             ctx.SaveChanges();
                             AtualizaGridMaquinas();
                         }
@@ -172,7 +170,6 @@ namespace Project_GCA_4._0.WebForms
             EscondePaineis();
             PnlCadastroMaquina.Visible = true;
         }
-
 
         protected void Page_Load(object sender, EventArgs e)
         {

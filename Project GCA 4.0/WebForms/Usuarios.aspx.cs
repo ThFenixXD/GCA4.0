@@ -26,7 +26,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridUsuarios()
         {
-            GridUsuarios.DataSource = Framework.GetDataTable("SELECT ID_Usuario, ID_Usuario, NomeUsuario, FuncaoUsuario, ID_Setor, SetorUsuario FROM tb_Usuarios WHERE Deleted = 0 Order By NomeUsuario");
+            GridUsuarios.DataSource = Framework.GetDataTable("SELECT tb_usuarios.id_usuario, tb_usuarios.nomeUsuario, tb_usuarios.funcaoUsuario, tb_setores.id_setor, tb_setores.nomeSetor FROM tb_Usuarios INNER JOIN tb_setores on tb_usuarios.id_setor = tb_setores.id_setor WHERE tb_usuarios.deleted = 0 Order By NomeUsuario");
             GridUsuarios.DataBind();
         }
 
@@ -37,15 +37,15 @@ namespace Project_GCA_4._0.WebForms
                 int ID = _cdID;
                 HdfID.Value = _cdID.ToString();
 
-                tb_Usuarios Usuario = new tb_Usuarios();
+                tb_usuarios Usuario = new tb_usuarios();
 
-                var Query = (from objUsuario in ctx.tb_Usuarios where objUsuario.ID_Usuario == ID select objUsuario).FirstOrDefault();
+                var Query = (from objUsuario in ctx.tb_usuarios where objUsuario.id_usuario == ID select objUsuario).FirstOrDefault();
 
                 if (!string.IsNullOrEmpty(Query.ToString()))
                 {
-                    txtNomeUsuario.Text = Query.NomeUsuario;
-                    txtFuncaoUsuario.Text = Query.FuncaoUsuario;
-                    ddlSetorUsuario.SelectedValue = Query.ID_Setor.ToString();
+                    txtNomeUsuario.Text = Query.nomeUsuario;
+                    txtFuncaoUsuario.Text = Query.funcaoUsuario;
+                    ddlSetorUsuario.SelectedValue = Query.id_setor.ToString();
                 }
             }
         }
@@ -68,15 +68,15 @@ namespace Project_GCA_4._0.WebForms
         {
             using (GCAEntities ctx = new GCAEntities())
             {
-                tb_Usuarios Usuario = new tb_Usuarios();
-                tb_Usuarios Usuario2 = new tb_Usuarios();
+                tb_usuarios Usuario = new tb_usuarios();
+                tb_usuarios Usuario2 = new tb_usuarios();
                 try
                 {
                     string _nomeusuario = txtNomeUsuario.Text.Trim();
                     string _funcao = txtFuncaoUsuario.Text.Trim();
                     int _setor = Convert.ToInt32(ddlSetorUsuario.SelectedValue);
-                    var strsql = (from objUsuario in ctx.tb_Usuarios
-                                  where objUsuario.NomeUsuario == _nomeusuario && objUsuario.FuncaoUsuario == _funcao && objUsuario.ID_Setor == _setor && objUsuario.Deleted == 0
+                    var strsql = (from objUsuario in ctx.tb_usuarios
+                                  where objUsuario.nomeUsuario == _nomeusuario && objUsuario.funcaoUsuario == _funcao && objUsuario.id_setor == _setor && objUsuario.deleted == 0
                                   select objUsuario);
 
                     Usuario2 = strsql.FirstOrDefault();
@@ -92,22 +92,18 @@ namespace Project_GCA_4._0.WebForms
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
 
-                            var Query = (from objUsuario in ctx.tb_Usuarios select objUsuario);
+                            var Query = (from objUsuario in ctx.tb_usuarios select objUsuario);
 
                             Usuario = Query.FirstOrDefault();
                         }
-                        else
-                        {
-                            Usuario.NomeUsuario = txtNomeUsuario.Text;
-                            Usuario.FuncaoUsuario = txtFuncaoUsuario.Text;
-                            Usuario.SetorUsuario = ddlSetorUsuario.SelectedItem.ToString();
-                            Usuario.ID_Setor = Convert.ToInt32(ddlSetorUsuario.SelectedValue);
-                            Usuario.Deleted = 0;
+                        Usuario.nomeUsuario = txtNomeUsuario.Text;
+                        Usuario.funcaoUsuario = txtFuncaoUsuario.Text;
+                        Usuario.id_setor = Convert.ToInt32(ddlSetorUsuario.SelectedValue);
+                        Usuario.deleted = 0;
 
-                            if (string.IsNullOrEmpty(HdfID.Value))
-                            {
-                                ctx.tb_Usuarios.Add(Usuario);
-                            }
+                        if (string.IsNullOrEmpty(HdfID.Value))
+                        {
+                            ctx.tb_usuarios.Add(Usuario);
                         }
                         ctx.SaveChanges();
                         EscondePaineis();
@@ -132,14 +128,14 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridUsuarios_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridUsuarios.DataSource = Framework.GetDataTable("SELECT ID_Usuario, ID_Usuario, NomeUsuario, FuncaoUsuario, ID_Setor, SetorUsuario FROM tb_Usuarios WHERE Deleted = 0");
+            GridUsuarios.DataSource = Framework.GetDataTable("SELECT tb_usuarios.id_usuario, tb_usuarios.nomeUsuario, tb_usuarios.funcaoUsuario, tb_setores.id_setor, tb_setores.nomeSetor FROM tb_Usuarios INNER JOIN tb_setores on tb_usuarios.id_setor = tb_setores.id_setor WHERE tb_usuarios.deleted = 0 Order By NomeUsuario");
         }
 
         protected void GridUsuarios_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
         {
             try
             {
-                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["ID_Usuario"]);
+                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["id_usuario"]);
 
                 switch (e.CommandName)
                 {
@@ -156,14 +152,14 @@ namespace Project_GCA_4._0.WebForms
                     case "opExcluir":
                         using (GCAEntities ctx = new GCAEntities())
                         {
-                            tb_Usuarios Usuario = new tb_Usuarios();
+                            tb_usuarios Usuario = new tb_usuarios();
 
                             int ID = _cdID;
                             HdfID.Value = _cdID.ToString();
 
-                            var Query = (from objUsuario in ctx.tb_Usuarios where objUsuario.ID_Usuario == ID select objUsuario).FirstOrDefault();
+                            var Query = (from objUsuario in ctx.tb_usuarios where objUsuario.id_usuario == ID select objUsuario).FirstOrDefault();
 
-                            Query.Deleted = 1;
+                            Query.deleted = 1;
                             ctx.SaveChanges();
                             AtualizaGridUsuarios();
                         }

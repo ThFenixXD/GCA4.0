@@ -5,15 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="01a5868ba1e94149a3305142eb62e372" Name="Diagram1">
-        <EntityTypeShape EntityType="GCAModel.tb_chaves" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GCAModel.tb_maquinas" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GCAModel.tb_setores" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GCAModel.tb_software" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GCAModel.tb_usuarios" Width="1.5" PointX="5" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GCAModel.tb_compatibilidadeSO" Width="1.5" PointX="0.75" PointY="4.125" />
-        <EntityTypeShape EntityType="GCAModel.tb_relacionar" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GCAModel.tb_tecnologia" Width="1.5" PointX="10.125" PointY="2.5" />
-        <EntityTypeShape EntityType="GCAModel.tb_tipoLicenca" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_chaves" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_compatibilidadeSO" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_idiomas" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_maquinas" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_relacionar" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_setores" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_software" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_tecnologia" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_tipoLicenca" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_usuarios" Width="1.5" PointX="4.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -14,8 +14,9 @@ namespace Project_GCA_4._0
     
     public partial class tb_tipoLicenca
     {
-        public int id_tipoLicença { get; set; }
+        public int id_tipoLicenca { get; set; }
         public string tipoLicenca { get; set; }
-        public string deleted { get; set; }
+        public string prazoLicenca { get; set; }
+        public Nullable<int> deleted { get; set; }
     }
 }

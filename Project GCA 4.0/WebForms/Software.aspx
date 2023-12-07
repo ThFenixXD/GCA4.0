@@ -16,8 +16,12 @@
                     <asp:TextBox ID="txtNomeSoftware" CssClass="col-8 col-md-8 col-sm-8" runat="server"></asp:TextBox>
                 </div>
                 <div class="row">
-                    <asp:Label ID="lbVersao" CssClass="lbTextBlock col-4 col-md-4 col-sm-4 p-0" runat="server" Text="Versão/Ano"></asp:Label>
+                    <asp:Label ID="lbVersao" CssClass="lbTextBlock col-4 col-md-4 col-sm-4 p-0" runat="server" Text="Versão"></asp:Label>
                     <asp:TextBox ID="txtVersão" CssClass="col-8 col-md-8 col-sm-8" runat="server"></asp:TextBox>
+                </div>
+                <div class="row">
+                    <asp:Label ID="lbAno" CssClass="lbTextBlock col-4 col-md-4 col-sm-4 p-0" runat="server" Text="Ano"></asp:Label>
+                    <asp:TextBox ID="txtAno" CssClass="col-8 col-md-8 col-sm-8" runat="server"></asp:TextBox>
                 </div>
                 <div class="row">
                     <asp:Label ID="lbFabricante" CssClass="lbTextBlock col-4 col-md-4 col-sm-4" runat="server" Text="Fabricante"></asp:Label>
@@ -25,7 +29,7 @@
                 </div>
                 <div class="row">
                     <asp:Label ID="lbIdioma" CssClass="lbTextBlock col-4 col-md-4 col-sm-4" runat="server" Text="Idioma"></asp:Label>
-                    <asp:TextBox ID="txtIdioma" CssClass="col-8 col-md-8 col-sm-8" runat="server"></asp:TextBox>
+                    <asp:DropDownList ID="ddlIdioma" CssClass="col-8 col-md-8 col-sm-8" runat="server"></asp:DropDownList>
                 </div>
                 <div class="row">
                     <asp:Label ID="lbTecnologia" CssClass="lbTextBlock col-4 col-md-4 col-sm-4 p-0" runat="server" Text="Tecnologia"></asp:Label>
@@ -52,7 +56,7 @@
             <div class="col-12 col-md-12 col-sm-12">
                 <telerik:RadGrid ID="GridSoftware" runat="server" AutoGenerateColumns="false" OnNeedDataSource="GridSoftware_NeedDataSource" OnItemCommand="GridSoftware_ItemCommand">
                     <GroupingSettings CollapseAllTooltip="collaps all columns" />
-                    <MasterTableView DataKeyNames="ID_Software">
+                    <MasterTableView DataKeyNames="id_software, id_idioma, id_tecnologia, id_compatibilidade">
                         <Columns>
                             <telerik:GridTemplateColumn UniqueName="OP" AllowFiltering="false">
                                 <ItemTemplate>
@@ -60,10 +64,11 @@
                                     <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
-                            <telerik:GridBoundColumn UniqueName="col_Software" DataField="NomeSoftware" HeaderText="SOFTWARE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn UniqueName="col_VersaoAno" DataField="VersaoAno" HeaderText="VERSÃO/ANO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn UniqueName="col_Fabricante" DataField="Fabricante" HeaderText="FABRICANTE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn UniqueName="col_Idioma" DataField="Idioma" HeaderText="IDIOMA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_Software" DataField="nomeSoftware" HeaderText="SOFTWARE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_Versao" DataField="versao" HeaderText="VERSÃO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_Ano" DataField="ano" HeaderText="ANO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_Fabricante" DataField="fabricante" HeaderText="FABRICANTE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_Idioma" DataField="idioma" HeaderText="IDIOMA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                             <telerik:GridBoundColumn UniqueName="col_Tecnologia" DataField="Tecnologia" HeaderText="TECNOLOGIA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                             <telerik:GridBoundColumn UniqueName="col_Compatibilidade" DataField="Compatibilidade" HeaderText="COMPATIBILIDADE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                         </Columns>

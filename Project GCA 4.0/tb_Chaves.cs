@@ -16,7 +16,7 @@ namespace Project_GCA_4._0
     {
         public int id_chave { get; set; }
         public string chave { get; set; }
-        public Nullable<System.DateTime> dataDeCompra { get; set; }
+        public string dataDeCompra { get; set; }
         public Nullable<int> id_tipoLicença { get; set; }
         public string prazoLicenca { get; set; }
         public Nullable<int> id_software { get; set; }

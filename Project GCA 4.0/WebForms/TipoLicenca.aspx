@@ -15,6 +15,10 @@
                     <asp:Label ID="lbTipoLicanca" CssClass="lbTextBlock col-4 col-md-4 col-sm-4" runat="server" Text="Tipo de Licença"></asp:Label>
                     <asp:TextBox ID="txtTipoLicenca" CssClass="col-8 col-md-8 col-sm-8" runat="server"></asp:TextBox>
                 </div>
+                <div class="row">
+                    <asp:Label ID="lbPrazoLicenca" CssClass="lbTextBlock col-4 col-md-4 col-sm-4" runat="server" Text="Prazo de Licença"></asp:Label>
+                    <asp:TextBox ID="txtPrazoLicenca" CssClass="col-8 col-md-8 col-sm-8" runat="server"></asp:TextBox>
+                </div>
                 <div class="row p-0 m-0 gap-3 justify-content-end">
                     <div class="col-7 col-md-7 col-sm-7"></div>
                     <asp:Button ID="BtSalvarTipoLicenca" CssClass="col-2 col-md-2 col-sm-2" runat="server" Text="Salvar" OnClick="BtSalvarTipoLicenca_Click" />
@@ -32,7 +36,7 @@
             <div class="col-12 col-md-12 col-sm-12">
                 <telerik:RadGrid ID="GridLicencas" runat="server" AutoGenerateColumns="false" OnNeedDataSource="GridLicencas_NeedDataSource" OnItemCommand="GridLicencas_ItemCommand">
                     <GroupingSettings CollapseAllTooltip="collaps all columns" />
-                    <MasterTableView DataKeyNames="ID_TipoDeLicenca">
+                    <MasterTableView DataKeyNames="id_tipoLicenca">
                         <Columns>
                             <telerik:GridTemplateColumn UniqueName="OP" AllowFiltering="false">
                                 <ItemTemplate>
@@ -40,14 +44,16 @@
                                     <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
-                            <telerik:GridBoundColumn UniqueName="col_CodLicenca" DataField="ID_TipoLicenca" HeaderText="COD" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn UniqueName="col_TipoLicenca" DataField="TipoLicenca" HeaderText="SETOR" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_CodLicenca" DataField="id_tipoLicenca" HeaderText="COD" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_TipoLicenca" DataField="tipoLicenca" HeaderText="LICENÇA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_PrazoLicenca" DataField="prazoLicenca" HeaderText="PRAZO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>
             </div>
-        <div class="col-12 col-md-12 col-sm-12 text-end my-3">
-            <asp:Button ID="btCadastrarLicença" runat="server" Text="Cadastrar" OnClick="btCadastrarLicença_Click" />
+            <div class="col-12 col-md-12 col-sm-12 text-end my-3">
+                <asp:Button ID="btCadastrarLicença" runat="server" Text="Cadastrar" OnClick="btCadastrarLicença_Click" />
+            </div>
         </div>
     </asp:Panel>
 

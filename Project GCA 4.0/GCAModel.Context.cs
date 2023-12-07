@@ -26,13 +26,14 @@ namespace Project_GCA_4._0
         }
     
         public virtual DbSet<tb_chaves> tb_chaves { get; set; }
+        public virtual DbSet<tb_compatibilidadeSO> tb_compatibilidadeSO { get; set; }
+        public virtual DbSet<tb_idiomas> tb_idiomas { get; set; }
         public virtual DbSet<tb_maquinas> tb_maquinas { get; set; }
+        public virtual DbSet<tb_relacionar> tb_relacionar { get; set; }
         public virtual DbSet<tb_setores> tb_setores { get; set; }
         public virtual DbSet<tb_software> tb_software { get; set; }
-        public virtual DbSet<tb_usuarios> tb_usuarios { get; set; }
-        public virtual DbSet<tb_compatibilidadeSO> tb_compatibilidadeSO { get; set; }
-        public virtual DbSet<tb_relacionar> tb_relacionar { get; set; }
         public virtual DbSet<tb_tecnologia> tb_tecnologia { get; set; }
         public virtual DbSet<tb_tipoLicenca> tb_tipoLicenca { get; set; }
+        public virtual DbSet<tb_usuarios> tb_usuarios { get; set; }
     }
 }

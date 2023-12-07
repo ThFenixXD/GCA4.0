@@ -26,7 +26,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridSoftware()
         {
-            GridSoftware.DataSource = Framework.GetDataTable("SELECT ID_Software, NomeSoftware, VersaoAno, Fabricante, Idioma, Tecnologia, Compatibilidade FROM tb_Software WHERE Deleted = 0 Order By NomeSoftware");
+            GridSoftware.DataSource = Framework.GetDataTable("SELECT SO.id_software, SO.nomeSoftware, SO.versao, SO.ano, SO.fabricante, IDI.id_idioma, TEC.id_tecnologia, CSO.id_compatibilidadeSO FROM tb_software SO INNER JOIN tb_idiomas IDI ON SO.id_idioma = IDI.id_idioma INNER JOIN tb_tecnologia TEC ON SO.id_tecnologia = TEC.deleted INNER JOIN tb_compatibilidadeSO CSO ON SO.id_compatibilidade = CSO.id_compatibilidadeSO ORDER BY SO.nomeSoftware");
             GridSoftware.DataBind();
         }
 
@@ -37,14 +37,14 @@ namespace Project_GCA_4._0.WebForms
                 int ID = _cdID;
                 HdfID.Value = _cdID.ToString();
 
-                tb_Software Software = new tb_Software();
+                tb_software Software = new tb_software();
 
-                var Query = (from objSoftware in ctx.tb_Software where objSoftware.ID_Software == ID select objSoftware).FirstOrDefault();
+                var Query = (from objSoftware in ctx.tb_software where objSoftware.id_software == ID select objSoftware).FirstOrDefault();
 
                 if (!string.IsNullOrEmpty(Query.ToString()))
                 {
-                    txtNomeSoftware.Text = Query.NomeSoftware;
-                    txtFabricante.Text = Query.Fabricante;
+                    txtNomeSoftware.Text = Query.nomeSoftware;
+                    txtFabricante.Text = Query.fabricante;
                 }
             }
         }
@@ -58,7 +58,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void PopuladdlCompatibilidadeSoftware()
         {
-            ddlCompatibilidade.DataSource = Framework.GetDataTable("SELECT ID_Compatibilidade, Compatibilidade FROM tb_Compatibilidade WHERE Deleted = 0");
+            ddlCompatibilidade.DataSource = Framework.GetDataTable("SELECT id_compatibilidadeSO, compatibilidadeSO FROM tb_compatibilidadeSO WHERE deleted = 0");
             ddlCompatibilidade.DataBind();
             ddlCompatibilidade.Items.Insert(0, new ListItem("Selecionar"));
         }
@@ -67,18 +67,28 @@ namespace Project_GCA_4._0.WebForms
         {
             using (GCAEntities ctx = new GCAEntities())
             {
-                tb_Software Software = new tb_Software();
-                tb_Software Software2 = new tb_Software();
+                tb_software Software = new tb_software();
+                tb_software Software2 = new tb_software();
                 try
                 {
                     string _nomesoftware = txtNomeSoftware.Text.Trim();
                     string _fabricante = txtFabricante.Text.Trim();
                     string _versao = txtVersão.Text.Trim();
-                    string _tecnologia = ddlTecnologia.SelectedValue;
-                    string _compatibilidade = ddlCompatibilidade.SelectedValue;
+                    string _ano = txtAno.Text.Trim();
+                    int _idioma = Convert.ToInt32(ddlIdioma.SelectedValue);
+                    int _tecnologia = Convert.ToInt32(ddlTecnologia.SelectedValue);
+                    int _compatibilidade = Convert.ToInt32(ddlCompatibilidade.SelectedValue);
 
-                    var strsql = (from objSoftware in ctx.tb_Software
-                                  where objSoftware.Fabricante == _fabricante && objSoftware.NomeSoftware == _nomesoftware && objSoftware.VersaoAno == _versao && objSoftware.Tecnologia == _tecnologia && objSoftware.Compatibilidade == _compatibilidade && objSoftware.Deleted == 0
+                    var strsql = (from objSoftware in ctx.tb_software
+                                  where
+                                  objSoftware.nomeSoftware == _nomesoftware &&
+                                  objSoftware.fabricante == _fabricante &&
+                                  objSoftware.versao == _versao &&
+                                  objSoftware.ano == _ano &&
+                                  objSoftware.id_idioma == _idioma &&
+                                  objSoftware.id_tecnologia == _tecnologia &&
+                                  objSoftware.id_compatibilidade == _compatibilidade &&
+                                  objSoftware.deleted == 0
                                   select objSoftware);
 
                     Software2 = strsql.FirstOrDefault();
@@ -96,34 +106,30 @@ namespace Project_GCA_4._0.WebForms
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
 
-                            var Query = (from objSoftware in ctx.tb_Software select objSoftware);
+                            var Query2 = (from objSoftware in ctx.tb_software select objSoftware);
 
-                            Software = Query.FirstOrDefault();
+                            Software = Query2.FirstOrDefault();
                         }
-                        else
+                        var Query = (from objSoftware in ctx.tb_software select objSoftware);
+
+                        Software.nomeSoftware = txtNomeSoftware.Text;
+                        Software.versao = txtVersão.Text;
+                        Software.ano = txtAno.Text;
+                        Software.fabricante = txtFabricante.Text;
+                        Software.id_idioma = Convert.ToInt32(ddlIdioma.SelectedValue);
+                        Software.id_tecnologia = Convert.ToInt32(ddlTecnologia.SelectedValue);
+                        Software.id_compatibilidade = Convert.ToInt32(ddlCompatibilidade.SelectedValue);
+                        Software.deleted = 0;
+
+                        if (string.IsNullOrEmpty(HdfID.Value))
                         {
-                            var Query = (from objSoftware in ctx.tb_Software select objSoftware);
-
-                            Software.NomeSoftware = txtNomeSoftware.Text;
-                            Software.VersaoAno = txtVersão.Text;
-                            Software.Fabricante = txtFabricante.Text;
-                            Software.Idioma = txtIdioma.Text;
-                            Software.Tecnologia = ddlTecnologia.SelectedItem.ToString();
-                            Software.ID_Tecnologia = Convert.ToInt32(ddlTecnologia.SelectedValue);
-                            Software.Compatibilidade = ddlCompatibilidade.SelectedItem.ToString();
-                            Software.ID_Compatibilidade = Convert.ToInt32(ddlCompatibilidade.SelectedValue);
-                            Software.Deleted = 0;
-
-                            if (string.IsNullOrEmpty(HdfID.Value))
-                            {
-                                ctx.tb_Software.Add(Software);
-                            }
-                            ctx.SaveChanges();
-                            EscondePaineis();
-                            LimpaCampos();
-                            PnlConsultarSoftware.Visible = true;
-                            AtualizaGridSoftware();
+                            ctx.tb_software.Add(Software);
                         }
+                        ctx.SaveChanges();
+                        EscondePaineis();
+                        LimpaCampos();
+                        PnlConsultarSoftware.Visible = true;
+                        AtualizaGridSoftware();
                     }
                 }
                 catch (Exception ex)
@@ -142,7 +148,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridSoftware_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridSoftware.DataSource = Framework.GetDataTable("SELECT ID_Software, NomeSoftware, VersaoAno, Fabricante, Idioma, Tecnologia, Compatibilidade FROM tb_Software WHERE Deleted = 0 Order By NomeSoftware");
+            GridSoftware.DataSource = Framework.GetDataTable("SELECT SO.id_software, SO.nomeSoftware, SO.versao, SO.ano, SO.fabricante, IDI.id_idioma, TEC.id_tecnologia, CSO.id_compatibilidadeSO FROM tb_software SO INNER JOIN tb_idiomas IDI ON SO.id_idioma = IDI.id_idioma INNER JOIN tb_tecnologia TEC ON SO.id_tecnologia = TEC.deleted INNER JOIN tb_compatibilidadeSO CSO ON SO.id_compatibilidade = CSO.id_compatibilidadeSO ORDER BY SO.nomeSoftware");
         }
 
         protected void GridSoftware_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
@@ -166,14 +172,14 @@ namespace Project_GCA_4._0.WebForms
                     case "opExcluir":
                         using (GCAEntities ctx = new GCAEntities())
                         {
-                            tb_Software Software = new tb_Software();
+                            tb_software Software = new tb_software();
 
                             int ID = _cdID;
                             HdfID.Value = _cdID.ToString();
 
-                            var Query = (from objSoftware in ctx.tb_Software where objSoftware.ID_Software == ID select objSoftware).FirstOrDefault();
+                            var Query = (from objSoftware in ctx.tb_software where objSoftware.id_software == ID select objSoftware).FirstOrDefault();
 
-                            Query.Deleted = 1;
+                            Query.deleted = 1;
                             ctx.SaveChanges();
                             AtualizaGridSoftware();
                         }
@@ -202,7 +208,5 @@ namespace Project_GCA_4._0.WebForms
                 PopuladdlCompatibilidadeSoftware();
             }
         }
-
-        
     }
 }

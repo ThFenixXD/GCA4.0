@@ -41,7 +41,7 @@
                 </li>
                  <li class="item-menu">
                     <a href="Setor.aspx">
-                        <span class="icon"><i class="bi bi-pc-display-horizontal"></i></span>
+                        <span class="icon"><i class="bi bi-intersect"></i></span>
                         <span class="txt-link">Setores</span>
                     </a>
                 </li>

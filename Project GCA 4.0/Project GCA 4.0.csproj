@@ -91,10 +91,9 @@
       <LastGenOutput>GCAModel.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
-    <Content Include="WebForms.Old\Teste.aspx" />
     <Content Include="WebForms\Chaves.aspx" />
-    <Content Include="WebForms.Old\Gerenciamento.aspx" />
     <Content Include="WebForms\HomePage.aspx" />
+    <Content Include="WebForms\Idioma.aspx" />
     <Content Include="WebForms\Maquinas.aspx" />
     <Content Include="WebForms\Relacionar.aspx" />
     <Content Include="WebForms\Setor.aspx" />
@@ -125,6 +124,9 @@
     <Compile Include="tb_compatibilidadeSO.cs">
       <DependentUpon>GCAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tb_idiomas.cs">
+      <DependentUpon>GCAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tb_maquinas.cs">
       <DependentUpon>GCAModel.tt</DependentUpon>
     </Compile>
@@ -146,13 +148,6 @@
     <Compile Include="tb_usuarios.cs">
       <DependentUpon>GCAModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="WebForms.Old\Teste.aspx.cs">
-      <DependentUpon>Teste.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForms.Old\Teste.aspx.designer.cs">
-      <DependentUpon>Teste.aspx</DependentUpon>
-    </Compile>
     <Compile Include="WebForms\Chaves.aspx.cs">
       <DependentUpon>Chaves.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -160,19 +155,19 @@
     <Compile Include="WebForms\Chaves.aspx.designer.cs">
       <DependentUpon>Chaves.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms.Old\Gerenciamento.aspx.cs">
-      <DependentUpon>Gerenciamento.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForms.Old\Gerenciamento.aspx.designer.cs">
-      <DependentUpon>Gerenciamento.aspx</DependentUpon>
-    </Compile>
     <Compile Include="WebForms\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="WebForms\HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Idioma.aspx.cs">
+      <DependentUpon>Idioma.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Idioma.aspx.designer.cs">
+      <DependentUpon>Idioma.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Maquinas.aspx.cs">
       <DependentUpon>Maquinas.aspx</DependentUpon>

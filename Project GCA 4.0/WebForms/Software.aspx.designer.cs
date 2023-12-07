@@ -67,6 +67,24 @@ namespace Project_GCA_4._0.WebForms {
         protected global::System.Web.UI.WebControls.TextBox txtVersão;
         
         /// <summary>
+        /// lbAno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbAno;
+        
+        /// <summary>
+        /// txtAno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAno;
+        
+        /// <summary>
         /// lbFabricante control.
         /// </summary>
         /// <remarks>
@@ -94,13 +112,13 @@ namespace Project_GCA_4._0.WebForms {
         protected global::System.Web.UI.WebControls.Label lbIdioma;
         
         /// <summary>
-        /// txtIdioma control.
+        /// ddlIdioma control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIdioma;
+        protected global::System.Web.UI.WebControls.DropDownList ddlIdioma;
         
         /// <summary>
         /// lbTecnologia control.

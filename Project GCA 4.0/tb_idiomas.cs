@@ -12,11 +12,12 @@ namespace Project_GCA_4._0
     using System;
     using System.Collections.Generic;
     
-    public partial class tb_maquinas
+    public partial class tb_idiomas
     {
-        public int id_maquina { get; set; }
-        public string nomeMaquina { get; set; }
-        public Nullable<int> id_setor { get; set; }
+        public int id_idioma { get; set; }
+        public string idioma { get; set; }
+        public string sigla { get; set; }
+        public string pais { get; set; }
         public Nullable<int> deleted { get; set; }
     }
 }
