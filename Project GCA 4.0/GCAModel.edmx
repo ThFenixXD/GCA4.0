@@ -12,7 +12,7 @@
           <Property Name="id_chave" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="chave" Type="nvarchar" MaxLength="50" />
           <Property Name="dataDeCompra" Type="nvarchar" MaxLength="50" />
-          <Property Name="id_tipoLicença" Type="int" />
+          <Property Name="id_tipoLicenca" Type="int" />
           <Property Name="prazoLicenca" Type="nvarchar" MaxLength="50" />
           <Property Name="id_software" Type="int" />
           <Property Name="status" Type="int" />
@@ -75,8 +75,7 @@
           <Property Name="fabricante" Type="nvarchar" MaxLength="50" />
           <Property Name="id_idioma" Type="int" />
           <Property Name="id_tecnologia" Type="int" />
-          <Property Name="id_compatibilidade" Type="int" />
-          <Property Name="id_chave" Type="int" />
+          <Property Name="id_compatibilidadeSO" Type="int" />
           <Property Name="deleted" Type="int" />
         </EntityType>
         <EntityType Name="tb_tecnologia">
@@ -141,7 +140,7 @@
           <Property Name="id_chave" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="chave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="dataDeCompra" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="id_tipoLicença" Type="Int32" />
+          <Property Name="id_tipoLicenca" Type="Int32" />
           <Property Name="prazoLicenca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="id_software" Type="Int32" />
           <Property Name="status" Type="Int32" />
@@ -204,8 +203,7 @@
           <Property Name="fabricante" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="id_idioma" Type="Int32" />
           <Property Name="id_tecnologia" Type="Int32" />
-          <Property Name="id_compatibilidade" Type="Int32" />
-          <Property Name="id_chave" Type="Int32" />
+          <Property Name="id_compatibilidadeSO" Type="Int32" />
           <Property Name="deleted" Type="Int32" />
         </EntityType>
         <EntityType Name="tb_tecnologia">
@@ -248,7 +246,7 @@
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="id_software" ColumnName="id_software" />
                 <ScalarProperty Name="prazoLicenca" ColumnName="prazoLicenca" />
-                <ScalarProperty Name="id_tipoLicença" ColumnName="id_tipoLicença" />
+                <ScalarProperty Name="id_tipoLicenca" ColumnName="id_tipoLicenca" />
                 <ScalarProperty Name="dataDeCompra" ColumnName="dataDeCompra" />
                 <ScalarProperty Name="chave" ColumnName="chave" />
                 <ScalarProperty Name="id_chave" ColumnName="id_chave" />
@@ -310,8 +308,7 @@
             <EntityTypeMapping TypeName="GCAModel.tb_software">
               <MappingFragment StoreEntitySet="tb_software">
                 <ScalarProperty Name="deleted" ColumnName="deleted" />
-                <ScalarProperty Name="id_chave" ColumnName="id_chave" />
-                <ScalarProperty Name="id_compatibilidade" ColumnName="id_compatibilidade" />
+                <ScalarProperty Name="id_compatibilidadeSO" ColumnName="id_compatibilidadeSO" />
                 <ScalarProperty Name="id_tecnologia" ColumnName="id_tecnologia" />
                 <ScalarProperty Name="id_idioma" ColumnName="id_idioma" />
                 <ScalarProperty Name="fabricante" ColumnName="fabricante" />

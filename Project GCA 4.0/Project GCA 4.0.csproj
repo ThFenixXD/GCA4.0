@@ -92,6 +92,7 @@
     </Content>
     <Content Include="Web.config" />
     <Content Include="WebForms\Chaves.aspx" />
+    <Content Include="WebForms\Compatibilidade.aspx" />
     <Content Include="WebForms\HomePage.aspx" />
     <Content Include="WebForms\Idioma.aspx" />
     <Content Include="WebForms\Maquinas.aspx" />
@@ -154,6 +155,13 @@
     </Compile>
     <Compile Include="WebForms\Chaves.aspx.designer.cs">
       <DependentUpon>Chaves.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Compatibilidade.aspx.cs">
+      <DependentUpon>Compatibilidade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Compatibilidade.aspx.designer.cs">
+      <DependentUpon>Compatibilidade.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>

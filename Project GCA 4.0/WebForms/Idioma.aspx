@@ -35,7 +35,7 @@
     <asp:Panel ID="PnlConsultarIdiomas" CssClass="Pnl col-9 col-md-9 col-sm-9 d-flex align-items-center justify-content-center text-center" runat="server" Visible="true">
         <div class="row">
             <div class="col-12 col-md-12 col-sm-12 my-4 text-uppercase">
-                <asp:Label runat="server" Text="Tipos de Licenças" CssClass="LbTitulo"></asp:Label>
+                <asp:Label runat="server" Text="Idiomas" CssClass="LbTitulo"></asp:Label>
             </div>
             <div class="col-12 col-md-12 col-sm-12">
                 <telerik:RadGrid ID="GridIdiomas" runat="server" AutoGenerateColumns="false" OnNeedDataSource="GridIdiomas_NeedDataSource" OnItemCommand="GridIdiomas_ItemCommand">

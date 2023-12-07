@@ -18,7 +18,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridRelacionar()
         {
-            GridRelacionar.DataSource = Framework.GetDataTable("SELECT ID_Relacionar, UsuarioRelacionar, MaquinaRelacionar, SoftwareRelacionar, ChaveAtivacaoRelacionar FROM tb_Relacionar WHERE Deleted = 0");
+            GridRelacionar.DataSource = Framework.GetDataTable("SELECT RE.id_relacionar, US.id_usuario, US.nomeUsuario, MAQ.id_maquina, MAQ.nomeMaquina, SO.id_software, SO.nomeSoftware, CH.id_chave, CH.chave FROM tb_Relacionar RE INNER JOIN tb_usuarios US ON RE.id_usuario = US.id_usuario INNER JOIN tb_maquinas MAQ ON RE.id_maquina = MAQ.id_maquina INNER JOIN tb_software SO ON RE.id_software = SO.id_software INNER JOIN tb_chaves CH ON RE.id_chave = CH.id_chave WHERE RE.deleted = 0 ORDER BY RE.id_relacionar");
             GridRelacionar.DataBind();
         }
 
@@ -46,28 +46,28 @@ namespace Project_GCA_4._0.WebForms
 
         protected void PopulaDdlRelacionarUsuario()
         {
-            DdlRelacionarUsuario.DataSource = Framework.GetDataTable("SELECT ID_Usuario, NomeUsuario FROM tb_Usuarios  WHERE Deleted = 0 Order By NomeUsuario");
+            DdlRelacionarUsuario.DataSource = Framework.GetDataTable("SELECT id_usuario, nomeUsuario FROM tb_usuarios WHERE deleted = 0 ORDER BY nomeUsuario");
             DdlRelacionarUsuario.DataBind();
             DdlRelacionarUsuario.Items.Insert(0, new ListItem("Selecionar"));
         }
 
         protected void PopulaDdlRelacionarMaquina()
         {
-            DdlRelacionarMaquina.DataSource = Framework.GetDataTable("SELECT ID_Maquina, NomeMaquina FROM tb_Maquinas WHERE Deleted = 0 Order By NomeMaquina");
+            DdlRelacionarMaquina.DataSource = Framework.GetDataTable("SELECT id_maquina, nomeMaquina FROM tb_maquinas WHERE deleted = 0 ORDER BY nomeMaquina");
             DdlRelacionarMaquina.DataBind();
             DdlRelacionarMaquina.Items.Insert(0, new ListItem("Selecionar"));
         }
 
         protected void PopulaDdlRelacionarSoftware()
         {
-            DdlRelacionarSoftware.DataSource = Framework.GetDataTable("SELECT ID_Software, NomeSoftware FROM tb_Software WHERE Deleted = 0 Order by NomeSoftware");
+            DdlRelacionarSoftware.DataSource = Framework.GetDataTable("SELECT id_software, nomeSoftware FROM tb_software WHERE deleted = 0 ORDER BY nomeSoftware");
             DdlRelacionarSoftware.DataBind();
             DdlRelacionarSoftware.Items.Insert(0, new ListItem("Selecionar"));
         }
 
         protected void PopulaDdlRelacionarChaveAtivacao()
         {
-            DdlRelacionarChaveAtivacao.DataSource = Framework.GetDataTable("SELECT ID_ChaveAtivacao, ChaveDeAtivacao FROM tb_Chaves WHERE Deleted = 0 Order By ChaveDeAtivacao");
+            DdlRelacionarChaveAtivacao.DataSource = Framework.GetDataTable("SELECT id_chave, chave FROM tb_chaves WHERE deleted = 0 ORDER BY chave");
             DdlRelacionarChaveAtivacao.DataBind();
             DdlRelacionarChaveAtivacao.Items.Insert(0, new ListItem("Selecionar"));
         }
@@ -143,14 +143,14 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridRelacionar_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridRelacionar.DataSource = Framework.GetDataTable("SELECT ID_Relacionar, UsuarioRelacionar, MaquinaRelacionar, SoftwareRelacionar, ChaveAtivacaoRelacionar FROM tb_Relacionar WHERE Deleted = 0");
+            GridRelacionar.DataSource = Framework.GetDataTable("SELECT RE.id_relacionar, US.id_usuario, US.nomeUsuario, MAQ.id_maquina, MAQ.nomeMaquina, SO.id_software, SO.nomeSoftware, CH.id_chave, CH.chave FROM tb_Relacionar RE INNER JOIN tb_usuarios US ON RE.id_usuario = US.id_usuario INNER JOIN tb_maquinas MAQ ON RE.id_maquina = MAQ.id_maquina INNER JOIN tb_software SO ON RE.id_software = SO.id_software INNER JOIN tb_chaves CH ON RE.id_chave = CH.id_chave WHERE RE.deleted = 0 ORDER BY RE.id_relacionar");
         }
 
         protected void GridRelacionar_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
         {
             try
             {
-                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["ID_Relacionar"]);
+                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["id_relacionar"]);
 
                 switch (e.CommandName)
                 {

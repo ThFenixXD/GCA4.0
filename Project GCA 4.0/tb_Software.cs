@@ -21,8 +21,7 @@ namespace Project_GCA_4._0
         public string fabricante { get; set; }
         public Nullable<int> id_idioma { get; set; }
         public Nullable<int> id_tecnologia { get; set; }
-        public Nullable<int> id_compatibilidade { get; set; }
-        public Nullable<int> id_chave { get; set; }
+        public Nullable<int> id_compatibilidadeSO { get; set; }
         public Nullable<int> deleted { get; set; }
     }
 }

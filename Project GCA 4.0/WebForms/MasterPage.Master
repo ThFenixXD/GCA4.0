@@ -64,6 +64,18 @@
                     </a>
                 </li>
                 <li class="item-menu">
+                    <a href="Idioma.aspx">
+                        <span class="icon"><i class="bi bi-arrows-angle-contract"></i></span>
+                        <span class="txt-link">Idioma</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="Compatibilidade.aspx">
+                        <span class="icon"><i class="bi bi-c-circle"></i></span>
+                        <span class="txt-link">Compatibilidade</span>
+                    </a>
+                </li>
+                <li class="item-menu">
                     <a href="Relacionar.aspx" class="last__menu-item">
                         <span class="icon"><i class="bi bi-bezier2"></i></span>
                         <span class="txt-link">Relacionar</span>

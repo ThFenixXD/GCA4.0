@@ -29,7 +29,7 @@
                 </div>
                 <div class="row">
                     <asp:Label ID="lbIdioma" CssClass="lbTextBlock col-4 col-md-4 col-sm-4" runat="server" Text="Idioma"></asp:Label>
-                    <asp:DropDownList ID="ddlIdioma" CssClass="col-8 col-md-8 col-sm-8" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlIdioma" CssClass="col-8 col-md-8 col-sm-8 text-center" runat="server" DataTextField="idioma" DataValueField="id_idioma"></asp:DropDownList>
                 </div>
                 <div class="row">
                     <asp:Label ID="lbTecnologia" CssClass="lbTextBlock col-4 col-md-4 col-sm-4 p-0" runat="server" Text="Tecnologia"></asp:Label>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="row">
                     <asp:Label ID="lbCompatibilidade" CssClass="lbTextBlock col-4 col-md-4 col-sm-4" runat="server" Text="Compatibilidade"></asp:Label>
-                    <asp:DropDownList ID="ddlCompatibilidade" CssClass="col-8 col-md-8 col-sm-8 text-center" runat="server" DataTextField="Compatibilidade" DataValueField="ID_Compatibilidade"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlCompatibilidade" CssClass="col-8 col-md-8 col-sm-8 text-center" runat="server" DataTextField="compatibilidadeSO" DataValueField="id_compatibilidadeSO"></asp:DropDownList>
                 </div>
                 <div class="row p-0 m-0 gap-3 justify-content-end">
                     <div class="col-7 col-md-7 col-sm-7"></div>
@@ -56,7 +56,7 @@
             <div class="col-12 col-md-12 col-sm-12">
                 <telerik:RadGrid ID="GridSoftware" runat="server" AutoGenerateColumns="false" OnNeedDataSource="GridSoftware_NeedDataSource" OnItemCommand="GridSoftware_ItemCommand">
                     <GroupingSettings CollapseAllTooltip="collaps all columns" />
-                    <MasterTableView DataKeyNames="id_software, id_idioma, id_tecnologia, id_compatibilidade">
+                    <MasterTableView DataKeyNames="id_software, id_idioma, id_tecnologia, id_compatibilidadeSO">
                         <Columns>
                             <telerik:GridTemplateColumn UniqueName="OP" AllowFiltering="false">
                                 <ItemTemplate>
@@ -70,7 +70,7 @@
                             <telerik:GridBoundColumn UniqueName="col_Fabricante" DataField="fabricante" HeaderText="FABRICANTE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                             <telerik:GridBoundColumn UniqueName="col_Idioma" DataField="idioma" HeaderText="IDIOMA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                             <telerik:GridBoundColumn UniqueName="col_Tecnologia" DataField="Tecnologia" HeaderText="TECNOLOGIA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn UniqueName="col_Compatibilidade" DataField="Compatibilidade" HeaderText="COMPATIBILIDADE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_Compatibilidade" DataField="CompatibilidadeSO" HeaderText="COMPATIBILIDADE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>

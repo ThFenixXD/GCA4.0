@@ -25,7 +25,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridChaves()
         {
-            GridChaves.DataSource = Framework.GetDataTable("SELECT CH.id_chave , CH.chave, CH.dataDeCompra, TPL.id_tipoLicença, TPL.prazoLicenca, SO.id_software FROM tb_chaves CH INNER JOIN tb_tipoLicenca TPL ON CH.id_tipoLicença = TPL.id_tipoLicença INNER JOIN tb_software SO ON CH.id_software = SO.id_software WHERE CH.deleted = 0 ORDER BY CH.chave");
+            GridChaves.DataSource = Framework.GetDataTable("SELECT CH.id_chave , CH.chave, CH.dataDeCompra, TPL.id_tipoLicenca, TPL.prazoLicenca, SO.id_software FROM tb_chaves CH INNER JOIN tb_tipoLicenca TPL ON CH.id_tipoLicenca = TPL.id_tipoLicenca INNER JOIN tb_software SO ON CH.id_software = SO.id_software WHERE CH.deleted = 0 ORDER BY CH.chave");
             GridChaves.DataBind();
         }
 
@@ -49,7 +49,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void PopulaDdlTipoDeLicenca()
         {
-            DdlTipoDeLicenca.DataSource = Framework.GetDataTable("SELECT id_tipoLicença, tipoLicenca FROM tb_tipoLicenca WHERE deleted = 0");
+            DdlTipoDeLicenca.DataSource = Framework.GetDataTable("SELECT id_tipoLicenca, tipoLicenca FROM tb_tipoLicenca WHERE deleted = 0");
             DdlTipoDeLicenca.DataBind();
             DdlTipoDeLicenca.Items.Insert(0, new ListItem("Selecionar"));
         }
@@ -61,7 +61,7 @@ namespace Project_GCA_4._0.WebForms
             DdlSoftware.Items.Insert(0, new ListItem("Selecionar"));
         }
 
-        protected void BtSalvarChaveAtivacao_Click(object sender, EventArgs e)
+        protected void BtSalvarChaveAtivacao_Click(object sender, EventArgs e) /*REVISAR COMPARAÇÂO ESTÁ O ANTIGO*/
         {
             using (GCAEntities ctx = new GCAEntities())
             {
@@ -76,7 +76,7 @@ namespace Project_GCA_4._0.WebForms
 
 
                     var strsql = (from objChave in ctx.tb_chaves
-                                  where objChave.chave == _chavedeativacao && objChave.dataDeCompra == _datadecompra && objChave.id_tipoLicença == _tipodelicenca && objChave.deleted == 0
+                                  where objChave.chave == _chavedeativacao && objChave.dataDeCompra == _datadecompra && objChave.id_tipoLicenca == _tipodelicenca && objChave.deleted == 0
                                   select objChave);
 
                     Chave2 = strsql.FirstOrDefault();
@@ -103,7 +103,7 @@ namespace Project_GCA_4._0.WebForms
                         if (Query.chave != valor)
                         {
                             Chave.dataDeCompra = txtDataDeCompra.Text;
-                            Chave.id_tipoLicença = Convert.ToInt32(DdlTipoDeLicenca.SelectedValue);
+                            Chave.id_tipoLicenca = Convert.ToInt32(DdlTipoDeLicenca.SelectedValue);
                             Chave.prazoLicenca = txtPrazoLicenca.Text;
                             Chave.chave = txtChaveAtivacao.Text;
                             Chave.status = 0;
@@ -137,7 +137,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridChaves_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridChaves.DataSource = Framework.GetDataTable("SELECT CH.id_chave , CH.chave, CH.dataDeCompra, TPL.id_tipoLicença, TPL.prazoLicenca, SO.id_software FROM tb_chaves CH INNER JOIN tb_tipoLicenca TPL ON CH.id_tipoLicença = TPL.id_tipoLicença INNER JOIN tb_software SO ON CH.id_software = SO.id_software WHERE CH.deleted = 0 ORDER BY CH.chave");
+            GridChaves.DataSource = Framework.GetDataTable("SELECT CH.id_chave , CH.chave, CH.dataDeCompra, TPL.id_tipoLicenca, TPL.prazoLicenca, SO.id_software FROM tb_chaves CH INNER JOIN tb_tipoLicenca TPL ON CH.id_tipoLicenca = TPL.id_tipoLicenca INNER JOIN tb_software SO ON CH.id_software = SO.id_software WHERE CH.deleted = 0 ORDER BY CH.chave");
         }
 
         protected void GridChaves_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
