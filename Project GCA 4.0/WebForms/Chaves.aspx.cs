@@ -66,40 +66,61 @@ namespace Project_GCA_4._0.WebForms
             using (GCAEntities ctx = new GCAEntities())
             {
                 tb_Chaves Chave = new tb_Chaves();
+                tb_Chaves Chave2 = new tb_Chaves();
                 try
                 {
-                    if (!string.IsNullOrEmpty(HdfID.Value))
+                    string _chavedeativacao = txtChaveAtivacao.Text.Trim();
+                    string _datadecompra = txtDataDeCompra.Text.Trim();
+                    int _tipodelicenca = Convert.ToInt32(DdlTipoDeLicenca.SelectedValue);
+                    int _software = Convert.ToInt32(DdlSoftware.SelectedValue);
+
+
+                    var strsql = (from objChave in ctx.tb_Chaves
+                                  where objChave.ChaveDeAtivacao == _chavedeativacao && objChave.DataDeCompra == _datadecompra && objChave.ID_TipoDeLicenca == _tipodelicenca && objChave.Deleted == 0
+                                  select objChave);
+
+                    Chave2 = strsql.FirstOrDefault();
+
+                    if (strsql.Count() > 0)
                     {
-                        int _id = Convert.ToInt32(HdfID.Value);
-
-                        var Query = (from objChave in ctx.tb_Chaves select objChave);
-
-                        Chave = Query.FirstOrDefault();
+                        // ja existe software cadastrado
+                        Response.Write("Essa Chave de Ativação já foi registrada");
                     }
                     else
                     {
-                        var Query = (from objChaveAtivacao in ctx.tb_Chaves select objChaveAtivacao).FirstOrDefault();
-
-                        string valor = txtChaveAtivacao.Text;
-
-                        if (Query.ChaveDeAtivacao != valor)
+                        if (!string.IsNullOrEmpty(HdfID.Value))
                         {
-                            Chave.DataDeCompra = txtDataDeCompra.Text;
-                            Chave.TipoDeLicenca = DdlTipoDeLicenca.SelectedItem.Text;
-                            Chave.PrazoDeLicenca = txtPrazoLicenca.Text;
-                            Chave.ChaveDeAtivacao = txtChaveAtivacao.Text;
-                            Chave.Status = 0;
-                            Chave.Deleted = 0;
+                            int _id = Convert.ToInt32(HdfID.Value);
 
-                            if (string.IsNullOrEmpty(HdfID.Value))
+                            var Query = (from objChave in ctx.tb_Chaves select objChave);
+
+                            Chave = Query.FirstOrDefault();
+                        }
+                        else
+                        {
+                            var Query = (from objChaveAtivacao in ctx.tb_Chaves select objChaveAtivacao).FirstOrDefault();
+
+                            string valor = txtChaveAtivacao.Text;
+
+                            if (Query.ChaveDeAtivacao != valor)
                             {
-                                ctx.tb_Chaves.Add(Chave);
+                                Chave.DataDeCompra = txtDataDeCompra.Text;
+                                Chave.TipoDeLicenca = DdlTipoDeLicenca.SelectedItem.Text;
+                                Chave.PrazoDeLicenca = txtPrazoLicenca.Text;
+                                Chave.ChaveDeAtivacao = txtChaveAtivacao.Text;
+                                Chave.Status = 0;
+                                Chave.Deleted = 0;
+
+                                if (string.IsNullOrEmpty(HdfID.Value))
+                                {
+                                    ctx.tb_Chaves.Add(Chave);
+                                }
+                                ctx.SaveChanges();
+                                EscondePaineis();
+                                LimpaCampos();
+                                PnlConsultarChaves.Visible = true;
+                                AtualizaGridChaves();
                             }
-                            ctx.SaveChanges();
-                            EscondePaineis();
-                            LimpaCampos();
-                            PnlConsultarChaves.Visible = true;
-                            AtualizaGridChaves();
                         }
                     }
                 }

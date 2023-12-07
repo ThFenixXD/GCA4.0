@@ -41,23 +41,25 @@
             <div class="col-12 col-md-12 col-sm-12 my-4 text-uppercase">
                 <asp:Label runat="server" Text="Usuários" CssClass="LbTitulo"></asp:Label>
             </div>
-            <telerik:RadGrid ID="GridRelacionar" runat="server" AutoGenerateColumns="false" OnNeedDataSource="GridRelacionar_NeedDataSource" OnItemCommand="GridRelacionar_ItemCommand">
-                <GroupingSettings CollapseAllTooltip="collaps all columns" />
-                <MasterTableView DataKeyNames="ID_Relacionar">
-                    <Columns>
-                        <telerik:GridTemplateColumn UniqueName="OP" AllowFiltering="false">
-                            <ItemTemplate>
-                                <asp:Button ID="btEditar" runat="server" Text="Editar" CommandName="opEditar" />
-                                <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
-                            </ItemTemplate>
-                        </telerik:GridTemplateColumn>
-                        <telerik:GridBoundColumn UniqueName="col_NomeUsuario" DataField="UsuarioRelacionar" HeaderText="USUARIO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn UniqueName="col_NomeMaquina" DataField="MaquinaRelacionar" HeaderText="MAQUINA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn UniqueName="col_NomeSoftware" DataField="SoftwareRelacionar" HeaderText="SOFTWARE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn UniqueName="col_ChaveAtivacao" DataField="ChaveAtivacaoRelacionar" HeaderText="CHAVE DE ATIVAÇÃO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                    </Columns>
-                </MasterTableView>
-            </telerik:RadGrid>
+            <div class="col-12 col-md-12 col-sm-12">
+                <telerik:RadGrid ID="GridRelacionar" runat="server" AutoGenerateColumns="false" OnNeedDataSource="GridRelacionar_NeedDataSource" OnItemCommand="GridRelacionar_ItemCommand">
+                    <GroupingSettings CollapseAllTooltip="collaps all columns" />
+                    <MasterTableView DataKeyNames="ID_Relacionar">
+                        <Columns>
+                            <telerik:GridTemplateColumn UniqueName="OP" AllowFiltering="false">
+                                <ItemTemplate>
+                                    <asp:Button ID="btEditar" runat="server" Text="Editar" CommandName="opEditar" />
+                                    <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridBoundColumn UniqueName="col_NomeUsuario" DataField="UsuarioRelacionar" HeaderText="USUARIO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_NomeMaquina" DataField="MaquinaRelacionar" HeaderText="MAQUINA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_NomeSoftware" DataField="SoftwareRelacionar" HeaderText="SOFTWARE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_ChaveAtivacao" DataField="ChaveAtivacaoRelacionar" HeaderText="CHAVE DE ATIVAÇÃO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                        </Columns>
+                    </MasterTableView>
+                </telerik:RadGrid>
+            </div>
             <div class="col-12 col-md-12 col-sm-12 text-end my-3">
                 <asp:Button ID="btCadastroRelacionar" runat="server" Text="Cadastrar" OnClick="btCadastroRelacionar_Click" />
             </div>

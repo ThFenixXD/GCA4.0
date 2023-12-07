@@ -12,16 +12,13 @@ namespace Project_GCA_4._0
     using System;
     using System.Collections.Generic;
     
-    public partial class tb_Relacionar
+    public partial class tb_relacionar
     {
-        public int ID_Relacionar { get; set; }
-        public Nullable<int> ID_Usuario { get; set; }
-        public string UsuarioRelacionar { get; set; }
-        public Nullable<int> ID_Maquina { get; set; }
-        public string MaquinaRelacionar { get; set; }
-        public Nullable<int> ID_ChaveAtivacao { get; set; }
-        public string SoftwareRelacionar { get; set; }
-        public string ChaveAtivacaoRelacionar { get; set; }
-        public Nullable<int> Deleted { get; set; }
+        public int id_relacionar { get; set; }
+        public Nullable<int> id_usuario { get; set; }
+        public Nullable<int> id_maquina { get; set; }
+        public Nullable<int> id_chave { get; set; }
+        public Nullable<int> id_software { get; set; }
+        public Nullable<int> deleted { get; set; }
     }
 }

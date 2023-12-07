@@ -69,34 +69,52 @@ namespace Project_GCA_4._0.WebForms
             using (GCAEntities ctx = new GCAEntities())
             {
                 tb_Usuarios Usuario = new tb_Usuarios();
+                tb_Usuarios Usuario2 = new tb_Usuarios();
                 try
                 {
-                    if (!string.IsNullOrEmpty(HdfID.Value))
+                    string _nomeusuario = txtNomeUsuario.Text.Trim();
+                    string _funcao = txtFuncaoUsuario.Text.Trim();
+                    int _setor = Convert.ToInt32(ddlSetorUsuario.SelectedValue);
+                    var strsql = (from objUsuario in ctx.tb_Usuarios
+                                  where objUsuario.NomeUsuario == _nomeusuario && objUsuario.FuncaoUsuario == _funcao && objUsuario.ID_Setor == _setor && objUsuario.Deleted == 0
+                                  select objUsuario);
+
+                    Usuario2 = strsql.FirstOrDefault();
+
+                    if (strsql.Count() > 0)
                     {
-                        int _id = Convert.ToInt32(HdfID.Value);
-
-                        var Query = (from objUsuario in ctx.tb_Usuarios select objUsuario);
-
-                        Usuario = Query.FirstOrDefault();
+                        // ja existe software cadastrado
+                        Response.Write("Esse Usuário já foi registrado");
                     }
                     else
                     {
-                        Usuario.NomeUsuario = txtNomeUsuario.Text;
-                        Usuario.FuncaoUsuario = txtFuncaoUsuario.Text;
-                        Usuario.SetorUsuario = ddlSetorUsuario.SelectedItem.ToString();
-                        Usuario.ID_Setor = Convert.ToInt32(ddlSetorUsuario.SelectedValue);
-                        Usuario.Deleted = 0;
-
-                        if (string.IsNullOrEmpty(HdfID.Value))
+                        if (!string.IsNullOrEmpty(HdfID.Value))
                         {
-                            ctx.tb_Usuarios.Add(Usuario);
+                            int _id = Convert.ToInt32(HdfID.Value);
+
+                            var Query = (from objUsuario in ctx.tb_Usuarios select objUsuario);
+
+                            Usuario = Query.FirstOrDefault();
                         }
+                        else
+                        {
+                            Usuario.NomeUsuario = txtNomeUsuario.Text;
+                            Usuario.FuncaoUsuario = txtFuncaoUsuario.Text;
+                            Usuario.SetorUsuario = ddlSetorUsuario.SelectedItem.ToString();
+                            Usuario.ID_Setor = Convert.ToInt32(ddlSetorUsuario.SelectedValue);
+                            Usuario.Deleted = 0;
+
+                            if (string.IsNullOrEmpty(HdfID.Value))
+                            {
+                                ctx.tb_Usuarios.Add(Usuario);
+                            }
+                        }
+                        ctx.SaveChanges();
+                        EscondePaineis();
+                        LimpaCampos();
+                        PnlConsultarUsuarios.Visible = true;
+                        AtualizaGridUsuarios();
                     }
-                    ctx.SaveChanges();
-                    EscondePaineis();
-                    LimpaCampos();
-                    PnlConsultarUsuarios.Visible = true;
-                    AtualizaGridUsuarios();
                 }
                 catch (Exception ex)
                 {

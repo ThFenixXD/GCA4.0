@@ -25,12 +25,14 @@ namespace Project_GCA_4._0
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tb_Chaves> tb_Chaves { get; set; }
-        public virtual DbSet<tb_Maquinas> tb_Maquinas { get; set; }
-        public virtual DbSet<tb_Relacionar> tb_Relacionar { get; set; }
-        public virtual DbSet<tb_Setores> tb_Setores { get; set; }
-        public virtual DbSet<tb_Software> tb_Software { get; set; }
-        public virtual DbSet<tb_TipoLicenca> tb_TipoLicenca { get; set; }
-        public virtual DbSet<tb_Usuarios> tb_Usuarios { get; set; }
+        public virtual DbSet<tb_chaves> tb_chaves { get; set; }
+        public virtual DbSet<tb_maquinas> tb_maquinas { get; set; }
+        public virtual DbSet<tb_setores> tb_setores { get; set; }
+        public virtual DbSet<tb_software> tb_software { get; set; }
+        public virtual DbSet<tb_usuarios> tb_usuarios { get; set; }
+        public virtual DbSet<tb_compatibilidadeSO> tb_compatibilidadeSO { get; set; }
+        public virtual DbSet<tb_relacionar> tb_relacionar { get; set; }
+        public virtual DbSet<tb_tecnologia> tb_tecnologia { get; set; }
+        public virtual DbSet<tb_tipoLicenca> tb_tipoLicenca { get; set; }
     }
 }

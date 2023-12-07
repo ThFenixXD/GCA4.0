@@ -49,6 +49,24 @@ namespace Project_GCA_4._0.WebForms {
         protected global::System.Web.UI.WebControls.TextBox txtNomeSoftware;
         
         /// <summary>
+        /// lbVersao control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbVersao;
+        
+        /// <summary>
+        /// txtVersão control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtVersão;
+        
+        /// <summary>
         /// lbFabricante control.
         /// </summary>
         /// <remarks>
@@ -65,6 +83,60 @@ namespace Project_GCA_4._0.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFabricante;
+        
+        /// <summary>
+        /// lbIdioma control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbIdioma;
+        
+        /// <summary>
+        /// txtIdioma control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIdioma;
+        
+        /// <summary>
+        /// lbTecnologia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTecnologia;
+        
+        /// <summary>
+        /// ddlTecnologia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTecnologia;
+        
+        /// <summary>
+        /// lbCompatibilidade control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbCompatibilidade;
+        
+        /// <summary>
+        /// ddlCompatibilidade control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCompatibilidade;
         
         /// <summary>
         /// BtSalvarSoftware control.

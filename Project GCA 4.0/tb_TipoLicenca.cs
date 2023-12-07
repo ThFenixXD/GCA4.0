@@ -12,10 +12,10 @@ namespace Project_GCA_4._0
     using System;
     using System.Collections.Generic;
     
-    public partial class tb_TipoLicenca
+    public partial class tb_tipoLicenca
     {
-        public int ID_TipoDeLicenca { get; set; }
-        public string TipoDeLicenca { get; set; }
-        public Nullable<int> Deleted { get; set; }
+        public int id_tipoLicença { get; set; }
+        public string tipoLicenca { get; set; }
+        public string deleted { get; set; }
     }
 }

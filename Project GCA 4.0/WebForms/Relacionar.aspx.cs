@@ -18,7 +18,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridRelacionar()
         {
-            GridRelacionar.DataSource = Framework.GetDataTable("SELECT ID_Relacionar, UsuarioRelacionar, MaquinaRelacionar, ChaveAtivacaoRelacionar FROM tb_Relacionar WHERE Deleted = 0");
+            GridRelacionar.DataSource = Framework.GetDataTable("SELECT ID_Relacionar, UsuarioRelacionar, MaquinaRelacionar, SoftwareRelacionar, ChaveAtivacaoRelacionar FROM tb_Relacionar WHERE Deleted = 0");
             GridRelacionar.DataBind();
         }
 
@@ -77,35 +77,57 @@ namespace Project_GCA_4._0.WebForms
             using (GCAEntities ctx = new GCAEntities())
             {
                 tb_Relacionar Relacao = new tb_Relacionar();
+                tb_Relacionar Relacao2 = new tb_Relacionar();
                 try
                 {
-                    if (!string.IsNullOrEmpty(HdfID.Value))
+                    int _usuariorelacionarID = Convert.ToInt32(DdlRelacionarUsuario.SelectedValue);
+                    int _maquinarelacionarID = Convert.ToInt32(DdlRelacionarMaquina.SelectedValue);
+                    int _softwarerelacionarID = Convert.ToInt32(DdlRelacionarSoftware.SelectedValue);
+                    int _chavedeativacaoID = Convert.ToInt32(DdlRelacionarChaveAtivacao.SelectedValue);
+
+
+                    var strsql = (from objRelacao in ctx.tb_Relacionar
+                                  where objRelacao.ID_Usuario == _usuariorelacionarID && objRelacao.ID_Maquina == _maquinarelacionarID && objRelacao.ID_Software == _softwarerelacionarID && objRelacao.ID_ChaveAtivacao == _chavedeativacaoID && objRelacao.Deleted == 0
+                                  select objRelacao);
+
+                    Relacao2 = strsql.FirstOrDefault();
+
+                    if (strsql.Count() > 0)
                     {
-                        int _id = Convert.ToInt32(HdfID.Value);
-
-                        var Query = (from objRelacao in ctx.tb_Relacionar select objRelacao);
-
-                        Relacao = Query.FirstOrDefault();
+                        // ja existe software cadastrado
+                        Response.Write("Essa Máquina já foi registrada");
                     }
                     else
                     {
-                        Relacao.UsuarioRelacionar = DdlRelacionarUsuario.SelectedItem.ToString();
-                        Relacao.ID_Usuario = Convert.ToInt32(DdlRelacionarUsuario.SelectedValue);
-                        Relacao.MaquinaRelacionar = DdlRelacionarMaquina.SelectedItem.ToString();
-                        Relacao.ID_Maquina = Convert.ToInt32(DdlRelacionarMaquina.SelectedValue);
-                        Relacao.SoftwareRelacionar = DdlRelacionarSoftware.SelectedItem.ToString();
-                        Relacao.ChaveAtivacaoRelacionar = DdlRelacionarChaveAtivacao.SelectedItem.ToString();
-                        Relacao.ID_ChaveAtivacao = Convert.ToInt32(DdlRelacionarChaveAtivacao.SelectedValue);
-                        Relacao.Deleted = 0;
-
-                        if (string.IsNullOrEmpty(HdfID.Value))
+                        if (!string.IsNullOrEmpty(HdfID.Value))
                         {
-                            ctx.tb_Relacionar.Add(Relacao);
-                        }
-                        ctx.SaveChanges();
-                        PnlConsultarRelacionar.Visible = true;
-                        AtualizaGridRelacionar();
+                            int _id = Convert.ToInt32(HdfID.Value);
 
+                            var Query = (from objRelacao in ctx.tb_Relacionar select objRelacao);
+
+                            Relacao = Query.FirstOrDefault();
+                        }
+                        else
+                        {
+                            Relacao.UsuarioRelacionar = DdlRelacionarUsuario.SelectedItem.ToString();
+                            Relacao.ID_Usuario = Convert.ToInt32(DdlRelacionarUsuario.SelectedValue);
+                            Relacao.MaquinaRelacionar = DdlRelacionarMaquina.SelectedItem.ToString();
+                            Relacao.ID_Maquina = Convert.ToInt32(DdlRelacionarMaquina.SelectedValue);
+                            Relacao.SoftwareRelacionar = DdlRelacionarSoftware.SelectedItem.ToString();
+                            Relacao.ChaveAtivacaoRelacionar = DdlRelacionarChaveAtivacao.SelectedItem.ToString();
+                            Relacao.ID_ChaveAtivacao = Convert.ToInt32(DdlRelacionarChaveAtivacao.SelectedValue);
+                            Relacao.Deleted = 0;
+
+                            if (string.IsNullOrEmpty(HdfID.Value))
+                            {
+                                ctx.tb_Relacionar.Add(Relacao);
+                            }
+                            ctx.SaveChanges();
+                            EscondePaineis();
+                            PnlConsultarRelacionar.Visible = true;
+                            AtualizaGridRelacionar();
+
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -183,7 +205,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridRelacionar_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridRelacionar.DataSource = Framework.GetDataTable("SELECT ID_Relacionar, UsuarioRelacionar, MaquinaRelacionar, ChaveAtivacaoRelacionar FROM tb_Relacionar WHERE Deleted = 0");
+            GridRelacionar.DataSource = Framework.GetDataTable("SELECT ID_Relacionar, UsuarioRelacionar, MaquinaRelacionar, SoftwareRelacionar, ChaveAtivacaoRelacionar FROM tb_Relacionar WHERE Deleted = 0");
         }
 
         protected void GridRelacionar_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)

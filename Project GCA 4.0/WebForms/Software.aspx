@@ -16,8 +16,24 @@
                     <asp:TextBox ID="txtNomeSoftware" CssClass="col-8 col-md-8 col-sm-8" runat="server"></asp:TextBox>
                 </div>
                 <div class="row">
+                    <asp:Label ID="lbVersao" CssClass="lbTextBlock col-4 col-md-4 col-sm-4 p-0" runat="server" Text="Versão/Ano"></asp:Label>
+                    <asp:TextBox ID="txtVersão" CssClass="col-8 col-md-8 col-sm-8" runat="server"></asp:TextBox>
+                </div>
+                <div class="row">
                     <asp:Label ID="lbFabricante" CssClass="lbTextBlock col-4 col-md-4 col-sm-4" runat="server" Text="Fabricante"></asp:Label>
                     <asp:TextBox ID="txtFabricante" CssClass="col-8 col-md-8 col-sm-8" runat="server"></asp:TextBox>
+                </div>
+                <div class="row">
+                    <asp:Label ID="lbIdioma" CssClass="lbTextBlock col-4 col-md-4 col-sm-4" runat="server" Text="Idioma"></asp:Label>
+                    <asp:TextBox ID="txtIdioma" CssClass="col-8 col-md-8 col-sm-8" runat="server"></asp:TextBox>
+                </div>
+                <div class="row">
+                    <asp:Label ID="lbTecnologia" CssClass="lbTextBlock col-4 col-md-4 col-sm-4 p-0" runat="server" Text="Tecnologia"></asp:Label>
+                    <asp:DropDownList ID="ddlTecnologia" CssClass="col-8 col-md-8 col-sm-8 text-center" runat="server" DataTextField="Tecnologia" DataValueField="ID_Tecnologia"></asp:DropDownList>
+                </div>
+                <div class="row">
+                    <asp:Label ID="lbCompatibilidade" CssClass="lbTextBlock col-4 col-md-4 col-sm-4" runat="server" Text="Compatibilidade"></asp:Label>
+                    <asp:DropDownList ID="ddlCompatibilidade" CssClass="col-8 col-md-8 col-sm-8 text-center" runat="server" DataTextField="Compatibilidade" DataValueField="ID_Compatibilidade"></asp:DropDownList>
                 </div>
                 <div class="row p-0 m-0 gap-3 justify-content-end">
                     <div class="col-7 col-md-7 col-sm-7"></div>
@@ -45,7 +61,11 @@
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
                             <telerik:GridBoundColumn UniqueName="col_Software" DataField="NomeSoftware" HeaderText="SOFTWARE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_VersaoAno" DataField="VersaoAno" HeaderText="VERSÃO/ANO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                             <telerik:GridBoundColumn UniqueName="col_Fabricante" DataField="Fabricante" HeaderText="FABRICANTE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_Idioma" DataField="Idioma" HeaderText="IDIOMA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_Tecnologia" DataField="Tecnologia" HeaderText="TECNOLOGIA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_Compatibilidade" DataField="Compatibilidade" HeaderText="COMPATIBILIDADE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>

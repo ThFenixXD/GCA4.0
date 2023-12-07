@@ -12,10 +12,10 @@ namespace Project_GCA_4._0
     using System;
     using System.Collections.Generic;
     
-    public partial class tb_setores
+    public partial class tb_compatibilidadeSO
     {
-        public int id_setor { get; set; }
-        public string nomeSetor { get; set; }
+        public int id_compatibilidadeSO { get; set; }
+        public string compatibilidadeSO { get; set; }
         public Nullable<int> deleted { get; set; }
     }
 }

@@ -31,25 +31,26 @@
                 <asp:Label runat="server" Text="Setores" CssClass="LbTitulo"></asp:Label>
             </div>
             <div class="col-12 col-md-12 col-sm-12">
-            <telerik:RadGrid ID="GridSetores" runat="server" AutoGenerateColumns="false" OnNeedDataSource="GridSetores_NeedDataSource" OnItemCommand="GridSetores_ItemCommand">
-                <GroupingSettings CollapseAllTooltip="collaps all columns" />
-                <MasterTableView DataKeyNames="ID_Setor">
-                    <Columns>
-                        <telerik:GridTemplateColumn UniqueName="OP" AllowFiltering="false">
-                            <ItemTemplate>
-                                <asp:Button ID="btEditar" runat="server" Text="Editar" CommandName="opEditar" />
-                                <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
-                            </ItemTemplate>
-                        </telerik:GridTemplateColumn>
-                        <telerik:GridBoundColumn UniqueName="col_CodSetor" DataField="ID_Setor" HeaderText="COD" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn UniqueName="col_NomeSetor" DataField="NomeSetor" HeaderText="SETOR" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn UniqueName="col_Status" DataField="Status" HeaderText="STATUS" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                    </Columns>
-                </MasterTableView>
-            </telerik:RadGrid>
-        </div>
-        <div class="col-12 col-md-12 col-sm-12 text-end my-3">
-            <asp:Button ID="btCadastrarSetor" runat="server" Text="Cadastrar" OnClick="btCadastrarSetor_Click" />
+                <telerik:RadGrid ID="GridSetores" runat="server" AutoGenerateColumns="false" OnNeedDataSource="GridSetores_NeedDataSource" OnItemCommand="GridSetores_ItemCommand">
+                    <GroupingSettings CollapseAllTooltip="collaps all columns" />
+                    <MasterTableView DataKeyNames="ID_Setor">
+                        <Columns>
+                            <telerik:GridTemplateColumn UniqueName="OP" AllowFiltering="false">
+                                <ItemTemplate>
+                                    <asp:Button ID="btEditar" runat="server" Text="Editar" CommandName="opEditar" />
+                                    <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
+                                </ItemTemplate>
+                            </telerik:GridTemplateColumn>
+                            <telerik:GridBoundColumn UniqueName="col_CodSetor" DataField="ID_Setor" HeaderText="COD" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_NomeSetor" DataField="NomeSetor" HeaderText="SETOR" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_Status" DataField="Status" HeaderText="STATUS" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                        </Columns>
+                    </MasterTableView>
+                </telerik:RadGrid>
+            </div>
+            <div class="col-12 col-md-12 col-sm-12 text-end my-3">
+                <asp:Button ID="btCadastrarSetor" runat="server" Text="Cadastrar" OnClick="btCadastrarSetor_Click" />
+            </div>
         </div>
     </asp:Panel>
 

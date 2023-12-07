@@ -34,29 +34,46 @@ namespace Project_GCA_4._0.WebForms
             using (GCAEntities ctx = new GCAEntities())
             {
                 tb_Setores Setor = new tb_Setores();
+                tb_Setores Setor2 = new tb_Setores();
                 try
                 {
-                    if (!string.IsNullOrEmpty(HdfID.Value))
+                    string _nomesetor = txtNomeSetor.Text.Trim();
+
+                    var strsql = (from objSetor in ctx.tb_Setores
+                                  where objSetor.NomeSetor == _nomesetor && objSetor.Deleted == 0
+                                  select objSetor);
+
+                    Setor2 = strsql.FirstOrDefault();
+
+                    if (strsql.Count() > 0)
                     {
-                        int _id = Convert.ToInt32(HdfID.Value);
-
-                        var Query = (from objSetor in ctx.tb_Setores select objSetor);
-
-                        Setor = Query.FirstOrDefault();
+                        // ja existe software cadastrado
+                        Response.Write("Esse Setor já foi registrado");
                     }
                     else
                     {
-                        Setor.NomeSetor = txtNomeSetor.Text;
-                        Setor.Deleted = 0;
-
-                        if (string.IsNullOrEmpty(HdfID.Value))
+                        if (!string.IsNullOrEmpty(HdfID.Value))
                         {
-                            ctx.tb_Setores.Add(Setor);
+                            int _id = Convert.ToInt32(HdfID.Value);
+
+                            var Query = (from objSetor in ctx.tb_Setores select objSetor);
+
+                            Setor = Query.FirstOrDefault();
                         }
-                        ctx.SaveChanges();
-                        EscondePaineis();
-                        LimpaCampos();
-                        PnlConsultarSetores.Visible = true;
+                        else
+                        {
+                            Setor.NomeSetor = txtNomeSetor.Text;
+                            Setor.Deleted = 0;
+
+                            if (string.IsNullOrEmpty(HdfID.Value))
+                            {
+                                ctx.tb_Setores.Add(Setor);
+                            }
+                            ctx.SaveChanges();
+                            EscondePaineis();
+                            LimpaCampos();
+                            PnlConsultarSetores.Visible = true;
+                        }
                     }
                 }
                 catch (Exception ex)

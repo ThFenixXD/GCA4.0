@@ -64,7 +64,7 @@
                     </a>
                 </li>
                 <li class="item-menu">
-                    <a href="Relacionar.aspx">
+                    <a href="Relacionar.aspx" class="last__menu-item">
                         <span class="icon"><i class="bi bi-bezier2"></i></span>
                         <span class="txt-link">Relacionar</span>
                     </a>

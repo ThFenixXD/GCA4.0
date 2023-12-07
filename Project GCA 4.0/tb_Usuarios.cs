@@ -12,13 +12,12 @@ namespace Project_GCA_4._0
     using System;
     using System.Collections.Generic;
     
-    public partial class tb_Usuarios
+    public partial class tb_usuarios
     {
-        public int ID_Usuario { get; set; }
-        public string NomeUsuario { get; set; }
-        public string FuncaoUsuario { get; set; }
-        public string SetorUsuario { get; set; }
-        public Nullable<int> ID_Setor { get; set; }
-        public Nullable<int> Deleted { get; set; }
+        public int id_usuario { get; set; }
+        public string nomeUsuario { get; set; }
+        public string funcaoUsuario { get; set; }
+        public Nullable<int> id_setor { get; set; }
+        public Nullable<int> deleted { get; set; }
     }
 }

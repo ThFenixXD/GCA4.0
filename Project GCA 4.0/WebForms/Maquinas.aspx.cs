@@ -60,33 +60,51 @@ namespace Project_GCA_4._0.WebForms
             using (GCAEntities ctx = new GCAEntities())
             {
                 tb_Maquinas Maquina = new tb_Maquinas();
+                tb_Maquinas Maquina2 = new tb_Maquinas();
                 try
                 {
-                    if (!string.IsNullOrEmpty(HdfID.Value))
+                    string _nomemaquina = txtNomeMaquina.Text.Trim();
+                    int _setor = Convert.ToInt32(DdlSetorMaquina.SelectedValue);
+
+                    var strsql = (from objMaquina in ctx.tb_Maquinas
+                                  where objMaquina.NomeMaquina == _nomemaquina && objMaquina.ID_Setor == _setor && objMaquina.ID_Setor == _setor && objMaquina.Deleted == 0
+                                  select objMaquina);
+
+                    Maquina2 = strsql.FirstOrDefault();
+
+                    if (strsql.Count() > 0)
                     {
-                        int _id = Convert.ToInt32(HdfID.Value);
-
-                        var Query = (from objMaquina in ctx.tb_Maquinas select objMaquina);
-
-                        Maquina = Query.FirstOrDefault();
+                        // ja existe software cadastrado
+                        Response.Write("Essa Máquina já foi registrada");
                     }
                     else
                     {
-                        Maquina.NomeMaquina = txtNomeMaquina.Text;
-                        Maquina.ID_Setor = Convert.ToInt32(DdlSetorMaquina.SelectedValue);
-                        Maquina.SetorMaquina = DdlSetorMaquina.SelectedItem.ToString();
-                        Maquina.Status = "INATIVA";
-                        Maquina.Deleted = 0;
-
-                        if (string.IsNullOrEmpty(HdfID.Value))
+                        if (!string.IsNullOrEmpty(HdfID.Value))
                         {
-                            ctx.tb_Maquinas.Add(Maquina);
+                            int _id = Convert.ToInt32(HdfID.Value);
+
+                            var Query = (from objMaquina in ctx.tb_Maquinas select objMaquina);
+
+                            Maquina = Query.FirstOrDefault();
                         }
-                        ctx.SaveChanges();
-                        EscondePaineis();
-                        LimpaCampos();
-                        PnlConsultarMaquinas.Visible = true;
-                        AtualizaGridMaquinas();
+                        else
+                        {
+                            Maquina.NomeMaquina = txtNomeMaquina.Text;
+                            Maquina.ID_Setor = Convert.ToInt32(DdlSetorMaquina.SelectedValue);
+                            Maquina.SetorMaquina = DdlSetorMaquina.SelectedItem.ToString();
+                            Maquina.Status = "INATIVA";
+                            Maquina.Deleted = 0;
+
+                            if (string.IsNullOrEmpty(HdfID.Value))
+                            {
+                                ctx.tb_Maquinas.Add(Maquina);
+                            }
+                            ctx.SaveChanges();
+                            EscondePaineis();
+                            LimpaCampos();
+                            PnlConsultarMaquinas.Visible = true;
+                            AtualizaGridMaquinas();
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -164,6 +182,6 @@ namespace Project_GCA_4._0.WebForms
             }
         }
 
-       
+
     }
 }

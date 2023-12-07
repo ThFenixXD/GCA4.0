@@ -82,8 +82,8 @@
     <Content Include="CSS\estilo.css" />
     <Content Include="GCAModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>GCAModel.Context.cs</LastGenOutput>
       <DependentUpon>GCAModel.edmx</DependentUpon>
+      <LastGenOutput>GCAModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="GCAModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -119,25 +119,31 @@
       <DependentUpon>GCAModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="tb_Chaves.cs">
+    <Compile Include="tb_chaves.cs">
       <DependentUpon>GCAModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_Maquinas.cs">
+    <Compile Include="tb_compatibilidadeSO.cs">
       <DependentUpon>GCAModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_Relacionar.cs">
+    <Compile Include="tb_maquinas.cs">
       <DependentUpon>GCAModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_Setores.cs">
+    <Compile Include="tb_relacionar.cs">
       <DependentUpon>GCAModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_Software.cs">
+    <Compile Include="tb_setores.cs">
       <DependentUpon>GCAModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_TipoLicenca.cs">
+    <Compile Include="tb_software.cs">
       <DependentUpon>GCAModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="tb_Usuarios.cs">
+    <Compile Include="tb_tecnologia.cs">
+      <DependentUpon>GCAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_tipoLicenca.cs">
+      <DependentUpon>GCAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_usuarios.cs">
       <DependentUpon>GCAModel.tt</DependentUpon>
     </Compile>
     <Compile Include="WebForms.Old\Teste.aspx.cs">

@@ -4,265 +4,318 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GCAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="tb_Chaves">
+    <Schema Namespace="GCAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_chaves">
           <Key>
-            <PropertyRef Name="ID_ChaveAtivacao" />
+            <PropertyRef Name="id_chave" />
           </Key>
-          <Property Name="ID_ChaveAtivacao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DataDeCompra" Type="nvarchar" MaxLength="50" />
-          <Property Name="TipoDeLicenca" Type="nvarchar" MaxLength="50" />
-          <Property Name="PrazoDeLicenca" Type="nvarchar" MaxLength="50" />
-          <Property Name="ID_Software" Type="int" />
-          <Property Name="Software" Type="nvarchar" MaxLength="50" />
-          <Property Name="ChaveDeAtivacao" Type="nvarchar" MaxLength="50" />
-          <Property Name="Status" Type="int" />
-          <Property Name="Deleted" Type="int" />
+          <Property Name="id_chave" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="chave" Type="nvarchar" MaxLength="50" />
+          <Property Name="dataDeCompra" Type="date" />
+          <Property Name="id_tipoLicença" Type="int" />
+          <Property Name="prazoLicenca" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_software" Type="int" />
+          <Property Name="status" Type="int" />
+          <Property Name="deleted" Type="int" />
         </EntityType>
-        <EntityType Name="tb_Maquinas">
+        <EntityType Name="tb_compatibilidadeSO">
           <Key>
-            <PropertyRef Name="ID_Maquina" />
+            <PropertyRef Name="id_compatibilidadeSO" />
           </Key>
-          <Property Name="ID_Maquina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NomeMaquina" Type="nvarchar" MaxLength="50" />
-          <Property Name="SetorMaquina" Type="nvarchar" MaxLength="50" />
-          <Property Name="ID_Setor" Type="int" />
-          <Property Name="Status" Type="nvarchar" MaxLength="50" />
-          <Property Name="Deleted" Type="int" />
+          <Property Name="id_compatibilidadeSO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="compatibilidadeSO" Type="nvarchar" MaxLength="50" />
+          <Property Name="deleted" Type="int" />
         </EntityType>
-        <EntityType Name="tb_Relacionar">
+        <EntityType Name="tb_maquinas">
           <Key>
-            <PropertyRef Name="ID_Relacionar" />
+            <PropertyRef Name="id_maquina" />
           </Key>
-          <Property Name="ID_Relacionar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_Usuario" Type="int" />
-          <Property Name="UsuarioRelacionar" Type="nvarchar" MaxLength="50" />
-          <Property Name="ID_Maquina" Type="int" />
-          <Property Name="MaquinaRelacionar" Type="nvarchar" MaxLength="50" />
-          <Property Name="ID_ChaveAtivacao" Type="int" />
-          <Property Name="SoftwareRelacionar" Type="nvarchar" MaxLength="50" />
-          <Property Name="ChaveAtivacaoRelacionar" Type="nvarchar" MaxLength="50" />
-          <Property Name="Deleted" Type="int" />
+          <Property Name="id_maquina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomeMaquina" Type="nvarchar" MaxLength="50" />
+          <Property Name="setorMaquina" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_setor" Type="int" />
+          <Property Name="deleted" Type="int" />
         </EntityType>
-        <EntityType Name="tb_Setores">
+        <EntityType Name="tb_relacionar">
           <Key>
-            <PropertyRef Name="ID_Setor" />
+            <PropertyRef Name="id_relacionar" />
           </Key>
-          <Property Name="ID_Setor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NomeSetor" Type="nvarchar" MaxLength="50" />
-          <Property Name="Deleted" Type="int" />
+          <Property Name="id_relacionar" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_usuario" Type="int" />
+          <Property Name="id_maquina" Type="int" />
+          <Property Name="id_chave" Type="int" />
+          <Property Name="id_software" Type="int" />
+          <Property Name="deleted" Type="int" />
         </EntityType>
-        <EntityType Name="tb_Software">
+        <EntityType Name="tb_setores">
           <Key>
-            <PropertyRef Name="ID_Software" />
+            <PropertyRef Name="id_setor" />
           </Key>
-          <Property Name="ID_Software" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NomeSoftware" Type="nvarchar" MaxLength="50" />
-          <Property Name="Fabricante" Type="nvarchar" MaxLength="50" />
-          <Property Name="Deleted" Type="int" />
+          <Property Name="id_setor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomeSetor" Type="nvarchar" MaxLength="50" />
+          <Property Name="deleted" Type="int" />
         </EntityType>
-        <EntityType Name="tb_TipoLicenca">
+        <EntityType Name="tb_software">
           <Key>
-            <PropertyRef Name="ID_TipoDeLicenca" />
+            <PropertyRef Name="id_software" />
           </Key>
-          <Property Name="ID_TipoDeLicenca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TipoDeLicenca" Type="nvarchar" MaxLength="50" />
-          <Property Name="Deleted" Type="int" />
+          <Property Name="id_software" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomeSoftware" Type="nvarchar" MaxLength="50" />
+          <Property Name="versao" Type="nvarchar" MaxLength="50" />
+          <Property Name="ano" Type="nvarchar" MaxLength="50" />
+          <Property Name="fabricante" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_idioma" Type="int" />
+          <Property Name="id_tecnologia" Type="int" />
+          <Property Name="id_compatibilidade" Type="int" />
+          <Property Name="id_chave" Type="int" />
+          <Property Name="deleted" Type="int" />
         </EntityType>
-        <EntityType Name="tb_Usuarios">
+        <EntityType Name="tb_tecnologia">
           <Key>
-            <PropertyRef Name="ID_Usuario" />
+            <PropertyRef Name="id_tecnologia" />
           </Key>
-          <Property Name="ID_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NomeUsuario" Type="nvarchar" MaxLength="50" />
-          <Property Name="FuncaoUsuario" Type="nvarchar" MaxLength="50" />
-          <Property Name="SetorUsuario" Type="nvarchar" MaxLength="50" />
-          <Property Name="ID_Setor" Type="int" />
-          <Property Name="Deleted" Type="int" />
+          <Property Name="id_tecnologia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tecnologia" Type="nvarchar" MaxLength="50" />
+          <Property Name="deleted" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_tipoLicenca">
+          <Key>
+            <PropertyRef Name="id_tipoLicença" />
+          </Key>
+          <Property Name="id_tipoLicença" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipoLicenca" Type="nvarchar" MaxLength="50" />
+          <Property Name="deleted" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tb_usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomeUsuario" Type="nvarchar" MaxLength="50" />
+          <Property Name="funcaoUsuario" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_setor" Type="int" />
+          <Property Name="deleted" Type="int" />
         </EntityType>
         <EntityContainer Name="GCAModelStoreContainer">
-          <EntitySet Name="tb_Chaves" EntityType="Self.tb_Chaves" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tb_Maquinas" EntityType="Self.tb_Maquinas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tb_Relacionar" EntityType="Self.tb_Relacionar" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tb_Setores" EntityType="Self.tb_Setores" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tb_Software" EntityType="Self.tb_Software" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tb_TipoLicenca" EntityType="Self.tb_TipoLicenca" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tb_Usuarios" EntityType="Self.tb_Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_chaves" EntityType="Self.tb_chaves" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_compatibilidadeSO" EntityType="Self.tb_compatibilidadeSO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_maquinas" EntityType="Self.tb_maquinas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_relacionar" EntityType="Self.tb_relacionar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_setores" EntityType="Self.tb_setores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_software" EntityType="Self.tb_software" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_tecnologia" EntityType="Self.tb_tecnologia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_tipoLicenca" EntityType="Self.tb_tipoLicenca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_usuarios" EntityType="Self.tb_usuarios" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GCAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="tb_Chaves">
+        <EntityType Name="tb_chaves">
           <Key>
-            <PropertyRef Name="ID_ChaveAtivacao" />
+            <PropertyRef Name="id_chave" />
           </Key>
-          <Property Name="ID_ChaveAtivacao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DataDeCompra" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TipoDeLicenca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PrazoDeLicenca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ID_Software" Type="Int32" />
-          <Property Name="Software" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ChaveDeAtivacao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="Int32" />
-          <Property Name="Deleted" Type="Int32" />
+          <Property Name="id_chave" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="chave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dataDeCompra" Type="DateTime" Precision="0" />
+          <Property Name="id_tipoLicença" Type="Int32" />
+          <Property Name="prazoLicenca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_software" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="deleted" Type="Int32" />
         </EntityType>
-        <EntityType Name="tb_Maquinas">
+        <EntityType Name="tb_maquinas">
           <Key>
-            <PropertyRef Name="ID_Maquina" />
+            <PropertyRef Name="id_maquina" />
           </Key>
-          <Property Name="ID_Maquina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NomeMaquina" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SetorMaquina" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ID_Setor" Type="Int32" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Deleted" Type="Int32" />
+          <Property Name="id_maquina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomeMaquina" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="setorMaquina" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_setor" Type="Int32" />
+          <Property Name="deleted" Type="Int32" />
         </EntityType>
-        <EntityType Name="tb_Relacionar">
+        <EntityType Name="tb_setores">
           <Key>
-            <PropertyRef Name="ID_Relacionar" />
+            <PropertyRef Name="id_setor" />
           </Key>
-          <Property Name="ID_Relacionar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_Usuario" Type="Int32" />
-          <Property Name="UsuarioRelacionar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ID_Maquina" Type="Int32" />
-          <Property Name="MaquinaRelacionar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ID_ChaveAtivacao" Type="Int32" />
-          <Property Name="SoftwareRelacionar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ChaveAtivacaoRelacionar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Deleted" Type="Int32" />
+          <Property Name="id_setor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomeSetor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="deleted" Type="Int32" />
         </EntityType>
-        <EntityType Name="tb_Setores">
+        <EntityType Name="tb_software">
           <Key>
-            <PropertyRef Name="ID_Setor" />
+            <PropertyRef Name="id_software" />
           </Key>
-          <Property Name="ID_Setor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NomeSetor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Deleted" Type="Int32" />
+          <Property Name="id_software" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomeSoftware" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="versao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ano" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fabricante" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_idioma" Type="Int32" />
+          <Property Name="id_tecnologia" Type="Int32" />
+          <Property Name="id_compatibilidade" Type="Int32" />
+          <Property Name="id_chave" Type="Int32" />
+          <Property Name="deleted" Type="Int32" />
         </EntityType>
-        <EntityType Name="tb_Software">
+        <EntityType Name="tb_usuarios">
           <Key>
-            <PropertyRef Name="ID_Software" />
+            <PropertyRef Name="id_usuario" />
           </Key>
-          <Property Name="ID_Software" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NomeSoftware" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Fabricante" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Deleted" Type="Int32" />
-        </EntityType>
-        <EntityType Name="tb_TipoLicenca">
-          <Key>
-            <PropertyRef Name="ID_TipoDeLicenca" />
-          </Key>
-          <Property Name="ID_TipoDeLicenca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TipoDeLicenca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Deleted" Type="Int32" />
-        </EntityType>
-        <EntityType Name="tb_Usuarios">
-          <Key>
-            <PropertyRef Name="ID_Usuario" />
-          </Key>
-          <Property Name="ID_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NomeUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FuncaoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SetorUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ID_Setor" Type="Int32" />
-          <Property Name="Deleted" Type="Int32" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomeUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="funcaoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_setor" Type="Int32" />
+          <Property Name="deleted" Type="Int32" />
         </EntityType>
         <EntityContainer Name="GCAEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tb_Chaves" EntityType="Self.tb_Chaves" />
-          <EntitySet Name="tb_Maquinas" EntityType="Self.tb_Maquinas" />
-          <EntitySet Name="tb_Relacionar" EntityType="Self.tb_Relacionar" />
-          <EntitySet Name="tb_Setores" EntityType="Self.tb_Setores" />
-          <EntitySet Name="tb_Software" EntityType="Self.tb_Software" />
-          <EntitySet Name="tb_TipoLicenca" EntityType="Self.tb_TipoLicenca" />
-          <EntitySet Name="tb_Usuarios" EntityType="Self.tb_Usuarios" />
+          <EntitySet Name="tb_chaves" EntityType="Self.tb_chaves" />
+          <EntitySet Name="tb_maquinas" EntityType="Self.tb_maquinas" />
+          <EntitySet Name="tb_setores" EntityType="Self.tb_setores" />
+          <EntitySet Name="tb_software" EntityType="Self.tb_software" />
+          <EntitySet Name="tb_usuarios" EntityType="Self.tb_usuarios" />
+          <EntitySet Name="tb_compatibilidadeSO" EntityType="GCAModel.tb_compatibilidadeSO" />
+          <EntitySet Name="tb_relacionar" EntityType="GCAModel.tb_relacionar" />
+          <EntitySet Name="tb_tecnologia" EntityType="GCAModel.tb_tecnologia" />
+          <EntitySet Name="tb_tipoLicenca" EntityType="GCAModel.tb_tipoLicenca" />
         </EntityContainer>
+        <EntityType Name="tb_compatibilidadeSO">
+          <Key>
+            <PropertyRef Name="id_compatibilidadeSO" />
+          </Key>
+          <Property Name="id_compatibilidadeSO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="compatibilidadeSO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="deleted" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tb_relacionar">
+          <Key>
+            <PropertyRef Name="id_relacionar" />
+          </Key>
+          <Property Name="id_relacionar" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_usuario" Type="Int32" />
+          <Property Name="id_maquina" Type="Int32" />
+          <Property Name="id_chave" Type="Int32" />
+          <Property Name="id_software" Type="Int32" />
+          <Property Name="deleted" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tb_tecnologia">
+          <Key>
+            <PropertyRef Name="id_tecnologia" />
+          </Key>
+          <Property Name="id_tecnologia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tecnologia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="deleted" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tb_tipoLicenca">
+          <Key>
+            <PropertyRef Name="id_tipoLicença" />
+          </Key>
+          <Property Name="id_tipoLicença" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipoLicenca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="deleted" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="GCAModelStoreContainer" CdmEntityContainer="GCAEntities">
-          <EntitySetMapping Name="tb_Chaves">
-            <EntityTypeMapping TypeName="GCAModel.tb_Chaves">
-              <MappingFragment StoreEntitySet="tb_Chaves">
-                <ScalarProperty Name="ID_ChaveAtivacao" ColumnName="ID_ChaveAtivacao" />
-                <ScalarProperty Name="DataDeCompra" ColumnName="DataDeCompra" />
-                <ScalarProperty Name="TipoDeLicenca" ColumnName="TipoDeLicenca" />
-                <ScalarProperty Name="PrazoDeLicenca" ColumnName="PrazoDeLicenca" />
-                <ScalarProperty Name="ID_Software" ColumnName="ID_Software" />
-                <ScalarProperty Name="Software" ColumnName="Software" />
-                <ScalarProperty Name="ChaveDeAtivacao" ColumnName="ChaveDeAtivacao" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <EntitySetMapping Name="tb_chaves">
+            <EntityTypeMapping TypeName="GCAModel.tb_chaves">
+              <MappingFragment StoreEntitySet="tb_chaves">
+                <ScalarProperty Name="id_chave" ColumnName="id_chave" />
+                <ScalarProperty Name="chave" ColumnName="chave" />
+                <ScalarProperty Name="dataDeCompra" ColumnName="dataDeCompra" />
+                <ScalarProperty Name="id_tipoLicença" ColumnName="id_tipoLicença" />
+                <ScalarProperty Name="prazoLicenca" ColumnName="prazoLicenca" />
+                <ScalarProperty Name="id_software" ColumnName="id_software" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tb_Maquinas">
-            <EntityTypeMapping TypeName="GCAModel.tb_Maquinas">
-              <MappingFragment StoreEntitySet="tb_Maquinas">
-                <ScalarProperty Name="ID_Maquina" ColumnName="ID_Maquina" />
-                <ScalarProperty Name="NomeMaquina" ColumnName="NomeMaquina" />
-                <ScalarProperty Name="SetorMaquina" ColumnName="SetorMaquina" />
-                <ScalarProperty Name="ID_Setor" ColumnName="ID_Setor" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <EntitySetMapping Name="tb_maquinas">
+            <EntityTypeMapping TypeName="GCAModel.tb_maquinas">
+              <MappingFragment StoreEntitySet="tb_maquinas">
+                <ScalarProperty Name="id_maquina" ColumnName="id_maquina" />
+                <ScalarProperty Name="nomeMaquina" ColumnName="nomeMaquina" />
+                <ScalarProperty Name="setorMaquina" ColumnName="setorMaquina" />
+                <ScalarProperty Name="id_setor" ColumnName="id_setor" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tb_Relacionar">
-            <EntityTypeMapping TypeName="GCAModel.tb_Relacionar">
-              <MappingFragment StoreEntitySet="tb_Relacionar">
-                <ScalarProperty Name="ID_Relacionar" ColumnName="ID_Relacionar" />
-                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
-                <ScalarProperty Name="UsuarioRelacionar" ColumnName="UsuarioRelacionar" />
-                <ScalarProperty Name="ID_Maquina" ColumnName="ID_Maquina" />
-                <ScalarProperty Name="MaquinaRelacionar" ColumnName="MaquinaRelacionar" />
-                <ScalarProperty Name="ID_ChaveAtivacao" ColumnName="ID_ChaveAtivacao" />
-                <ScalarProperty Name="SoftwareRelacionar" ColumnName="SoftwareRelacionar" />
-                <ScalarProperty Name="ChaveAtivacaoRelacionar" ColumnName="ChaveAtivacaoRelacionar" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <EntitySetMapping Name="tb_setores">
+            <EntityTypeMapping TypeName="GCAModel.tb_setores">
+              <MappingFragment StoreEntitySet="tb_setores">
+                <ScalarProperty Name="id_setor" ColumnName="id_setor" />
+                <ScalarProperty Name="nomeSetor" ColumnName="nomeSetor" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tb_Setores">
-            <EntityTypeMapping TypeName="GCAModel.tb_Setores">
-              <MappingFragment StoreEntitySet="tb_Setores">
-                <ScalarProperty Name="ID_Setor" ColumnName="ID_Setor" />
-                <ScalarProperty Name="NomeSetor" ColumnName="NomeSetor" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <EntitySetMapping Name="tb_software">
+            <EntityTypeMapping TypeName="GCAModel.tb_software">
+              <MappingFragment StoreEntitySet="tb_software">
+                <ScalarProperty Name="id_software" ColumnName="id_software" />
+                <ScalarProperty Name="nomeSoftware" ColumnName="nomeSoftware" />
+                <ScalarProperty Name="versao" ColumnName="versao" />
+                <ScalarProperty Name="ano" ColumnName="ano" />
+                <ScalarProperty Name="fabricante" ColumnName="fabricante" />
+                <ScalarProperty Name="id_idioma" ColumnName="id_idioma" />
+                <ScalarProperty Name="id_tecnologia" ColumnName="id_tecnologia" />
+                <ScalarProperty Name="id_compatibilidade" ColumnName="id_compatibilidade" />
+                <ScalarProperty Name="id_chave" ColumnName="id_chave" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tb_Software">
-            <EntityTypeMapping TypeName="GCAModel.tb_Software">
-              <MappingFragment StoreEntitySet="tb_Software">
-                <ScalarProperty Name="ID_Software" ColumnName="ID_Software" />
-                <ScalarProperty Name="NomeSoftware" ColumnName="NomeSoftware" />
-                <ScalarProperty Name="Fabricante" ColumnName="Fabricante" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <EntitySetMapping Name="tb_usuarios">
+            <EntityTypeMapping TypeName="GCAModel.tb_usuarios">
+              <MappingFragment StoreEntitySet="tb_usuarios">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="nomeUsuario" ColumnName="nomeUsuario" />
+                <ScalarProperty Name="funcaoUsuario" ColumnName="funcaoUsuario" />
+                <ScalarProperty Name="id_setor" ColumnName="id_setor" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tb_TipoLicenca">
-            <EntityTypeMapping TypeName="GCAModel.tb_TipoLicenca">
-              <MappingFragment StoreEntitySet="tb_TipoLicenca">
-                <ScalarProperty Name="ID_TipoDeLicenca" ColumnName="ID_TipoDeLicenca" />
-                <ScalarProperty Name="TipoDeLicenca" ColumnName="TipoDeLicenca" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <EntitySetMapping Name="tb_compatibilidadeSO">
+            <EntityTypeMapping TypeName="GCAModel.tb_compatibilidadeSO">
+              <MappingFragment StoreEntitySet="tb_compatibilidadeSO">
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="compatibilidadeSO" ColumnName="compatibilidadeSO" />
+                <ScalarProperty Name="id_compatibilidadeSO" ColumnName="id_compatibilidadeSO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tb_Usuarios">
-            <EntityTypeMapping TypeName="GCAModel.tb_Usuarios">
-              <MappingFragment StoreEntitySet="tb_Usuarios">
-                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
-                <ScalarProperty Name="NomeUsuario" ColumnName="NomeUsuario" />
-                <ScalarProperty Name="FuncaoUsuario" ColumnName="FuncaoUsuario" />
-                <ScalarProperty Name="SetorUsuario" ColumnName="SetorUsuario" />
-                <ScalarProperty Name="ID_Setor" ColumnName="ID_Setor" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <EntitySetMapping Name="tb_relacionar">
+            <EntityTypeMapping TypeName="GCAModel.tb_relacionar">
+              <MappingFragment StoreEntitySet="tb_relacionar">
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="id_software" ColumnName="id_software" />
+                <ScalarProperty Name="id_chave" ColumnName="id_chave" />
+                <ScalarProperty Name="id_maquina" ColumnName="id_maquina" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="id_relacionar" ColumnName="id_relacionar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_tecnologia">
+            <EntityTypeMapping TypeName="GCAModel.tb_tecnologia">
+              <MappingFragment StoreEntitySet="tb_tecnologia">
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="tecnologia" ColumnName="tecnologia" />
+                <ScalarProperty Name="id_tecnologia" ColumnName="id_tecnologia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_tipoLicenca">
+            <EntityTypeMapping TypeName="GCAModel.tb_tipoLicenca">
+              <MappingFragment StoreEntitySet="tb_tipoLicenca">
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="tipoLicenca" ColumnName="tipoLicenca" />
+                <ScalarProperty Name="id_tipoLicença" ColumnName="id_tipoLicença" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

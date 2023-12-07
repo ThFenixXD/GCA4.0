@@ -26,7 +26,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridSoftware()
         {
-            GridSoftware.DataSource = Framework.GetDataTable("SELECT ID_Software, NomeSoftware, Fabricante FROM tb_Software WHERE Deleted = 0 Order By NomeSoftware");
+            GridSoftware.DataSource = Framework.GetDataTable("SELECT ID_Software, NomeSoftware, VersaoAno, Fabricante, Idioma, Tecnologia, Compatibilidade FROM tb_Software WHERE Deleted = 0 Order By NomeSoftware");
             GridSoftware.DataBind();
         }
 
@@ -49,36 +49,81 @@ namespace Project_GCA_4._0.WebForms
             }
         }
 
+        protected void PopuladdlTecnologiaSoftware()
+        {
+            ddlTecnologia.DataSource = Framework.GetDataTable("SELECT ID_Tecnologia, Tecnologia FROM tb_Tecnologia WHERE Deleted = 0");
+            ddlTecnologia.DataBind();
+            ddlTecnologia.Items.Insert(0, new ListItem("Selecionar"));
+        }
+
+        protected void PopuladdlCompatibilidadeSoftware()
+        {
+            ddlCompatibilidade.DataSource = Framework.GetDataTable("SELECT ID_Compatibilidade, Compatibilidade FROM tb_Compatibilidade WHERE Deleted = 0");
+            ddlCompatibilidade.DataBind();
+            ddlCompatibilidade.Items.Insert(0, new ListItem("Selecionar"));
+        }
+
         protected void BtSalvarSoftware_Click(object sender, EventArgs e)
         {
             using (GCAEntities ctx = new GCAEntities())
             {
                 tb_Software Software = new tb_Software();
+                tb_Software Software2 = new tb_Software();
                 try
                 {
-                    if (!string.IsNullOrEmpty(HdfID.Value))
+                    string _nomesoftware = txtNomeSoftware.Text.Trim();
+                    string _fabricante = txtFabricante.Text.Trim();
+                    string _versao = txtVersão.Text.Trim();
+                    string _tecnologia = ddlTecnologia.SelectedValue;
+                    string _compatibilidade = ddlCompatibilidade.SelectedValue;
+
+                    var strsql = (from objSoftware in ctx.tb_Software
+                                  where objSoftware.Fabricante == _fabricante && objSoftware.NomeSoftware == _nomesoftware && objSoftware.VersaoAno == _versao && objSoftware.Tecnologia == _tecnologia && objSoftware.Compatibilidade == _compatibilidade && objSoftware.Deleted == 0
+                                  select objSoftware);
+
+                    Software2 = strsql.FirstOrDefault();
+
+                    if (strsql.Count() > 0)
                     {
-                        int _id = Convert.ToInt32(HdfID.Value);
-
-                        var Query = (from objSoftware in ctx.tb_Software select objSoftware);
-
-                        Software = Query.FirstOrDefault();
+                        // ja existe software cadastrado
+                        Response.Write("Esse Software já foi registrado");
                     }
                     else
                     {
-                        Software.NomeSoftware = txtNomeSoftware.Text;
-                        Software.Fabricante = txtFabricante.Text;
-                        Software.Deleted = 0;
+                        //Não existe software cadastrado ..... aqui 
 
-                        if (string.IsNullOrEmpty(HdfID.Value))
+                        if (!string.IsNullOrEmpty(HdfID.Value))
                         {
-                            ctx.tb_Software.Add(Software);
+                            int _id = Convert.ToInt32(HdfID.Value);
+
+                            var Query = (from objSoftware in ctx.tb_Software select objSoftware);
+
+                            Software = Query.FirstOrDefault();
                         }
-                        ctx.SaveChanges();
-                        EscondePaineis();
-                        LimpaCampos();
-                        PnlConsultarSoftware.Visible = true;
-                        AtualizaGridSoftware();
+                        else
+                        {
+                            var Query = (from objSoftware in ctx.tb_Software select objSoftware);
+
+                            Software.NomeSoftware = txtNomeSoftware.Text;
+                            Software.VersaoAno = txtVersão.Text;
+                            Software.Fabricante = txtFabricante.Text;
+                            Software.Idioma = txtIdioma.Text;
+                            Software.Tecnologia = ddlTecnologia.SelectedItem.ToString();
+                            Software.ID_Tecnologia = Convert.ToInt32(ddlTecnologia.SelectedValue);
+                            Software.Compatibilidade = ddlCompatibilidade.SelectedItem.ToString();
+                            Software.ID_Compatibilidade = Convert.ToInt32(ddlCompatibilidade.SelectedValue);
+                            Software.Deleted = 0;
+
+                            if (string.IsNullOrEmpty(HdfID.Value))
+                            {
+                                ctx.tb_Software.Add(Software);
+                            }
+                            ctx.SaveChanges();
+                            EscondePaineis();
+                            LimpaCampos();
+                            PnlConsultarSoftware.Visible = true;
+                            AtualizaGridSoftware();
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -97,7 +142,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridSoftware_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridSoftware.DataSource = Framework.GetDataTable("SELECT ID_Software, NomeSoftware, Fabricante FROM tb_Software WHERE Deleted = 0 Order By NomeSoftware");
+            GridSoftware.DataSource = Framework.GetDataTable("SELECT ID_Software, NomeSoftware, VersaoAno, Fabricante, Idioma, Tecnologia, Compatibilidade FROM tb_Software WHERE Deleted = 0 Order By NomeSoftware");
         }
 
         protected void GridSoftware_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
@@ -141,16 +186,23 @@ namespace Project_GCA_4._0.WebForms
             }
         }
 
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btCadastrarSoftware_Click(object sender, EventArgs e)
         {
             EscondePaineis();
             PnlCadastroSoftware.Visible = true;
+            PopuladdlTecnologiaSoftware();
+            PopuladdlCompatibilidadeSoftware();
         }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                PopuladdlTecnologiaSoftware();
+                PopuladdlCompatibilidadeSoftware();
+            }
+        }
+
+        
     }
 }
