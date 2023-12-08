@@ -40,11 +40,11 @@ namespace ProjectGCA4._0.Útil
                 EscondePaineis(ctrl);
         }
 
-        public static void AlertaSucesso(Page Pagina)
-        {
-            string script = "alert('Salvo com Sucesso!');";
-            Pagina.ClientScript.RegisterStartupScript(Pagina.GetType(), "Alerta", script, true);
-        }
+        //public static void AlertaSucesso(Page Pagina)
+        //{
+        //    string script = "alert('Salvo com Sucesso!');";
+        //    Pagina.ClientScript.RegisterStartupScript(Pagina.GetType(), "Alerta", script, true);
+        //}
 
         public static void AlertaErro(Page Pagina, Exception ex)
         {
@@ -52,6 +52,17 @@ namespace ProjectGCA4._0.Útil
             Pagina.ClientScript.RegisterStartupScript(Pagina.GetType(), "Alerta", script, true);
         }
 
+        //public static void AlertaRegistro(Page Pagina)
+        //{
+        //    string script = "alert('Registro já consta no sistema!');";
+        //    Pagina.ClientScript.RegisterStartupScript(Pagina.GetType(), "Alerta", script, true);
+        //}
+
+        public static void Alerta(Page pagina, string mensagem)
+        {
+            string script = "alert('" + mensagem + "');";
+            pagina.ClientScript.RegisterStartupScript(pagina.GetType(), "MensagemSucesso", script, true);
+        }
 
     }
 }

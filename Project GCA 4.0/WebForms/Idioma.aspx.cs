@@ -49,7 +49,7 @@ namespace Project_GCA_4._0.WebForms
             }
         }
 
-        protected void BtSalvarIdioma_Click(object sender, EventArgs e) /*REVISAR COMPARAÇÃO*/
+        protected void BtSalvarIdioma_Click(object sender, EventArgs e) 
         {
             using (GCAEntities ctx = new GCAEntities())
             {
@@ -73,7 +73,8 @@ namespace Project_GCA_4._0.WebForms
                     //if (strsql.Count() > 0)
                     if (strsql.Any())
                     {
-                        Response.Write("Esse Idioma já foi registrado");
+                        //Response.Write("Esse Idioma já foi registrado");
+                        Framework.Alerta(this, "Registro já consta no Sistema!");
                     }
                     else
                     {
@@ -105,7 +106,7 @@ namespace Project_GCA_4._0.WebForms
                         PnlConsultarIdiomas.Visible = true;
                         AtualizaGridIdioma();
                     }
-                    Framework.AlertaSucesso(this);
+                    Framework.Alerta(this, "Salvo com Sucesso!");
                 }
                 catch (Exception ex)
                 {

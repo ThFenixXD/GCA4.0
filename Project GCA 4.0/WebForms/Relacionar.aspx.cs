@@ -98,7 +98,8 @@ namespace Project_GCA_4._0.WebForms
                     //if (strsql.Count() > 0)
                     if (strsql.Any())
                     {
-                        Response.Write("Essa Chave já está sendo utilizada");
+                        //Response.Write("Essa Chave já está sendo utilizada");
+                        Framework.Alerta(this, "Registro já consta no Sistema!");
                     }
                     else
                     {
@@ -168,7 +169,7 @@ namespace Project_GCA_4._0.WebForms
                         {
                             Response.Write("Erro, " + ex.Message);
                         }
-                        Framework.AlertaSucesso(this);
+                        Framework.Alerta(this, "Salvo com Sucesso!");
                     }
                 }
                 catch (Exception ex)

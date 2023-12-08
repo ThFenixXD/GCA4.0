@@ -71,7 +71,8 @@ namespace Project_GCA_4._0.WebForms
                     if (strsql.Any())
                     {
                         // ja existe software cadastrado
-                        Response.Write("Esse Usuário já foi registrado");
+                        //Response.Write("Esse Usuário já foi registrado");
+                        Framework.Alerta(this, "Registro já consta no Sistema!");
                     }
                     else
                     {
@@ -99,7 +100,7 @@ namespace Project_GCA_4._0.WebForms
                         LimpaCampos();
                         PnlConsultarLicencas.Visible = true;
                         AtualizaGridLicenca();
-                        Framework.AlertaSucesso(this);
+                        Framework.Alerta(this, "Salvo com Sucesso!");
                     }
                 }
                 catch (Exception ex)

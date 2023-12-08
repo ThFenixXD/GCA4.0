@@ -87,7 +87,8 @@ namespace Project_GCA_4._0.WebForms
                     //if (strsql.Count() > 0)
                     if (strsql.Any())
                     {
-                        Response.Write("Esse Usuário já foi registrado");
+                        //Response.Write("Esse Usuário já foi registrado");
+                        Framework.Alerta(this, "Registro já consta no Sistema!");
                     }
                     else
                     {
@@ -118,7 +119,7 @@ namespace Project_GCA_4._0.WebForms
                         LimpaCampos();
                         PnlConsultarUsuarios.Visible = true;
                         AtualizaGridUsuarios();
-                        Framework.AlertaSucesso(this);
+                        Framework.Alerta(this, "Salvo com Sucesso!");
                     }
                 }
                 catch (Exception ex)

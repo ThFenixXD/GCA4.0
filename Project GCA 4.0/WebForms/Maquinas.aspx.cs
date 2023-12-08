@@ -79,7 +79,8 @@ namespace Project_GCA_4._0.WebForms
                     if (strsql.Any())
                     {
                         // ja existe software cadastrado
-                        Response.Write("Essa Máquina já foi registrada");
+                        //Response.Write("Essa Máquina já foi registrada");
+                        Framework.Alerta(this, "Registro já consta no Sistema!");
                     }
                     else
                     {
@@ -108,7 +109,7 @@ namespace Project_GCA_4._0.WebForms
                         LimpaCampos();
                         PnlConsultarMaquinas.Visible = true;
                         AtualizaGridMaquinas();
-                        Framework.AlertaSucesso(this)
+                        Framework.Alerta(this, "Salvo com Sucesso!");
                     }
                 }
                 catch (Exception ex)
