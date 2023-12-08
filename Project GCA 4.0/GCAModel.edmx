@@ -43,6 +43,7 @@
           <Property Name="id_maquina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nomeMaquina" Type="nvarchar" MaxLength="50" />
           <Property Name="id_setor" Type="int" />
+          <Property Name="status" Type="int" />
           <Property Name="deleted" Type="int" />
         </EntityType>
         <EntityType Name="tb_relacionar">
@@ -122,7 +123,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="GCAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="GCAEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tb_chaves" EntityType="GCAModel.tb_chaves" />
           <EntitySet Name="tb_compatibilidadeSO" EntityType="GCAModel.tb_compatibilidadeSO" />
           <EntitySet Name="tb_idiomas" EntityType="GCAModel.tb_idiomas" />
           <EntitySet Name="tb_maquinas" EntityType="GCAModel.tb_maquinas" />
@@ -132,11 +132,9 @@
           <EntitySet Name="tb_tecnologia" EntityType="GCAModel.tb_tecnologia" />
           <EntitySet Name="tb_tipoLicenca" EntityType="GCAModel.tb_tipoLicenca" />
           <EntitySet Name="tb_usuarios" EntityType="GCAModel.tb_usuarios" />
+          <EntitySet Name="tb_chavesSet" EntityType="GCAModel.tb_chaves" />
         </EntityContainer>
         <EntityType Name="tb_chaves">
-          <Key>
-            <PropertyRef Name="id_chave" />
-          </Key>
           <Property Name="id_chave" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="chave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="dataDeCompra" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -172,6 +170,7 @@
           <Property Name="nomeMaquina" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="id_setor" Type="Int32" />
           <Property Name="deleted" Type="Int32" />
+          <Property Name="status" Type="Int32" />
         </EntityType>
         <EntityType Name="tb_relacionar">
           <Key>
@@ -239,20 +238,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="GCAModelStoreContainer" CdmEntityContainer="GCAEntities">
-          <EntitySetMapping Name="tb_chaves">
-            <EntityTypeMapping TypeName="GCAModel.tb_chaves">
-              <MappingFragment StoreEntitySet="tb_chaves">
-                <ScalarProperty Name="deleted" ColumnName="deleted" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="id_software" ColumnName="id_software" />
-                <ScalarProperty Name="prazoLicenca" ColumnName="prazoLicenca" />
-                <ScalarProperty Name="id_tipoLicenca" ColumnName="id_tipoLicenca" />
-                <ScalarProperty Name="dataDeCompra" ColumnName="dataDeCompra" />
-                <ScalarProperty Name="chave" ColumnName="chave" />
-                <ScalarProperty Name="id_chave" ColumnName="id_chave" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tb_compatibilidadeSO">
             <EntityTypeMapping TypeName="GCAModel.tb_compatibilidadeSO">
               <MappingFragment StoreEntitySet="tb_compatibilidadeSO">
@@ -276,6 +261,7 @@
           <EntitySetMapping Name="tb_maquinas">
             <EntityTypeMapping TypeName="GCAModel.tb_maquinas">
               <MappingFragment StoreEntitySet="tb_maquinas">
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="deleted" ColumnName="deleted" />
                 <ScalarProperty Name="id_setor" ColumnName="id_setor" />
                 <ScalarProperty Name="nomeMaquina" ColumnName="nomeMaquina" />
@@ -284,14 +270,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tb_relacionar">
-            <EntityTypeMapping TypeName="GCAModel.tb_relacionar">
+            <EntityTypeMapping TypeName="IsTypeOf(GCAModel.tb_relacionar)">
               <MappingFragment StoreEntitySet="tb_relacionar">
-                <ScalarProperty Name="deleted" ColumnName="deleted" />
-                <ScalarProperty Name="id_software" ColumnName="id_software" />
-                <ScalarProperty Name="id_chave" ColumnName="id_chave" />
-                <ScalarProperty Name="id_maquina" ColumnName="id_maquina" />
-                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="id_relacionar" ColumnName="id_relacionar" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="id_maquina" ColumnName="id_maquina" />
+                <ScalarProperty Name="id_chave" ColumnName="id_chave" />
+                <ScalarProperty Name="id_software" ColumnName="id_software" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -346,6 +332,17 @@
                 <ScalarProperty Name="funcaoUsuario" ColumnName="funcaoUsuario" />
                 <ScalarProperty Name="nomeUsuario" ColumnName="nomeUsuario" />
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_chavesSet">
+            <EntityTypeMapping TypeName="IsTypeOf(GCAModel.tb_chaves)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="tb_chaves">
+                <ScalarProperty Name="chave" ColumnName="chave" />
+                <ScalarProperty Name="dataDeCompra" ColumnName="dataDeCompra" />
+                <ScalarProperty Name="id_tipoLicenca" ColumnName="id_tipoLicenca" />
+                <ScalarProperty Name="prazoLicenca" ColumnName="prazoLicenca" />
+                <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

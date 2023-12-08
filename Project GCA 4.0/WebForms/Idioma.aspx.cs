@@ -49,7 +49,7 @@ namespace Project_GCA_4._0.WebForms
             }
         }
 
-        protected void BtSalvarIdioma_Click(object sender, EventArgs e)
+        protected void BtSalvarIdioma_Click(object sender, EventArgs e) /*REVISAR COMPARAÇÃO*/
         {
             using (GCAEntities ctx = new GCAEntities())
             {

@@ -67,7 +67,8 @@ namespace Project_GCA_4._0.WebForms
 
                     TipoLicenca2 = strsql.FirstOrDefault();
 
-                    if (strsql.Count() > 0)
+                    //if (strsql.Count() > 0)
+                    if (strsql.Any())
                     {
                         // ja existe software cadastrado
                         Response.Write("Esse Usuário já foi registrado");

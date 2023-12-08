@@ -100,7 +100,8 @@ namespace Project_GCA_4._0.WebForms
 
                     Software2 = strsql.FirstOrDefault();
 
-                    if (strsql.Count() > 0)
+                    //if (strsql.Count() > 0)
+                    if (strsql.Any())
                     {
                         // ja existe software cadastrado
                         Response.Write("Esse Software já foi registrado");

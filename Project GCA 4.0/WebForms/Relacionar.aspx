@@ -53,10 +53,10 @@
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
                             <telerik:GridBoundColumn UniqueName="col_CodRelacao" DataField="id_relacionar" HeaderText="COD" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn UniqueName="col_NomeUsuario" DataField="id_usuario" HeaderText="USUARIO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn UniqueName="col_NomeMaquina" DataField="id_maquina" HeaderText="MAQUINA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn UniqueName="col_NomeSoftware" DataField="id_software" HeaderText="SOFTWARE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn UniqueName="col_ChaveAtivacao" DataField="id_chave" HeaderText="CHAVE DE ATIVAÇÃO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_NomeUsuario" DataField="nomeUsuario" HeaderText="USUARIO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_NomeMaquina" DataField="nomeMaquina" HeaderText="MAQUINA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_NomeSoftware" DataField="nomeSoftware" HeaderText="SOFTWARE" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_ChaveAtivacao" DataField="chave" HeaderText="CHAVE DE ATIVAÇÃO" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>

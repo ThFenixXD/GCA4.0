@@ -45,10 +45,10 @@
                                     <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
-                            <telerik:GridBoundColumn UniqueName="col_CodMaquina" DataField="id_maquina" HeaderText="COD" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn UniqueName="col_NomeMaquina" DataField="nomeMaquina" HeaderText="NOME DA MÁQUINA" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn UniqueName="col_CodSetor" DataField="id_setor" HeaderText="COD SETOR" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn UniqueName="col_Setor" DataField="nomeSetor" HeaderText="SETOR" HeaderStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_CodMaquina" DataField="id_maquina" HeaderText="COD" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_NomeMaquina" DataField="nomeMaquina" HeaderText="NOME DA MÁQUINA" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_CodSetor" DataField="id_setor" HeaderText="COD SETOR" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_Setor" DataField="nomeSetor" HeaderText="SETOR" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>

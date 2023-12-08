@@ -75,7 +75,8 @@ namespace Project_GCA_4._0.WebForms
 
                     Maquina2 = strsql.FirstOrDefault();
 
-                    if (strsql.Count() > 0)
+                    //if (strsql.Count() > 0)
+                    if (strsql.Any())
                     {
                         // ja existe software cadastrado
                         Response.Write("Essa Máquina já foi registrada");
