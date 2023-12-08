@@ -73,12 +73,9 @@ namespace Project_GCA_4._0.WebForms
                 try
                 {
                     string _nomeusuario = txtNomeUsuario.Text.Trim();
-                    string _funcao = txtFuncaoUsuario.Text.Trim();
                     int _setor = Convert.ToInt32(ddlSetorUsuario.SelectedValue);
                     var strsql = (from objUsuario in ctx.tb_usuarios
                                   where objUsuario.nomeUsuario == _nomeusuario && 
-                                  objUsuario.funcaoUsuario == _funcao && 
-                                  objUsuario.id_setor == _setor && 
                                   objUsuario.deleted == 0
                                   select objUsuario);
 

@@ -80,7 +80,8 @@ namespace Project_GCA_4._0.WebForms
 
 
                     var strsql = (from objChave in ctx.tb_chaves
-                                  where objChave.chave == _chavedeativacao && objChave.dataDeCompra == _datadecompra && objChave.id_tipoLicenca == _tipodelicenca && objChave.deleted == 0
+                                  where objChave.chave == _chavedeativacao 
+                                  && objChave.deleted == 0
                                   select objChave);
 
                     Chave2 = strsql.FirstOrDefault();

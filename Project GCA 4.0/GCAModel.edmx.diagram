@@ -7,14 +7,15 @@
       <Diagram DiagramId="01a5868ba1e94149a3305142eb62e372" Name="Diagram1">
         <EntityTypeShape EntityType="GCAModel.tb_chaves" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="GCAModel.tb_compatibilidadeSO" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GCAModel.tb_idiomas" Width="1.5" PointX="2.75" PointY="3.75" />
-        <EntityTypeShape EntityType="GCAModel.tb_maquinas" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GCAModel.tb_relacionar" Width="1.5" PointX="4.75" PointY="3.75" />
-        <EntityTypeShape EntityType="GCAModel.tb_setores" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GCAModel.tb_software" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="GCAModel.tb_tecnologia" Width="1.5" PointX="2.75" PointY="6.75" />
-        <EntityTypeShape EntityType="GCAModel.tb_tipoLicenca" Width="1.5" PointX="6.75" PointY="3.75" />
-        <EntityTypeShape EntityType="GCAModel.tb_usuarios" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_fabricante" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_idiomas" Width="1.5" PointX="4.7189671419183572" PointY="0.77758495545833606" />
+        <EntityTypeShape EntityType="GCAModel.tb_maquinas" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_relacionar" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_setores" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_software" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_tecnologia" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_tipoLicenca" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="GCAModel.tb_usuarios" Width="1.5" PointX="6.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

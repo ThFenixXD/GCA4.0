@@ -12,16 +12,10 @@ namespace Project_GCA_4._0
     using System;
     using System.Collections.Generic;
     
-    public partial class tb_software
+    public partial class tb_fabricante
     {
-        public int id_software { get; set; }
-        public string nomeSoftware { get; set; }
-        public string versao { get; set; }
-        public string ano { get; set; }
-        public Nullable<int> id_fabricante { get; set; }
-        public Nullable<int> id_idioma { get; set; }
-        public Nullable<int> id_tecnologia { get; set; }
-        public Nullable<int> id_compatibilidadeSO { get; set; }
+        public int id_fabricante { get; set; }
+        public string nomeFabricante { get; set; }
         public Nullable<int> deleted { get; set; }
     }
 }

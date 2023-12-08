@@ -68,9 +68,8 @@ namespace Project_GCA_4._0.WebForms
 
                     var strsql = (from objMaquina in ctx.tb_maquinas
                                   where
-                                  objMaquina.nomeMaquina == _nomemaquina && 
-                                  objMaquina.id_setor == _setor 
-                                  && objMaquina.deleted == 0
+                                  objMaquina.nomeMaquina == _nomemaquina &&
+                                  objMaquina.deleted == 0
                                   select objMaquina);
 
                     Maquina2 = strsql.FirstOrDefault();

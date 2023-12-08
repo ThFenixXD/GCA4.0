@@ -25,7 +25,7 @@
                 </div>
                 <div class="row">
                     <asp:Label ID="lbFabricante" CssClass="lbTextBlock col-4 col-md-4 col-sm-4" runat="server" Text="Fabricante"></asp:Label>
-                    <asp:TextBox ID="txtFabricante" CssClass="col-8 col-md-8 col-sm-8" runat="server"></asp:TextBox>
+                    <asp:DropDownList ID="ddlFabricante" CssClass="col-8 col-md-8 col-sm-8" runat="server" DataTextField="nomeFabricante" DataValueField="id_fabricante"></asp:DropDownList>
                 </div>
                 <div class="row">
                     <asp:Label ID="lbIdioma" CssClass="lbTextBlock col-4 col-md-4 col-sm-4" runat="server" Text="Idioma"></asp:Label>

@@ -76,6 +76,12 @@
                     </a>
                 </li>
                 <li class="item-menu">
+                    <a href="Fabricante.aspx">
+                        <span class="icon"><i class="bi bi-c-circle"></i></span>
+                        <span class="txt-link">Fabricante</span>
+                    </a>
+                </li>
+                <li class="item-menu">
                     <a href="Relacionar.aspx" class="last__menu-item">
                         <span class="icon"><i class="bi bi-bezier2"></i></span>
                         <span class="txt-link">Relacionar</span>

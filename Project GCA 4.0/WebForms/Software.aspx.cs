@@ -19,7 +19,6 @@ namespace Project_GCA_4._0.WebForms
         protected void LimpaCampos()
         {
             txtNomeSoftware.Text =
-            txtFabricante.Text =
             HdfID.Value =
             string.Empty;
         }
@@ -46,7 +45,7 @@ namespace Project_GCA_4._0.WebForms
                     txtNomeSoftware.Text = Query.nomeSoftware;
                     txtVersão.Text = Query.versao;
                     txtAno.Text = Query.ano;
-                    txtFabricante.Text = Query.fabricante;
+                    ddlFabricante.SelectedValue = Query.id_fabricante.ToString();
                     ddlIdioma.SelectedValue = Query.id_idioma.ToString();
                     ddlTecnologia.SelectedValue = Query.id_tecnologia.ToString();
                     ddlCompatibilidade.SelectedValue = Query.id_compatibilidadeSO.ToString();
@@ -54,21 +53,28 @@ namespace Project_GCA_4._0.WebForms
             }
         }
 
-        protected void PopuladdlIdiomaSoftware()
+        protected void PopuladdlFabricante()
+        {
+            ddlFabricante.DataSource = Framework.GetDataTable("SELECT id_fabricante, nomeFabricante FROM tb_fabricante WHERE deleted = 0");
+            ddlFabricante.DataBind();
+            ddlFabricante.Items.Insert(0, new ListItem("Selecionar"));
+        }
+
+        protected void PopuladdlIdioma()
         {
             ddlIdioma.DataSource = Framework.GetDataTable("SELECT id_idioma, idioma FROM tb_idiomas WHERE deleted = 0");
             ddlIdioma.DataBind();
             ddlIdioma.Items.Insert(0, new ListItem("Selecionar"));
         }
 
-        protected void PopuladdlTecnologiaSoftware()
+        protected void PopuladdlTecnologia()
         {
             ddlTecnologia.DataSource = Framework.GetDataTable("SELECT id_tecnologia, tecnologia FROM tb_tecnologia WHERE deleted = 0");
             ddlTecnologia.DataBind();
             ddlTecnologia.Items.Insert(0, new ListItem("Selecionar"));
         }
 
-        protected void PopuladdlCompatibilidadeSoftware()
+        protected void PopuladdlCompatibilidade()
         {
             ddlCompatibilidade.DataSource = Framework.GetDataTable("SELECT id_compatibilidadeSO, compatibilidadeSO FROM tb_compatibilidadeSO WHERE deleted = 0");
             ddlCompatibilidade.DataBind();
@@ -84,7 +90,7 @@ namespace Project_GCA_4._0.WebForms
                 try
                 {
                     string _nomesoftware = txtNomeSoftware.Text.Trim();
-                    string _fabricante = txtFabricante.Text.Trim();
+                    int _fabricante = Convert.ToInt32(ddlFabricante.SelectedValue);
                     string _versao = txtVersão.Text.Trim();
                     string _ano = txtAno.Text.Trim();
                     int _idioma = Convert.ToInt32(ddlIdioma.SelectedValue);
@@ -94,7 +100,7 @@ namespace Project_GCA_4._0.WebForms
                     var strsql = (from objSoftware in ctx.tb_software
                                   where
                                   objSoftware.nomeSoftware == _nomesoftware &&
-                                  objSoftware.fabricante == _fabricante &&
+                                  objSoftware.id_fabricante == _fabricante &&
                                   objSoftware.versao == _versao &&
                                   objSoftware.ano == _ano &&
                                   objSoftware.id_idioma == _idioma &&
@@ -132,7 +138,7 @@ namespace Project_GCA_4._0.WebForms
                         Software.nomeSoftware = txtNomeSoftware.Text;
                         Software.versao = txtVersão.Text;
                         Software.ano = txtAno.Text;
-                        Software.fabricante = txtFabricante.Text;
+                        Software.id_fabricante = Convert.ToInt32(ddlFabricante.SelectedValue);
                         Software.id_idioma = Convert.ToInt32(ddlIdioma.SelectedValue);
                         Software.id_tecnologia = Convert.ToInt32(ddlTecnologia.SelectedValue);
                         Software.id_compatibilidadeSO = Convert.ToInt32(ddlCompatibilidade.SelectedValue);
@@ -215,17 +221,17 @@ namespace Project_GCA_4._0.WebForms
         {
             EscondePaineis();
             PnlCadastroSoftware.Visible = true;
-            PopuladdlTecnologiaSoftware();
-            PopuladdlCompatibilidadeSoftware();
+            PopuladdlTecnologia();
+            PopuladdlCompatibilidade();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                PopuladdlTecnologiaSoftware();
-                PopuladdlCompatibilidadeSoftware();
-                PopuladdlIdiomaSoftware();
+                PopuladdlIdioma();
+                PopuladdlTecnologia();
+                PopuladdlCompatibilidade();
             }
         }
     }

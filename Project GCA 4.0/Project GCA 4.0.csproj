@@ -91,6 +91,7 @@
       <LastGenOutput>GCAModel.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
+    <Content Include="WebForms\Fabricante.aspx" />
     <Content Include="WebForms\Chaves.aspx" />
     <Content Include="WebForms\Compatibilidade.aspx" />
     <Content Include="WebForms\HomePage.aspx" />
@@ -125,6 +126,9 @@
     <Compile Include="tb_compatibilidadeSO.cs">
       <DependentUpon>GCAModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tb_fabricante.cs">
+      <DependentUpon>GCAModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="tb_idiomas.cs">
       <DependentUpon>GCAModel.tt</DependentUpon>
     </Compile>
@@ -148,6 +152,13 @@
     </Compile>
     <Compile Include="tb_usuarios.cs">
       <DependentUpon>GCAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Fabricante.aspx.cs">
+      <DependentUpon>Fabricante.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Fabricante.aspx.designer.cs">
+      <DependentUpon>Fabricante.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Chaves.aspx.cs">
       <DependentUpon>Chaves.aspx</DependentUpon>

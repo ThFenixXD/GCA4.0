@@ -26,6 +26,14 @@
           <Property Name="compatibilidadeSO" Type="nvarchar" MaxLength="50" />
           <Property Name="deleted" Type="int" />
         </EntityType>
+        <EntityType Name="tb_fabricante">
+          <Key>
+            <PropertyRef Name="id_fabricante" />
+          </Key>
+          <Property Name="id_fabricante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nomeFabricante" Type="nvarchar" MaxLength="50" />
+          <Property Name="deleted" Type="int" />
+        </EntityType>
         <EntityType Name="tb_idiomas">
           <Key>
             <PropertyRef Name="id_idioma" />
@@ -73,7 +81,7 @@
           <Property Name="nomeSoftware" Type="nvarchar" MaxLength="50" />
           <Property Name="versao" Type="nvarchar" MaxLength="50" />
           <Property Name="ano" Type="nvarchar" MaxLength="50" />
-          <Property Name="fabricante" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_fabricante" Type="int" />
           <Property Name="id_idioma" Type="int" />
           <Property Name="id_tecnologia" Type="int" />
           <Property Name="id_compatibilidadeSO" Type="int" />
@@ -109,6 +117,7 @@
         <EntityContainer Name="GCAModelStoreContainer">
           <EntitySet Name="tb_chaves" EntityType="Self.tb_chaves" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_compatibilidadeSO" EntityType="Self.tb_compatibilidadeSO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_fabricante" EntityType="Self.tb_fabricante" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_idiomas" EntityType="Self.tb_idiomas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_maquinas" EntityType="Self.tb_maquinas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_relacionar" EntityType="Self.tb_relacionar" Schema="dbo" store:Type="Tables" />
@@ -125,6 +134,7 @@
         <EntityContainer Name="GCAEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tb_chaves" EntityType="GCAModel.tb_chaves" />
           <EntitySet Name="tb_compatibilidadeSO" EntityType="GCAModel.tb_compatibilidadeSO" />
+          <EntitySet Name="tb_fabricante" EntityType="GCAModel.tb_fabricante" />
           <EntitySet Name="tb_idiomas" EntityType="GCAModel.tb_idiomas" />
           <EntitySet Name="tb_maquinas" EntityType="GCAModel.tb_maquinas" />
           <EntitySet Name="tb_relacionar" EntityType="GCAModel.tb_relacionar" />
@@ -153,6 +163,14 @@
           </Key>
           <Property Name="id_compatibilidadeSO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="compatibilidadeSO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="deleted" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tb_fabricante">
+          <Key>
+            <PropertyRef Name="id_fabricante" />
+          </Key>
+          <Property Name="id_fabricante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomeFabricante" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="deleted" Type="Int32" />
         </EntityType>
         <EntityType Name="tb_idiomas">
@@ -202,7 +220,7 @@
           <Property Name="nomeSoftware" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="versao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ano" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="fabricante" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_fabricante" Type="Int32" />
           <Property Name="id_idioma" Type="Int32" />
           <Property Name="id_tecnologia" Type="Int32" />
           <Property Name="id_compatibilidadeSO" Type="Int32" />
@@ -264,6 +282,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tb_fabricante">
+            <EntityTypeMapping TypeName="GCAModel.tb_fabricante">
+              <MappingFragment StoreEntitySet="tb_fabricante">
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="nomeFabricante" ColumnName="nomeFabricante" />
+                <ScalarProperty Name="id_fabricante" ColumnName="id_fabricante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tb_idiomas">
             <EntityTypeMapping TypeName="GCAModel.tb_idiomas">
               <MappingFragment StoreEntitySet="tb_idiomas">
@@ -314,7 +341,7 @@
                 <ScalarProperty Name="id_compatibilidadeSO" ColumnName="id_compatibilidadeSO" />
                 <ScalarProperty Name="id_tecnologia" ColumnName="id_tecnologia" />
                 <ScalarProperty Name="id_idioma" ColumnName="id_idioma" />
-                <ScalarProperty Name="fabricante" ColumnName="fabricante" />
+                <ScalarProperty Name="id_fabricante" ColumnName="id_fabricante" />
                 <ScalarProperty Name="ano" ColumnName="ano" />
                 <ScalarProperty Name="versao" ColumnName="versao" />
                 <ScalarProperty Name="nomeSoftware" ColumnName="nomeSoftware" />
