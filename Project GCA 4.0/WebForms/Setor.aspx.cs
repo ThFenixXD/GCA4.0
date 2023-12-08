@@ -71,13 +71,16 @@ namespace Project_GCA_4._0.WebForms
                     }
                     else
                     {
+                        //if (!string.IsNullOrEmpty(HdfID.Value))
+                        //{
+                        //    int _id = Convert.ToInt32(HdfID.Value);
+                        //    var Query = (from objSetor in ctx.tb_setores select objSetor);
+                        //    Setor = Query.FirstOrDefault();
+                        //}
                         if (!string.IsNullOrEmpty(HdfID.Value))
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
-
-                            var Query = (from objSetor in ctx.tb_setores select objSetor);
-
-                            Setor = Query.FirstOrDefault();
+                            Setor = ctx.tb_setores.FirstOrDefault(objSetor => objSetor.id_setor == _id);
                         }
                         Setor.nomeSetor = txtNomeSetor.Text;
                         Setor.deleted = 0;

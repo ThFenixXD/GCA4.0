@@ -110,15 +110,18 @@ namespace Project_GCA_4._0.WebForms
                     {
                         //Não existe software cadastrado ..... aqui 
 
+                        //if (!string.IsNullOrEmpty(HdfID.Value))
+                        //{
+                        //    int _id = Convert.ToInt32(HdfID.Value);
+                        //    var Query2 = (from objSoftware in ctx.tb_software select objSoftware);
+                        //    Software = Query2.FirstOrDefault();
+                        //}
                         if (!string.IsNullOrEmpty(HdfID.Value))
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
-
-                            var Query2 = (from objSoftware in ctx.tb_software select objSoftware);
-
-                            Software = Query2.FirstOrDefault();
+                            Software = ctx.tb_software.FirstOrDefault(objSoftware => objSoftware.id_software == _id);
                         }
-                        var Query = (from objSoftware in ctx.tb_software select objSoftware);
+                        //var Query = (from objSoftware in ctx.tb_software select objSoftware);
 
                         Software.nomeSoftware = txtNomeSoftware.Text;
                         Software.versao = txtVersão.Text;

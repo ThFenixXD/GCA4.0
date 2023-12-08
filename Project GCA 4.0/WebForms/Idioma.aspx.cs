@@ -53,32 +53,58 @@ namespace Project_GCA_4._0.WebForms
         {
             using (GCAEntities ctx = new GCAEntities())
             {
-                tb_idiomas idioma = new tb_idiomas();
+                tb_idiomas Idioma = new tb_idiomas();
+                tb_idiomas Idioma2 = new tb_idiomas();
                 try
                 {
-                    if (!string.IsNullOrEmpty(HdfID.Value))
+                    string _idioma = txtIdioma.Text.Trim();
+                    string _sigla = txtSigla.Text.Trim();
+                    string _pais = txtPaisOrigem.Text.Trim();
+
+                    var strsql = (from objIdioma in ctx.tb_idiomas
+                                  where objIdioma.idioma == _idioma &&
+                                  objIdioma.sigla == _sigla &&
+                                  objIdioma.pais == _pais &&
+                                  objIdioma.deleted == 0
+                                  select objIdioma);
+
+                    Idioma2 = strsql.FirstOrDefault();
+
+                    //if (strsql.Count() > 0)
+                    if (strsql.Any())
                     {
-                        int _id = Convert.ToInt32(HdfID.Value);
-
-                        var Query = (from objidioma in ctx.tb_idiomas select objidioma);
-
-                        idioma = Query.FirstOrDefault();
+                        Response.Write("Esse Idioma já foi registrado");
                     }
-                    idioma.idioma = txtIdioma.Text;
-                    idioma.sigla = txtSigla.Text;
-                    idioma.pais = txtPaisOrigem.Text;
-                    idioma.deleted = 0;
-
-                    if (string.IsNullOrEmpty(HdfID.Value))
+                    else
                     {
-                        ctx.tb_idiomas.Add(idioma);
-                    }
+                        //if (!string.IsNullOrEmpty(HdfID.Value))
+                        //{
+                        //    int _id = Convert.ToInt32(HdfID.Value);
+                        //    var Query = (from objidioma in ctx.tb_idiomas select objidioma);
+                        //    idioma = Query.FirstOrDefault();
+                        //}
+                        if (!string.IsNullOrEmpty(HdfID.Value))
+                        {
+                            int _id = Convert.ToInt32(HdfID.Value);
+                            Idioma = ctx.tb_idiomas.FirstOrDefault(objIdioma => objIdioma.id_idioma == _id);
+                        }
 
-                    ctx.SaveChanges();
-                    EscondePaineis();
-                    LimpaCampos();
-                    PnlConsultarIdiomas.Visible = true;
-                    AtualizaGridIdioma();
+                        Idioma.idioma = txtIdioma.Text;
+                        Idioma.sigla = txtSigla.Text;
+                        Idioma.pais = txtPaisOrigem.Text;
+                        Idioma.deleted = 0;
+
+                        if (string.IsNullOrEmpty(HdfID.Value))
+                        {
+                            ctx.tb_idiomas.Add(Idioma);
+                        }
+
+                        ctx.SaveChanges();
+                        EscondePaineis();
+                        LimpaCampos();
+                        PnlConsultarIdiomas.Visible = true;
+                        AtualizaGridIdioma();
+                    }
                 }
                 catch (Exception ex)
                 {

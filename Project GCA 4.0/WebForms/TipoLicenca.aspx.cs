@@ -75,13 +75,16 @@ namespace Project_GCA_4._0.WebForms
                     }
                     else
                     {
+                        //if (!string.IsNullOrEmpty(HdfID.Value))
+                        //{
+                        //    int _id = Convert.ToInt32(HdfID.Value);
+                        //    var Query = (from objTipoLicenca in ctx.tb_tipoLicenca select objTipoLicenca);
+                        //    TipoLicenca = Query.FirstOrDefault();
+                        //}
                         if (!string.IsNullOrEmpty(HdfID.Value))
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
-
-                            var Query = (from objTipoLicenca in ctx.tb_tipoLicenca select objTipoLicenca);
-
-                            TipoLicenca = Query.FirstOrDefault();
+                            TipoLicenca = ctx.tb_tipoLicenca.FirstOrDefault(objTipoLicenca => objTipoLicenca.id_tipoLicenca == _id);
                         }
                         TipoLicenca.tipoLicenca = txtTipoLicenca.Text;
                         TipoLicenca.prazoLicenca = txtPrazoLicenca.Text;

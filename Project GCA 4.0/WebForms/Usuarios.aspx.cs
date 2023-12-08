@@ -76,7 +76,10 @@ namespace Project_GCA_4._0.WebForms
                     string _funcao = txtFuncaoUsuario.Text.Trim();
                     int _setor = Convert.ToInt32(ddlSetorUsuario.SelectedValue);
                     var strsql = (from objUsuario in ctx.tb_usuarios
-                                  where objUsuario.nomeUsuario == _nomeusuario && objUsuario.funcaoUsuario == _funcao && objUsuario.id_setor == _setor && objUsuario.deleted == 0
+                                  where objUsuario.nomeUsuario == _nomeusuario && 
+                                  objUsuario.funcaoUsuario == _funcao && 
+                                  objUsuario.id_setor == _setor && 
+                                  objUsuario.deleted == 0
                                   select objUsuario);
 
                     Usuario2 = strsql.FirstOrDefault();
@@ -84,19 +87,22 @@ namespace Project_GCA_4._0.WebForms
                     //if (strsql.Count() > 0)
                     if (strsql.Any())
                     {
-                        // ja existe software cadastrado
                         Response.Write("Esse Usuário já foi registrado");
                     }
                     else
                     {
+                        //if (!string.IsNullOrEmpty(HdfID.Value))
+                        //{
+                        //    int _id = Convert.ToInt32(HdfID.Value);
+                        //    var Query = (from objUsuario in ctx.tb_usuarios select objUsuario);
+                        //    Usuario = Query.FirstOrDefault();
+                        //}
                         if (!string.IsNullOrEmpty(HdfID.Value))
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
-
-                            var Query = (from objUsuario in ctx.tb_usuarios select objUsuario);
-
-                            Usuario = Query.FirstOrDefault();
+                            Usuario = ctx.tb_usuarios.FirstOrDefault(objUsuario => objUsuario.id_usuario == _id);
                         }
+
                         Usuario.nomeUsuario = txtNomeUsuario.Text;
                         Usuario.funcaoUsuario = txtFuncaoUsuario.Text;
                         Usuario.id_setor = Convert.ToInt32(ddlSetorUsuario.SelectedValue);

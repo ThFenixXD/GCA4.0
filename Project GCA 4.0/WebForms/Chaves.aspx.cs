@@ -61,7 +61,7 @@ namespace Project_GCA_4._0.WebForms
             DdlSoftware.Items.Insert(0, new ListItem("Selecionar"));
         }
 
-        protected void BtSalvarChaveAtivacao_Click(object sender, EventArgs e) 
+        protected void BtSalvarChaveAtivacao_Click(object sender, EventArgs e)
         {
             using (GCAEntities ctx = new GCAEntities())
             {
@@ -89,13 +89,17 @@ namespace Project_GCA_4._0.WebForms
                     }
                     else
                     {
+                        //if (!string.IsNullOrEmpty(HdfID.Value))
+                        //{
+                        //    int _id = Convert.ToInt32(HdfID.Value);
+                        //    var Query2 = (from objChave in ctx.tb_chaves select objChave);
+                        //    Chave = Query2.FirstOrDefault();
+                        //}
                         if (!string.IsNullOrEmpty(HdfID.Value))
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
 
-                            var Query2 = (from objChave in ctx.tb_chaves select objChave);
-
-                            Chave = Query2.FirstOrDefault();
+                            Chave = ctx.tb_chaves.FirstOrDefault(objChave => objChave.id_chave == _id);
                         }
                         var Query = (from objChaveAtivacao in ctx.tb_chaves select objChaveAtivacao).FirstOrDefault();
 

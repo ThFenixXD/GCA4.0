@@ -83,13 +83,16 @@ namespace Project_GCA_4._0.WebForms
                     }
                     else
                     {
+                        //if (!string.IsNullOrEmpty(HdfID.Value))
+                        //{
+                        //    int _id = Convert.ToInt32(HdfID.Value);
+                        //    var Query = (from objMaquina in ctx.tb_maquinas select objMaquina);
+                        //    Maquina = Query.FirstOrDefault();
+                        //}
                         if (!string.IsNullOrEmpty(HdfID.Value))
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
-
-                            var Query = (from objMaquina in ctx.tb_maquinas select objMaquina);
-
-                            Maquina = Query.FirstOrDefault();
+                            Maquina = ctx.tb_maquinas.FirstOrDefault(objMaquina => objMaquina.id_maquina == _id);
                         }
                         Maquina.nomeMaquina = txtNomeMaquina.Text;
                         Maquina.id_setor = Convert.ToInt32(DdlSetorMaquina.SelectedValue);

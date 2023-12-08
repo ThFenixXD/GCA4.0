@@ -126,13 +126,17 @@ namespace Project_GCA_4._0.WebForms
                     }
                     else
                     {
+                        //if (!string.IsNullOrEmpty(HdfID.Value))
+                        //{
+                        //    int _id = Convert.ToInt32(HdfID.Value);
+                        //    var Query = (from objCompatibilidade in ctx.tb_compatibilidadeSO select objCompatibilidade);
+                        //    Compatibilidade = Query.FirstOrDefault();
+                        //}
                         if (!string.IsNullOrEmpty(HdfID.Value))
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
 
-                            var Query = (from objCompatibilidade in ctx.tb_compatibilidadeSO select objCompatibilidade);
-
-                            Compatibilidade = Query.FirstOrDefault();
+                            Compatibilidade = ctx.tb_compatibilidadeSO.FirstOrDefault(objCompatibilidade => objCompatibilidade.id_compatibilidadeSO == _id);
                         }
                         Compatibilidade.compatibilidadeSO = txtCompatibilidade.Text;
                         Compatibilidade.deleted = 0;
