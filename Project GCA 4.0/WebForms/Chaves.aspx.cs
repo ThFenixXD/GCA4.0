@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ProjectGCA4._0.Útil;
 
+
 namespace Project_GCA_4._0.WebForms
 {
     public partial class Chaves : System.Web.UI.Page
@@ -18,7 +19,6 @@ namespace Project_GCA_4._0.WebForms
 
         protected void LimpaCampos()
         {
-            txtPrazoLicenca.Text =
             HdfID.Value =
             string.Empty;
         }
@@ -42,16 +42,20 @@ namespace Project_GCA_4._0.WebForms
 
                 if (!string.IsNullOrEmpty(Query.ToString()))
                 {
+                    DdlSoftware.SelectedValue = Query.id_software.ToString();
                     txtDataDeCompra.Text = Query.dataDeCompra;
+                    txtChaveAtivacao.Text = Query.chave;
+                    DdlTipoLicenca.SelectedValue = Query.id_tipoLicenca.ToString();
+                    txtPrazoLicenca.Text = Query.prazoLicenca;
                 }
             }
         }
 
-        protected void PopulaDdlTipoDeLicenca()
+        protected void PopulaDdlTipoLicenca()
         {
-            DdlTipoDeLicenca.DataSource = Framework.GetDataTable("SELECT id_tipoLicenca, tipoLicenca FROM tb_tipoLicenca WHERE deleted = 0");
-            DdlTipoDeLicenca.DataBind();
-            DdlTipoDeLicenca.Items.Insert(0, new ListItem("Selecionar"));
+            DdlTipoLicenca.DataSource = Framework.GetDataTable("SELECT id_tipoLicenca, tipoLicenca FROM tb_tipoLicenca WHERE deleted = 0");
+            DdlTipoLicenca.DataBind();
+            DdlTipoLicenca.Items.Insert(0, new ListItem("Selecionar"));
         }
 
         protected void PopulaDdlSoftware()
@@ -71,7 +75,7 @@ namespace Project_GCA_4._0.WebForms
                 {
                     string _chavedeativacao = txtChaveAtivacao.Text.Trim();
                     string _datadecompra = txtDataDeCompra.Text.Trim();
-                    int _tipodelicenca = Convert.ToInt32(DdlTipoDeLicenca.SelectedValue);
+                    int _tipodelicenca = Convert.ToInt32(DdlTipoLicenca.SelectedValue);
                     int _software = Convert.ToInt32(DdlSoftware.SelectedValue);
 
 
@@ -101,10 +105,9 @@ namespace Project_GCA_4._0.WebForms
 
                             Chave = ctx.tb_chaves.FirstOrDefault(objChave => objChave.id_chave == _id);
                         }
-                        var Query = (from objChaveAtivacao in ctx.tb_chaves select objChaveAtivacao).FirstOrDefault();
 
                         Chave.dataDeCompra = txtDataDeCompra.Text;
-                        Chave.id_tipoLicenca = Convert.ToInt32(DdlTipoDeLicenca.SelectedValue);
+                        Chave.id_tipoLicenca = Convert.ToInt32(DdlTipoLicenca.SelectedValue);
                         Chave.prazoLicenca = txtPrazoLicenca.Text;
                         Chave.id_software = Convert.ToInt32(DdlSoftware.SelectedValue);
                         Chave.chave = txtChaveAtivacao.Text;
@@ -120,11 +123,12 @@ namespace Project_GCA_4._0.WebForms
                         LimpaCampos();
                         PnlConsultarChaves.Visible = true;
                         AtualizaGridChaves();
+                        Framework.AlertaSucesso(this);
                     }
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("Erro, " + ex.Message);
+                    Framework.AlertaErro(this, ex);
                 }
             }
         }
@@ -187,7 +191,7 @@ namespace Project_GCA_4._0.WebForms
         {
             if (!IsPostBack)
             {
-                PopulaDdlTipoDeLicenca();
+                PopulaDdlTipoLicenca();
                 PopulaDdlSoftware();
             }
         }
@@ -198,4 +202,16 @@ namespace Project_GCA_4._0.WebForms
             PnlCadastroChaveAtivacao.Visible = true;
         }
     }
+
+
+        //// Verificar alguma condição (por exemplo, ao clicar em um botão)
+        //if (algumaCondicao)
+        //{
+        //    // Registrar um script JavaScript para mostrar um alerta
+        //    string script = "alert('Mensagem de Alerta!');";
+        //    ClientScript.RegisterStartupScript(this.GetType(), "Alerta", script, true);
+        //}
+
+
+
 }

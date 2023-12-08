@@ -21,11 +21,11 @@
                 </div>
                 <div class="row">
                     <asp:Label ID="lbTipoDeLicenca" CssClass="lbTextBlock col-4 col-md-4 col-sm-4 p-0" runat="server" Text="Tipo de Licença"></asp:Label>
-                    <asp:DropDownList ID="DdlTipoDeLicenca" CssClass="col-8 col-md-8 col-sm-8" runat="server" DataTextField="tipoLicenca" DataValueField="id_tipoLicenca"></asp:DropDownList>
+                    <asp:DropDownList ID="DdlTipoLicenca" CssClass="col-8 col-md-8 col-sm-8" runat="server" DataTextField="tipoLicenca" DataValueField="id_tipoLicenca"></asp:DropDownList>
                 </div>
                 <div class="row">
                     <asp:Label ID="lbPrazoDeLicenca" CssClass="lbTextBlock col-4 col-md-4 col-sm-4 p-0" runat="server" Text="Prazo de Licença"></asp:Label>
-                    <asp:TextBox ID="txtPrazoLicenca" CssClass="col-8 col-md-8 col-sm-8" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtPrazoLicenca" CssClass="col-8 col-md-8 col-sm-8" runat="server" DataTextField="prazoLicenca" DataValueField="id_tipoLicenca"></asp:TextBox>
                 </div>
                 <div class="row">
                     <asp:Label ID="lbChaveAtivacao" CssClass="lbTextBlock col-4 col-md-4 col-sm-4 p-0" runat="server" Text="Chave de Ativação"></asp:Label>
@@ -56,6 +56,7 @@
                                     <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
+                            <telerik:GridBoundColumn UniqueName="col_CodSoftware" DataField="id_chave" HeaderText="COD" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                             <telerik:GridBoundColumn UniqueName="col_Software" DataField="nomeSoftware" HeaderText="SOFTWARE" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                             <telerik:GridBoundColumn UniqueName="col_ChaveAtivacao" DataField="chave" HeaderText="CHAVE DE ATIVAÇÃO" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                             <telerik:GridBoundColumn UniqueName="col_DataDeCompra" DataField="dataDeCompra" HeaderText="DATA DE COMPRA" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>

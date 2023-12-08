@@ -97,6 +97,7 @@ namespace Project_GCA_4._0.WebForms
                         //    var Query = (from objUsuario in ctx.tb_usuarios select objUsuario);
                         //    Usuario = Query.FirstOrDefault();
                         //}
+
                         if (!string.IsNullOrEmpty(HdfID.Value))
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
@@ -117,11 +118,13 @@ namespace Project_GCA_4._0.WebForms
                         LimpaCampos();
                         PnlConsultarUsuarios.Visible = true;
                         AtualizaGridUsuarios();
+                        Framework.AlertaSucesso(this);
                     }
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("Erro, " + ex.Message);
+                    //Response.Write("Erro, " + ex.Message);
+                    Framework.AlertaErro(this, ex);
                 }
             }
         }

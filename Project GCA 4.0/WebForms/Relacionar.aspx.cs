@@ -16,6 +16,11 @@ namespace Project_GCA_4._0.WebForms
             PnlConsultarRelacionar.Visible = false;
         }
 
+        protected void LimpaCampos()
+        {
+            HdfID.Value = string.Empty;
+        }
+
         protected void AtualizaGridRelacionar()
         {
             GridRelacionar.DataSource = Framework.GetDataTable("SELECT RE.id_relacionar, US.id_usuario, US.nomeUsuario, MAQ.id_maquina, MAQ.nomeMaquina, SO.id_software, SO.nomeSoftware, CH.id_chave, CH.chave FROM tb_Relacionar RE INNER JOIN tb_usuarios US ON RE.id_usuario = US.id_usuario INNER JOIN tb_maquinas MAQ ON RE.id_maquina = MAQ.id_maquina INNER JOIN tb_software SO ON RE.id_software = SO.id_software INNER JOIN tb_chaves CH ON RE.id_chave = CH.id_chave WHERE RE.deleted = 0 ORDER BY RE.id_relacionar");
@@ -82,16 +87,6 @@ namespace Project_GCA_4._0.WebForms
                 {
                     int _chavedeativacaoID = Convert.ToInt32(DdlRelacionarChaveAtivacao.SelectedValue);
 
-
-                    //var strsql = (from objRelacao in ctx.tb_relacionar
-                    //              where
-                    //              objRelacao.id_usuario == _usuariorelacionarID &&
-                    //              objRelacao.id_maquina == _maquinarelacionarID &&
-                    //              objRelacao.id_software == _softwarerelacionarID &&
-                    //              objRelacao.id_chave == _chavedeativacaoID &&
-                    //              objRelacao.deleted == 0
-                    //              select objRelacao);
-
                     var strsql = (from objRelacao in ctx.tb_relacionar
                                   where
                                   objRelacao.id_chave == _chavedeativacaoID &&
@@ -103,17 +98,10 @@ namespace Project_GCA_4._0.WebForms
                     //if (strsql.Count() > 0)
                     if (strsql.Any())
                     {
-                        // ja existe software cadastrado
                         Response.Write("Essa Chave já está sendo utilizada");
                     }
                     else
                     {
-                        //if (!string.IsNullOrEmpty(HdfID.Value))
-                        //{
-                        //    int _id = Convert.ToInt32(HdfID.Value);
-                        //    var Query = (from objRelacao in ctx.tb_relacionar select objRelacao);
-                        //    Relacao = Query.FirstOrDefault();
-                        //}
                         if (!string.IsNullOrEmpty(HdfID.Value))
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
@@ -133,121 +121,170 @@ namespace Project_GCA_4._0.WebForms
                         EscondePaineis();
                         PnlConsultarRelacionar.Visible = true;
                         AtualizaGridRelacionar();
+
+                        tb_maquinas Maquina = new tb_maquinas();
+                        try
+                        {
+                            if (!string.IsNullOrEmpty(HdfID.Value))
+                            {
+                                int _id = Convert.ToInt32(HdfID.Value);
+                                var Query = (from objMaquina in ctx.tb_maquinas select objMaquina);
+                                Maquina = Query.FirstOrDefault();
+
+                            }
+                            Maquina.status = 1;
+
+                            if (string.IsNullOrEmpty(HdfID.Value))
+                            {
+                                ctx.tb_maquinas.Add(Maquina);
+                            }
+                            ctx.SaveChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            Response.Write("Erro, " + ex.Message);
+                        }
+
+                        tb_chaves Chave = new tb_chaves();
+                        try
+                        {
+                            if (!string.IsNullOrEmpty(HdfID.Value))
+                            {
+                                int _id = Convert.ToInt32(HdfID.Value);
+                                var Query2 = (from objChave in ctx.tb_chaves select objChave);
+                                Chave = Query2.FirstOrDefault();
+                            }
+                            var Query = (from objChaveAtivacao in ctx.tb_chaves select objChaveAtivacao).FirstOrDefault();
+
+                            Chave.status = 1;
+
+                            if (string.IsNullOrEmpty(HdfID.Value))
+                            {
+                                ctx.tb_chaves.Add(Chave);
+                            }
+                            ctx.SaveChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            Response.Write("Erro, " + ex.Message);
+                        }
+                        Framework.AlertaSucesso(this);
                     }
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("Erro, " + ex.Message);
+                    //Response.Write("Erro, " + ex.Message);
+                    Framework.AlertaErro(this, ex);
                 }
             }
 
-            using (GCAEntities ctx = new GCAEntities())
-            {
-                tb_maquinas Maquina = new tb_maquinas();
-                try
-                {
-                    if (!string.IsNullOrEmpty(HdfID.Value))
-                    {
-                        int _id = Convert.ToInt32(HdfID.Value);
-                        var Query = (from objMaquina in ctx.tb_maquinas select objMaquina);
-                        Maquina = Query.FirstOrDefault();
+            //using (GCAEntities ctx = new GCAEntities())
+            //{
+            //    tb_maquinas Maquina = new tb_maquinas();
+            //    try
+            //    {
+            //        if (!string.IsNullOrEmpty(HdfID.Value))
+            //        {
+            //            int _id = Convert.ToInt32(HdfID.Value);
+            //            var Query = (from objMaquina in ctx.tb_maquinas select objMaquina);
+            //            Maquina = Query.FirstOrDefault();
 
-                    }
-                    Maquina.status = 1;
+            //        }
+            //        Maquina.status = 1;
 
-                    if (string.IsNullOrEmpty(HdfID.Value))
-                    {
-                        ctx.tb_maquinas.Add(Maquina);
-                    }
-                    ctx.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    Response.Write("Erro, " + ex.Message);
-                }
-            }
+            //        if (string.IsNullOrEmpty(HdfID.Value))
+            //        {
+            //            ctx.tb_maquinas.Add(Maquina);
+            //        }
+            //        ctx.SaveChanges();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Response.Write("Erro, " + ex.Message);
+            //    }
+            //}
 
-            using (GCAEntities ctx = new GCAEntities())
-            {
-                tb_chaves Chave = new tb_chaves();
-                try
-                {
-                    if (!string.IsNullOrEmpty(HdfID.Value))
-                    {
-                        int _id = Convert.ToInt32(HdfID.Value);
-                        var Query2 = (from objChave in ctx.tb_chaves select objChave);
-                        Chave = Query2.FirstOrDefault();
-                    }
-                    var Query = (from objChaveAtivacao in ctx.tb_chaves select objChaveAtivacao).FirstOrDefault();
+            //using (GCAEntities ctx = new GCAEntities())
+            //{
+            //    tb_chaves Chave = new tb_chaves();
+            //    try
+            //    {
+            //        if (!string.IsNullOrEmpty(HdfID.Value))
+            //        {
+            //            int _id = Convert.ToInt32(HdfID.Value);
+            //            var Query2 = (from objChave in ctx.tb_chaves select objChave);
+            //            Chave = Query2.FirstOrDefault();
+            //        }
+            //        var Query = (from objChaveAtivacao in ctx.tb_chaves select objChaveAtivacao).FirstOrDefault();
 
-                    Chave.status = 1;
+            //        Chave.status = 1;
 
-                    if (string.IsNullOrEmpty(HdfID.Value))
-                    {
-                        ctx.tb_chaves.Add(Chave);
-                    }
-                    ctx.SaveChanges();
-                }
-                catch (Exception ex)
-            {
-                Response.Write("Erro, " + ex.Message);
-            }
+            //        if (string.IsNullOrEmpty(HdfID.Value))
+            //        {
+            //            ctx.tb_chaves.Add(Chave);
+            //        }
+            //        ctx.SaveChanges();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Response.Write("Erro, " + ex.Message);
+            //    }
+            //}
         }
-    }
 
-    protected void CancelarRelacionar_Click(object sender, EventArgs e)
-    {
-        EscondePaineis();
-        PnlConsultarRelacionar.Visible = true;
-    }
-
-    protected void GridRelacionar_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
-    {
-        GridRelacionar.DataSource = Framework.GetDataTable("SELECT RE.id_relacionar, US.id_usuario, US.nomeUsuario, MAQ.id_maquina, MAQ.nomeMaquina, SO.id_software, SO.nomeSoftware, CH.id_chave, CH.chave " +
-                                                           "FROM tb_Relacionar RE " +
-                                                           "INNER JOIN tb_usuarios US " +
-                                                           "ON RE.id_usuario = US.id_usuario " +
-                                                           "INNER JOIN tb_maquinas MAQ " +
-                                                           "ON RE.id_maquina = MAQ.id_maquina " +
-                                                           "INNER JOIN tb_software SO " +
-                                                           "ON RE.id_software = SO.id_software " +
-                                                           "INNER JOIN tb_chaves CH " +
-                                                           "ON RE.id_chave = CH.id_chave " +
-                                                           "WHERE RE.deleted = 0 " +
-                                                           "ORDER BY RE.id_relacionar");
-    }
-
-    protected void GridRelacionar_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
-    {
-        try
+        protected void CancelarRelacionar_Click(object sender, EventArgs e)
         {
-            int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["id_relacionar"]);
+            EscondePaineis();
+            PnlConsultarRelacionar.Visible = true;
+        }
 
-            switch (e.CommandName)
+        protected void GridRelacionar_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
+        {
+            GridRelacionar.DataSource = Framework.GetDataTable("SELECT RE.id_relacionar, US.id_usuario, US.nomeUsuario, MAQ.id_maquina, MAQ.nomeMaquina, SO.id_software, SO.nomeSoftware, CH.id_chave, CH.chave " +
+                                                               "FROM tb_Relacionar RE " +
+                                                               "INNER JOIN tb_usuarios US " +
+                                                               "ON RE.id_usuario = US.id_usuario " +
+                                                               "INNER JOIN tb_maquinas MAQ " +
+                                                               "ON RE.id_maquina = MAQ.id_maquina " +
+                                                               "INNER JOIN tb_software SO " +
+                                                               "ON RE.id_software = SO.id_software " +
+                                                               "INNER JOIN tb_chaves CH " +
+                                                               "ON RE.id_chave = CH.id_chave " +
+                                                               "WHERE RE.deleted = 0 " +
+                                                               "ORDER BY RE.id_relacionar");
+        }
+
+        protected void GridRelacionar_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+        {
+            try
             {
-                case "opSelecionar":
-                    break;
+                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["id_relacionar"]);
 
-                case "opEditar":
-                    EscondePaineis();
-                    PopulaCamposRelacionar(_cdID);
-                    PnlRelacionar.Visible = true;
-                    break;
+                switch (e.CommandName)
+                {
+                    case "opSelecionar":
+                        break;
 
-                case "opExcluir":
-                    using (GCAEntities ctx = new GCAEntities())
-                    {
-                        tb_relacionar Relacionar = new tb_relacionar();
+                    case "opEditar":
+                        EscondePaineis();
+                        PopulaCamposRelacionar(_cdID);
+                        PnlRelacionar.Visible = true;
+                        break;
 
-                        int ID = _cdID;
-                        HdfID.Value = _cdID.ToString();
+                    case "opExcluir":
+                        using (GCAEntities ctx = new GCAEntities())
+                        {
+                            tb_relacionar Relacionar = new tb_relacionar();
 
-                        var Query = (from objRelacionar in ctx.tb_relacionar where objRelacionar.id_relacionar == ID select objRelacionar).FirstOrDefault();
+                            int ID = _cdID;
+                            HdfID.Value = _cdID.ToString();
 
-                        Query.deleted = 1;
-                        ctx.SaveChanges();
-                        AtualizaGridRelacionar();
-                    }
+                            var Query = (from objRelacionar in ctx.tb_relacionar where objRelacionar.id_relacionar == ID select objRelacionar).FirstOrDefault();
+
+                            Query.deleted = 1;
+                            ctx.SaveChanges();
+                            AtualizaGridRelacionar();
+                        }
 
                         using (GCAEntities ctx = new GCAEntities())
                         {
@@ -302,29 +339,30 @@ namespace Project_GCA_4._0.WebForms
                             }
                         }
                         break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Erro, " + ex.Message);
             }
         }
-        catch (Exception ex)
+
+        protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Write("Erro, " + ex.Message);
+            if (!IsPostBack)
+            {
+                PopulaDdlRelacionarUsuario();
+                PopulaDdlRelacionarMaquina();
+                PopulaDdlRelacionarSoftware();
+                PopulaDdlRelacionarChaveAtivacao();
+            }
+        }
+
+        protected void btCadastroRelacionar_Click(object sender, EventArgs e)
+        {
+            EscondePaineis();
+            PnlRelacionar.Visible = true;
+            LimpaCampos();
         }
     }
-
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        if (!IsPostBack)
-        {
-            PopulaDdlRelacionarUsuario();
-            PopulaDdlRelacionarMaquina();
-            PopulaDdlRelacionarSoftware();
-            PopulaDdlRelacionarChaveAtivacao();
-        }
-    }
-
-    protected void btCadastroRelacionar_Click(object sender, EventArgs e)
-    {
-        EscondePaineis();
-        PnlRelacionar.Visible = true;
-    }
-}
 }

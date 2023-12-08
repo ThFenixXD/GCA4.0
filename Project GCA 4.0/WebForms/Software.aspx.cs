@@ -44,7 +44,12 @@ namespace Project_GCA_4._0.WebForms
                 if (!string.IsNullOrEmpty(Query.ToString()))
                 {
                     txtNomeSoftware.Text = Query.nomeSoftware;
+                    txtVersão.Text = Query.versao;
+                    txtAno.Text = Query.ano;
                     txtFabricante.Text = Query.fabricante;
+                    ddlIdioma.SelectedValue = Query.id_idioma.ToString();
+                    ddlTecnologia.SelectedValue = Query.id_tecnologia.ToString();
+                    ddlCompatibilidade.SelectedValue = Query.id_compatibilidadeSO.ToString();
                 }
             }
         }
@@ -116,12 +121,12 @@ namespace Project_GCA_4._0.WebForms
                         //    var Query2 = (from objSoftware in ctx.tb_software select objSoftware);
                         //    Software = Query2.FirstOrDefault();
                         //}
+
                         if (!string.IsNullOrEmpty(HdfID.Value))
                         {
                             int _id = Convert.ToInt32(HdfID.Value);
                             Software = ctx.tb_software.FirstOrDefault(objSoftware => objSoftware.id_software == _id);
                         }
-                        //var Query = (from objSoftware in ctx.tb_software select objSoftware);
 
                         Software.nomeSoftware = txtNomeSoftware.Text;
                         Software.versao = txtVersão.Text;
@@ -141,11 +146,13 @@ namespace Project_GCA_4._0.WebForms
                         LimpaCampos();
                         PnlConsultarSoftware.Visible = true;
                         AtualizaGridSoftware();
+                        Framework.AlertaSucesso(this);
                     }
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("Erro, " + ex.Message);
+                    //Response.Write("Erro, " + ex.Message);
+                    Framework.AlertaErro(this, ex);
                 }
             }
         }
@@ -166,7 +173,7 @@ namespace Project_GCA_4._0.WebForms
         {
             try
             {
-                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["ID_Software"]);
+                int _cdID = Convert.ToInt32(e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["id_software"]);
 
                 switch (e.CommandName)
                 {
@@ -177,7 +184,7 @@ namespace Project_GCA_4._0.WebForms
                         EscondePaineis();
                         LimpaCampos();
                         PopulaCamposCadastroSoftware(_cdID);
-                        PnlConsultarSoftware.Visible = true;
+                        PnlCadastroSoftware.Visible = true;
                         break;
 
                     case "opExcluir":

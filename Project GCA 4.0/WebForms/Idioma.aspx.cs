@@ -105,10 +105,12 @@ namespace Project_GCA_4._0.WebForms
                         PnlConsultarIdiomas.Visible = true;
                         AtualizaGridIdioma();
                     }
+                    Framework.AlertaSucesso(this);
                 }
                 catch (Exception ex)
                 {
-                    Response.Write("Erro, " + ex.Message);
+                    //Response.Write("Erro, " + ex.Message);
+                    Framework.AlertaErro(this, ex);
                 }
             }
         }

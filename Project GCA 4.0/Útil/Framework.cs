@@ -39,5 +39,19 @@ namespace ProjectGCA4._0.Útil
             foreach (Control ctrl in container.Controls)
                 EscondePaineis(ctrl);
         }
+
+        public static void AlertaSucesso(Page Pagina)
+        {
+            string script = "alert('Salvo com Sucesso!');";
+            Pagina.ClientScript.RegisterStartupScript(Pagina.GetType(), "Alerta", script, true);
+        }
+
+        public static void AlertaErro(Page Pagina, Exception ex)
+        {
+            string script = "alert('Erro: " + ex.Message + "');";
+            Pagina.ClientScript.RegisterStartupScript(Pagina.GetType(), "Alerta", script, true);
+        }
+
+
     }
 }

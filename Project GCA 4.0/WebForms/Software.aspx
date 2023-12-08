@@ -64,6 +64,7 @@
                                     <asp:Button ID="btexcluir" runat="server" Text="Excluir" CommandName="opExcluir" />
                                 </ItemTemplate>
                             </telerik:GridTemplateColumn>
+                            <telerik:GridBoundColumn UniqueName="col_CodSoftware" DataField="id_software" HeaderText="COD" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                             <telerik:GridBoundColumn UniqueName="col_Software" DataField="nomeSoftware" HeaderText="SOFTWARE" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                             <telerik:GridBoundColumn UniqueName="col_Versao" DataField="versao" HeaderText="VERSÃO" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                             <telerik:GridBoundColumn UniqueName="col_Ano" DataField="ano" HeaderText="ANO" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
