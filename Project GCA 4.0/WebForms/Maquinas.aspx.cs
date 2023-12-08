@@ -25,7 +25,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridMaquinas()
         {
-            GridMaquinas.DataSource = Framework.GetDataTable("SELECT tb_maquinas.id_maquina, tb_maquinas.nomeMaquina, tb_setores.id_setor , tb_setores.nomeSetor FROM tb_Maquinas INNER JOIN tb_setores ON tb_maquinas.id_setor = tb_setores.id_setor WHERE tb_maquinas.deleted = 0 Order By NomeMaquina");
+            GridMaquinas.DataSource = Framework.GetDataTable("SELECT MAQ.id_maquina, MAQ.nomeMaquina, SE.id_setor , SE.nomeSetor, MAQ.status FROM tb_Maquinas MAQ INNER JOIN tb_setores SE ON MAQ.id_setor = SE.id_setor  WHERE MAQ.deleted = 0  ORDER BY MAQ.NomeMaquina");
             GridMaquinas.DataBind();
         }
 
@@ -122,7 +122,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridMaquinas_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridMaquinas.DataSource = Framework.GetDataTable("SELECT tb_maquinas.id_maquina, tb_maquinas.nomeMaquina, tb_setores.id_setor , tb_setores.nomeSetor FROM tb_Maquinas INNER JOIN tb_setores ON tb_maquinas.id_setor = tb_setores.id_setor WHERE tb_maquinas.deleted = 0 Order By NomeMaquina");
+            GridMaquinas.DataSource = Framework.GetDataTable("SELECT MAQ.id_maquina, MAQ.nomeMaquina, SE.id_setor , SE.nomeSetor, MAQ.status FROM tb_Maquinas MAQ INNER JOIN tb_setores SE ON MAQ.id_setor = SE.id_setor  WHERE MAQ.deleted = 0  ORDER BY MAQ.NomeMaquina");
         }
 
         protected void GridMaquinas_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)

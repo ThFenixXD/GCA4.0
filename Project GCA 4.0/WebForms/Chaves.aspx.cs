@@ -25,7 +25,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridChaves()
         {
-            GridChaves.DataSource = Framework.GetDataTable("SELECT CH.id_chave , CH.chave, CH.dataDeCompra, TPL.id_tipoLicenca, TPL.tipoLicenca, TPL.prazoLicenca, SO.id_software, SO.nomeSoftware FROM tb_chaves CH INNER JOIN tb_tipoLicenca TPL ON CH.id_tipoLicenca = TPL.id_tipoLicenca INNER JOIN tb_software SO ON CH.id_software = SO.id_software WHERE CH.deleted = 0 ORDER BY CH.chave");
+            GridChaves.DataSource = Framework.GetDataTable("SELECT CH.id_chave , CH.chave, CH.dataDeCompra, TPL.id_tipoLicenca, TPL.tipoLicenca, TPL.prazoLicenca, SO.id_software, SO.nomeSoftware, CH.status FROM tb_chaves CH INNER JOIN tb_tipoLicenca TPL ON CH.id_tipoLicenca = TPL.id_tipoLicenca INNER JOIN tb_software SO ON CH.id_software = SO.id_software WHERE CH.deleted = 0 ORDER BY CH.chave");
             GridChaves.DataBind();
         }
 
@@ -134,7 +134,8 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridChaves_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridChaves.DataSource = Framework.GetDataTable("SELECT CH.id_chave , CH.chave, CH.dataDeCompra, TPL.id_tipoLicenca, TPL.tipoLicenca, TPL.prazoLicenca, SO.id_software, SO.nomeSoftware FROM tb_chaves CH INNER JOIN tb_tipoLicenca TPL ON CH.id_tipoLicenca = TPL.id_tipoLicenca INNER JOIN tb_software SO ON CH.id_software = SO.id_software WHERE CH.deleted = 0 ORDER BY CH.chave");
+            GridChaves.DataSource = Framework.GetDataTable("SELECT CH.id_chave , CH.chave, CH.dataDeCompra, TPL.id_tipoLicenca, TPL.tipoLicenca, TPL.prazoLicenca, SO.id_software, SO.nomeSoftware, CH.status FROM tb_chaves CH INNER JOIN tb_tipoLicenca TPL ON CH.id_tipoLicenca = TPL.id_tipoLicenca INNER JOIN tb_software SO ON CH.id_software = SO.id_software WHERE CH.deleted = 0 ORDER BY CH.chave");
+            //GridChaves.DataSource = Framework.GetDataTable("select * from tb_chaves");
         }
 
         protected void GridChaves_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
