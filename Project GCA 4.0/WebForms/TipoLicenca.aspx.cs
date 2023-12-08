@@ -24,7 +24,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridLicenca()
         {
-            GridLicencas.DataSource = Framework.GetDataTable("SELECT id_tipoLicenca, tipoLicenca FROM tb_tipoLicenca WHERE deleted = 0 ORDER BY tipoLicenca");
+            GridLicencas.DataSource = Framework.GetDataTable("SELECT id_tipoLicenca, tipoLicenca, prazoLicenca FROM tb_tipoLicenca WHERE deleted = 0 ORDER BY tipoLicenca");
             GridLicencas.DataBind();
         }
 
@@ -114,7 +114,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridLicencas_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridLicencas.DataSource = Framework.GetDataTable("SELECT id_tipoLicenca, tipoLicenca FROM tb_tipoLicenca WHERE deleted = 0 ORDER BY tipoLicenca");
+            GridLicencas.DataSource = Framework.GetDataTable("SELECT id_tipoLicenca, tipoLicenca, prazoLicenca FROM tb_tipoLicenca WHERE deleted = 0 ORDER BY tipoLicenca");
         }
 
         protected void GridLicencas_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)

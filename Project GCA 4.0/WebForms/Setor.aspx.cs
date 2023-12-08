@@ -147,6 +147,7 @@ namespace Project_GCA_4._0.WebForms
 
                             Query.deleted = 1;
                             ctx.SaveChanges();
+                            AtualizaGridSetores();
                         }
                         break;
                 }

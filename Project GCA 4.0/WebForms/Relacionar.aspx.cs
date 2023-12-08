@@ -80,17 +80,20 @@ namespace Project_GCA_4._0.WebForms
                 tb_relacionar Relacao2 = new tb_relacionar();
                 try
                 {
-                    int _usuariorelacionarID = Convert.ToInt32(DdlRelacionarUsuario.SelectedValue);
-                    int _maquinarelacionarID = Convert.ToInt32(DdlRelacionarMaquina.SelectedValue);
-                    int _softwarerelacionarID = Convert.ToInt32(DdlRelacionarSoftware.SelectedValue);
                     int _chavedeativacaoID = Convert.ToInt32(DdlRelacionarChaveAtivacao.SelectedValue);
 
 
+                    //var strsql = (from objRelacao in ctx.tb_relacionar
+                    //              where
+                    //              objRelacao.id_usuario == _usuariorelacionarID &&
+                    //              objRelacao.id_maquina == _maquinarelacionarID &&
+                    //              objRelacao.id_software == _softwarerelacionarID &&
+                    //              objRelacao.id_chave == _chavedeativacaoID &&
+                    //              objRelacao.deleted == 0
+                    //              select objRelacao);
+
                     var strsql = (from objRelacao in ctx.tb_relacionar
                                   where
-                                  objRelacao.id_usuario == _usuariorelacionarID &&
-                                  objRelacao.id_maquina == _maquinarelacionarID &&
-                                  objRelacao.id_software == _softwarerelacionarID &&
                                   objRelacao.id_chave == _chavedeativacaoID &&
                                   objRelacao.deleted == 0
                                   select objRelacao);
@@ -101,7 +104,7 @@ namespace Project_GCA_4._0.WebForms
                     if (strsql.Any())
                     {
                         // ja existe software cadastrado
-                        Response.Write("Essa Máquina já foi registrada");
+                        Response.Write("Essa Chave já está sendo utilizada");
                     }
                     else
                     {

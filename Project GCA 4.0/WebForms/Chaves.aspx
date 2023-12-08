@@ -61,7 +61,7 @@
                             <telerik:GridBoundColumn UniqueName="col_DataDeCompra" DataField="dataDeCompra" HeaderText="DATA DE COMPRA" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                             <telerik:GridBoundColumn UniqueName="col_TipoDeLicenca" DataField="tipoLicenca" HeaderText="TIPO DE LICENCA" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                             <telerik:GridBoundColumn UniqueName="col_PrazoDeLicenca" DataField="prazoLicenca" HeaderText="PRAZO DE LICENCA" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
-                            <telerik:GridBoundColumn UniqueName="col_Status" DataField="status" HeaderText="STATUS"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn UniqueName="col_Status" DataField="status" HeaderText="STATUS" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"></telerik:GridBoundColumn>
                         </Columns>
                     </MasterTableView>
                 </telerik:RadGrid>

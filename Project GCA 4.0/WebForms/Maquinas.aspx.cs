@@ -50,7 +50,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void PopulaDdlSetorMaquina()
         {
-            DdlSetorMaquina.DataSource = Framework.GetDataTable("SELECT ID_Setor, NomeSetor FROM tb_Setores WHERE Deleted = 0");
+            DdlSetorMaquina.DataSource = Framework.GetDataTable("SELECT ID_Setor, NomeSetor FROM tb_Setores WHERE Deleted = 0 ORDER BY nomeSetor");
             DdlSetorMaquina.DataBind();
             DdlSetorMaquina.Items.Insert(0, new ListItem("Selecionar"));
         }
@@ -93,6 +93,7 @@ namespace Project_GCA_4._0.WebForms
                         }
                         Maquina.nomeMaquina = txtNomeMaquina.Text;
                         Maquina.id_setor = Convert.ToInt32(DdlSetorMaquina.SelectedValue);
+                        Maquina.status = 0;
                         Maquina.deleted = 0;
 
                         if (string.IsNullOrEmpty(HdfID.Value))
