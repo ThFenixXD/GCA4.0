@@ -25,7 +25,8 @@ namespace Project_GCA_4._0.WebForms
 
         protected void AtualizaGridSoftware()
         {
-            GridSoftware.DataSource = Framework.GetDataTable("SELECT SO.id_software, SO.nomeSoftware, SO.versao, SO.ano, SO.fabricante, IDI.id_idioma, IDI.idioma, TEC.id_tecnologia, TEC.tecnologia, CSO.id_compatibilidadeSO, CSO.compatibilidadeSO FROM tb_software SO INNER JOIN tb_idiomas IDI ON SO.id_idioma = IDI.id_idioma INNER JOIN tb_tecnologia TEC ON SO.id_tecnologia = TEC.id_tecnologia INNER JOIN tb_compatibilidadeSO CSO ON SO.id_compatibilidadeSO = CSO.id_compatibilidadeSO WHERE SO.deleted = 0 ORDER BY SO.nomeSoftware");
+            GridSoftware.DataSource = Framework.GetDataTable("SELECT SO.id_software, SO.nomeSoftware, SO.versao, SO.ano, FAB.id_fabricante, FAB.nomeFabricante, IDI.id_idioma, IDI.idioma, TEC.id_tecnologia, TEC.tecnologia, CSO.id_compatibilidadeSO, CSO.compatibilidadeSO  FROM tb_software SO INNER JOIN tb_idiomas IDI  ON SO.id_idioma = IDI.id_idioma  INNER JOIN tb_tecnologia TEC  ON SO.id_tecnologia = TEC.id_tecnologia  INNER JOIN tb_compatibilidadeSO CSO  ON SO.id_compatibilidadeSO = CSO.id_compatibilidadeSO  INNER JOIN tb_fabricante FAB ON SO.id_fabricante = FAB.id_fabricante WHERE SO.deleted = 0 ORDER BY SO.nomeSoftware");
+
             GridSoftware.DataBind();
         }
 
@@ -148,6 +149,7 @@ namespace Project_GCA_4._0.WebForms
                         {
                             ctx.tb_software.Add(Software);
                         }
+                        
                         ctx.SaveChanges();
                         EscondePaineis();
                         LimpaCampos();
@@ -173,7 +175,7 @@ namespace Project_GCA_4._0.WebForms
 
         protected void GridSoftware_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            GridSoftware.DataSource = Framework.GetDataTable("SELECT SO.id_software, SO.nomeSoftware, SO.versao, SO.ano, SO.fabricante, IDI.id_idioma, IDI.idioma, TEC.id_tecnologia, TEC.tecnologia, CSO.id_compatibilidadeSO, CSO.compatibilidadeSO FROM tb_software SO INNER JOIN tb_idiomas IDI ON SO.id_idioma = IDI.id_idioma INNER JOIN tb_tecnologia TEC ON SO.id_tecnologia = TEC.id_tecnologia INNER JOIN tb_compatibilidadeSO CSO ON SO.id_compatibilidadeSO = CSO.id_compatibilidadeSO WHERE SO.deleted = 0 ORDER BY SO.nomeSoftware");
+            GridSoftware.DataSource = Framework.GetDataTable("SELECT SO.id_software, SO.nomeSoftware, SO.versao, SO.ano, FAB.id_fabricante, FAB.nomeFabricante, IDI.id_idioma, IDI.idioma, TEC.id_tecnologia, TEC.tecnologia, CSO.id_compatibilidadeSO, CSO.compatibilidadeSO  FROM tb_software SO INNER JOIN tb_idiomas IDI  ON SO.id_idioma = IDI.id_idioma  INNER JOIN tb_tecnologia TEC  ON SO.id_tecnologia = TEC.id_tecnologia  INNER JOIN tb_compatibilidadeSO CSO  ON SO.id_compatibilidadeSO = CSO.id_compatibilidadeSO  INNER JOIN tb_fabricante FAB ON SO.id_fabricante = FAB.id_fabricante WHERE SO.deleted = 0 ORDER BY SO.nomeSoftware");
         }
 
         protected void GridSoftware_ItemCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
@@ -232,6 +234,7 @@ namespace Project_GCA_4._0.WebForms
                 PopuladdlIdioma();
                 PopuladdlTecnologia();
                 PopuladdlCompatibilidade();
+                PopuladdlFabricante();
             }
         }
     }

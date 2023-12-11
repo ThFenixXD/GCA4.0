@@ -8,7 +8,7 @@
         <asp:Panel ID="PnlCadastroFabricante" CssClass="Pnl col-9 col-md-9 col-sm-9 d-flex align-items-center justify-content-center text-center" runat="server" Visible="false">
         <section class="row">
             <div class="col-12 col-md-12 col-sm-12 mb-5 text-uppercase">
-                <asp:Label ID="lbFabricanteTitulo" CssClass="LbTitulo" runat="server" Text="Chave de Ativação"></asp:Label>
+                <asp:Label ID="lbFabricanteTitulo" CssClass="LbTitulo" runat="server" Text="Fabricante"></asp:Label>
             </div>
             <div class="DivTextBlock row d-flex m-auto gap-2">
                 <div class="row">

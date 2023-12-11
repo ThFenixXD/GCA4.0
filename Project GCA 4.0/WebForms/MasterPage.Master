@@ -39,7 +39,7 @@
                         <span class="txt-link">Máquinas</span>
                     </a>
                 </li>
-                 <li class="item-menu">
+                <li class="item-menu">
                     <a href="Setor.aspx">
                         <span class="icon"><i class="bi bi-intersect"></i></span>
                         <span class="txt-link">Setores</span>
@@ -70,14 +70,14 @@
                     </a>
                 </li>
                 <li class="item-menu">
-                    <a href="Compatibilidade.aspx">
+                    <a href="Compatibilidade.aspx" class="col-12 col-md-12 col-sm-12">
                         <span class="icon"><i class="bi bi-c-circle"></i></span>
                         <span class="txt-link">Compatibilidade</span>
                     </a>
                 </li>
                 <li class="item-menu">
                     <a href="Fabricante.aspx">
-                        <span class="icon"><i class="bi bi-c-circle"></i></span>
+                        <span class="icon"><i class="bi bi-buildings"></i></span>
                         <span class="txt-link">Fabricante</span>
                     </a>
                 </li>

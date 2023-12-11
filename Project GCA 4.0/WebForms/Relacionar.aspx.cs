@@ -122,54 +122,6 @@ namespace Project_GCA_4._0.WebForms
                         EscondePaineis();
                         PnlConsultarRelacionar.Visible = true;
                         AtualizaGridRelacionar();
-
-                        tb_maquinas Maquina = new tb_maquinas();
-                        try
-                        {
-                            if (!string.IsNullOrEmpty(HdfID.Value))
-                            {
-                                int _id = Convert.ToInt32(HdfID.Value);
-                                var Query = (from objMaquina in ctx.tb_maquinas select objMaquina);
-                                Maquina = Query.FirstOrDefault();
-
-                            }
-                            Maquina.status = 1;
-
-                            if (string.IsNullOrEmpty(HdfID.Value))
-                            {
-                                ctx.tb_maquinas.Add(Maquina);
-                            }
-                            ctx.SaveChanges();
-                        }
-                        catch (Exception ex)
-                        {
-                            Response.Write("Erro, " + ex.Message);
-                        }
-
-                        tb_chaves Chave = new tb_chaves();
-                        try
-                        {
-                            if (!string.IsNullOrEmpty(HdfID.Value))
-                            {
-                                int _id = Convert.ToInt32(HdfID.Value);
-                                var Query2 = (from objChave in ctx.tb_chaves select objChave);
-                                Chave = Query2.FirstOrDefault();
-                            }
-                            var Query = (from objChaveAtivacao in ctx.tb_chaves select objChaveAtivacao).FirstOrDefault();
-
-                            Chave.status = 1;
-
-                            if (string.IsNullOrEmpty(HdfID.Value))
-                            {
-                                ctx.tb_chaves.Add(Chave);
-                            }
-                            ctx.SaveChanges();
-                        }
-                        catch (Exception ex)
-                        {
-                            Response.Write("Erro, " + ex.Message);
-                        }
-                        Framework.Alerta(this, "Salvo com Sucesso!");
                     }
                 }
                 catch (Exception ex)
@@ -178,59 +130,6 @@ namespace Project_GCA_4._0.WebForms
                     Framework.AlertaErro(this, ex);
                 }
             }
-
-            //using (GCAEntities ctx = new GCAEntities())
-            //{
-            //    tb_maquinas Maquina = new tb_maquinas();
-            //    try
-            //    {
-            //        if (!string.IsNullOrEmpty(HdfID.Value))
-            //        {
-            //            int _id = Convert.ToInt32(HdfID.Value);
-            //            var Query = (from objMaquina in ctx.tb_maquinas select objMaquina);
-            //            Maquina = Query.FirstOrDefault();
-
-            //        }
-            //        Maquina.status = 1;
-
-            //        if (string.IsNullOrEmpty(HdfID.Value))
-            //        {
-            //            ctx.tb_maquinas.Add(Maquina);
-            //        }
-            //        ctx.SaveChanges();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Response.Write("Erro, " + ex.Message);
-            //    }
-            //}
-
-            //using (GCAEntities ctx = new GCAEntities())
-            //{
-            //    tb_chaves Chave = new tb_chaves();
-            //    try
-            //    {
-            //        if (!string.IsNullOrEmpty(HdfID.Value))
-            //        {
-            //            int _id = Convert.ToInt32(HdfID.Value);
-            //            var Query2 = (from objChave in ctx.tb_chaves select objChave);
-            //            Chave = Query2.FirstOrDefault();
-            //        }
-            //        var Query = (from objChaveAtivacao in ctx.tb_chaves select objChaveAtivacao).FirstOrDefault();
-
-            //        Chave.status = 1;
-
-            //        if (string.IsNullOrEmpty(HdfID.Value))
-            //        {
-            //            ctx.tb_chaves.Add(Chave);
-            //        }
-            //        ctx.SaveChanges();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Response.Write("Erro, " + ex.Message);
-            //    }
-            //}
         }
 
         protected void CancelarRelacionar_Click(object sender, EventArgs e)

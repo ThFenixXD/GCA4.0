@@ -49,6 +49,15 @@ namespace Project_GCA_4._0.WebForms {
         protected global::System.Web.UI.WebControls.TextBox txtNomeSoftware;
         
         /// <summary>
+        /// rfvNomeSoftware control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNomeSoftware;
+        
+        /// <summary>
         /// lbVersao control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace Project_GCA_4._0.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtVersão;
+        
+        /// <summary>
+        /// rfvVersao control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvVersao;
         
         /// <summary>
         /// lbAno control.
@@ -85,6 +103,15 @@ namespace Project_GCA_4._0.WebForms {
         protected global::System.Web.UI.WebControls.TextBox txtAno;
         
         /// <summary>
+        /// revAno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revAno;
+        
+        /// <summary>
         /// lbFabricante control.
         /// </summary>
         /// <remarks>
@@ -101,6 +128,15 @@ namespace Project_GCA_4._0.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFabricante;
+        
+        /// <summary>
+        /// rfvFabricante control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFabricante;
         
         /// <summary>
         /// lbIdioma control.
@@ -121,6 +157,15 @@ namespace Project_GCA_4._0.WebForms {
         protected global::System.Web.UI.WebControls.DropDownList ddlIdioma;
         
         /// <summary>
+        /// rfvIdioma control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvIdioma;
+        
+        /// <summary>
         /// lbTecnologia control.
         /// </summary>
         /// <remarks>
@@ -139,6 +184,15 @@ namespace Project_GCA_4._0.WebForms {
         protected global::System.Web.UI.WebControls.DropDownList ddlTecnologia;
         
         /// <summary>
+        /// rfvTecnologia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvTecnologia;
+        
+        /// <summary>
         /// lbCompatibilidade control.
         /// </summary>
         /// <remarks>
@@ -155,6 +209,15 @@ namespace Project_GCA_4._0.WebForms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCompatibilidade;
+        
+        /// <summary>
+        /// rfvCompatibilidade control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCompatibilidade;
         
         /// <summary>
         /// BtSalvarSoftware control.
