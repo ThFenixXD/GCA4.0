@@ -91,6 +91,7 @@
       <LastGenOutput>GCAModel.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
+    <Content Include="WebForm1.aspx" />
     <Content Include="WebForms\Fabricante.aspx" />
     <Content Include="WebForms\Chaves.aspx" />
     <Content Include="WebForms\Compatibilidade.aspx" />
@@ -152,6 +153,13 @@
     </Compile>
     <Compile Include="tb_usuarios.cs">
       <DependentUpon>GCAModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Fabricante.aspx.cs">
       <DependentUpon>Fabricante.aspx</DependentUpon>

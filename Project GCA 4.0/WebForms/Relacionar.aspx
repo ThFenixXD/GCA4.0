@@ -25,8 +25,8 @@
                     <asp:Label CssClass="lbRelacionar col-4 col-md-4 col-sm-4 text-center" runat="server" Text="Chave de Ativação"></asp:Label>
                 </div>
                 <div class="row p-0 m-0 gap-4 justify-content-evenly">
-                    <asp:DropDownList ID="DdlRelacionarSoftware" CssClass="col-4 col-md-4 col-sm-4 text-center" runat="server" DataTextField="nomeSoftware" DataValueField="id_software" AutoPostBack="true"></asp:DropDownList>
-                    <asp:DropDownList ID="DdlRelacionarChaveAtivacao" CssClass="col-4 col-md-4 col-sm-4 text-center" runat="server" DataTextField="chave" DataValueField="id_chave"></asp:DropDownList>
+                    <asp:DropDownList ID="DdlRelacionarSoftware" CssClass="col-4 col-md-4 col-sm-4 text-center" runat="server" DataTextField="nomeSoftware" DataValueField="id_software"></asp:DropDownList>
+                    <asp:DropDownList ID="DdlRelacionarChaveAtivacao" CssClass="col-4 col-md-4 col-sm-4 text-center" runat="server" DataTextField="chave" DataValueField="id_chave" ></asp:DropDownList>
                 </div>
                 <div class="row gap-4 mt-5 justify-content-center">
                     <asp:Button ID="SalvarRelacionar" CssClass="col-3 col-md-3 col-sm-3 text-center" runat="server" Text="Salvar" OnClick="SalvarRelacionar_Click" />
